@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WIU 4 the Win!!", "WIU 4 the Win!!.vcxproj", "{A15407A4-3825-4984-AB6F-C1D71D870EC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A15407A4-3825-4984-AB6F-C1D71D870EC3}.Debug|x64.ActiveCfg = Debug|x64
+		{A15407A4-3825-4984-AB6F-C1D71D870EC3}.Debug|x64.Build.0 = Debug|x64
+		{A15407A4-3825-4984-AB6F-C1D71D870EC3}.Debug|x86.ActiveCfg = Debug|Win32
+		{A15407A4-3825-4984-AB6F-C1D71D870EC3}.Debug|x86.Build.0 = Debug|Win32
+		{A15407A4-3825-4984-AB6F-C1D71D870EC3}.Release|x64.ActiveCfg = Release|x64
+		{A15407A4-3825-4984-AB6F-C1D71D870EC3}.Release|x64.Build.0 = Release|x64
+		{A15407A4-3825-4984-AB6F-C1D71D870EC3}.Release|x86.ActiveCfg = Release|Win32
+		{A15407A4-3825-4984-AB6F-C1D71D870EC3}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {601D70D7-CC76-45ED-82B1-1D476A333E1C}
+	EndGlobalSection
+EndGlobal
