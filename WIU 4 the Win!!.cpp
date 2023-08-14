@@ -5,6 +5,9 @@
 #include <windows.h>
 #include "location.h"
 #include "scene.h"
+#include "Entity.h"
+#include "Player.h"
+#include "Equipment.h"
 enum state {
     Explore,
     Action,
@@ -15,12 +18,16 @@ enum state {
 
 int main()
 {
-    int state = Explore;
+    float PMods[6] = { 1,1,1,1,1,1 };
+    Player player(PMods, "Marcus");
+    int state = Action;
     scene Map1(1);
     Map1.gridgen();
+
     while (1) {
         if (state == Action) {
-            
+            system("cls");
+
         }
         else if (state == Explore) {
             if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D') ||
