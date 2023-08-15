@@ -13,6 +13,8 @@ private:
 public:
 	scene(int x);
 	void gridgen()const;
+	void plrgen()const;
+	void plrupdate()const;
 	void move(const int x, const int y);
 };
 
