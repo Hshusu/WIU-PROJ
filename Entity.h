@@ -22,20 +22,26 @@ protected:
 	float magicmod;
 	float mana;
 	float speed;
+	float CR;
 	float Hp;
 	float MaxMana;
 	float MaxHp;
 	bool blocking=false;
+	bool turn = false;
 	std::vector<skilldetail>skills;
 public:
-	Entity();
-	Entity(std::string name, float dmgmod, float MaxHp, float speed, float MaxMana);
 	void takedmg(int x);
+	std::string getname();
 	float gethp();
+	float getmana();
 	int getweaponval();
+	bool getturn();
+	void setturn(bool x);
 	int getarmorval();
 	bool getblocking();
-	virtual float Execute_skill(Entity* Enemy, int choice);
+	float getspeed();
+	bool CrCheck();
+	void Execute_skill(Entity* Enemy, int choice);
 	void damage(int x);
 
 

@@ -1,10 +1,20 @@
 #include "Npc.h"
 #include <random>
-int Npc::chooseaction()
+Npc::Npc(std::string name, float dmgmod, float MaxHp, float speed, float MaxMana)
 {
+	this->name = name;
+	this->dmgmod = dmgmod;
+	Hp=this->MaxHp = MaxHp;
+	this->speed = speed;
+	mana = this->MaxMana = MaxMana;
+	skills.push_back({ "Heal"," ", 5, 4,false,false,true });
+	skills.push_back({ "Slash"," ", 0, 3,false,false,false });
+}
+int Npc::chooseaction()
+{		
 	std::random_device rdm;
 	std::uniform_int_distribution<int> dist(1, 100);
-	int enemychoice = (dist(rdm) - 40);//done to reduce chance of healing
+	int enemychoice = (dist(rdm) - 100);//done to reduce chance of healing
 	//for healing
 	if ((100 * (Hp / MaxHp)) <= enemychoice) {//makes enemy heal more when at low hp
 		//heal used

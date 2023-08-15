@@ -1,27 +1,23 @@
 #include<iostream>
 #include "Entity.h"
-Entity::Entity()
-{
-}
-Entity::Entity(std::string name,float dmgmod, float MaxHp, float speed, float MaxMana)
-{
-	this->name = name;
-	Hp=this->dmgmod = dmgmod;
-	this->MaxHp = MaxHp;
-	this->speed = speed;
-	mana=this->MaxMana = MaxMana;
-	skills.push_back({ "Heal"," ", 5, 4,false,false,true });
-	skills.push_back({ "Slash"," ", 0, 3,false,false,false });
-}
 void Entity::takedmg(int x)
 {
-	if (x > 0) {
-		Hp = Hp - x;
+	Hp = Hp - x;
+	if (Hp < 0) {
+		Hp = 0;
 	};
+}
+std::string Entity::getname()
+{
+	return name;
 }
 float Entity::gethp()
 {
 	return Hp;
+}
+float Entity::getmana()
+{
+	return mana;
 }
 int Entity::getweaponval()
 {
@@ -31,6 +27,14 @@ int Entity::getweaponval()
 	else {
 		return 0;
 	}
+}
+bool Entity::getturn()
+{
+	return turn;
+}
+void Entity::setturn(bool x)
+{
+	turn = x;
 }
 int Entity::getarmorval()
 {
@@ -45,7 +49,23 @@ bool Entity::getblocking()
 {
 	return blocking;
 }
-float Entity::Execute_skill(Entity* Enemy, int choice)
+float Entity::getspeed()
+{
+	return speed;
+}
+bool Entity::CrCheck()
+{
+	CR = CR + (1 * speed);
+	if (CR >= 100) {
+		CR = 0;
+		turn = true;
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+void Entity::Execute_skill(Entity* Enemy, int choice)
 {
 	
 		if (skills[choice].blocking) {
@@ -64,11 +84,11 @@ float Entity::Execute_skill(Entity* Enemy, int choice)
 			if (Hp > MaxHp) {
 				Hp = MaxHp;
 			}
-			return (skills[choice].base * dmgmod);
+			std::cout << name << " used " << skills[choice].name << " on itself"<<std::endl ;
 		}
 		else {
-			Enemy->takedmg(Enemy->gethp() - ((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1)))-Enemy->getarmorval()+getweaponval());
-			return (skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1));
+			Enemy->takedmg(((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1)))-Enemy->getarmorval()+getweaponval());
+			std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname()<< " dealing "<<abs((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval())<<std::endl;
 		}
 	
 }

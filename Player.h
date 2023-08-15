@@ -7,9 +7,11 @@ private:
 	float characterbase[6]{ 10 ,10,10,10,10,10};
 	float csmod[6]{ 0, 0, 0, 0, 0, 0 };
 	int cslvl[6]{ 0, 0, 0, 0, 0, 0 };
+	int scrollwheelpos=0;
 public:
 
-	Player(float csmod[8], std::string Name);
+	Player(float csmod[6], std::string Name);
+	int Playerturn(Entity* Enemy);
 	void statcalc();
 	int getskillcount();
 	void displayskills(int i);
