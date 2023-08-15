@@ -130,6 +130,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Equipment.cpp" />
     <ClCompile Include="location.cpp" />
+    <ClCompile Include="Npc.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="WIU 4 the Win!!.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Equipment.h" />
     <ClInclude Include="location.h" />
+    <ClInclude Include="Npc.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="scene.h" />
   </ItemGroup>

@@ -10,20 +10,32 @@ struct skilldetail {
 	bool manacost;
 	bool healing;
 	bool blocking;
-	Equipment* weapon;
-	Equipment* armor;
+
 };
 class Entity
 {
-	//PS this is pure virtual.
-private:
+protected:
+	Equipment* weapon;
+	Equipment* armor;
+	std::string name;
 	float dmgmod;
+	float magicmod;
+	float mana;
 	float speed;
 	float Hp;
+	float MaxMana;
+	float MaxHp;
+	bool blocking=false;
 	std::vector<skilldetail>skills;
 public:
 	Entity();
-	virtual void Execute_skill(Entity* Enemy, int choice);
+	Entity(std::string name, float dmgmod, float MaxHp, float speed, float MaxMana);
+	void takedmg(int x);
+	float gethp();
+	int getweaponval();
+	int getarmorval();
+	bool getblocking();
+	virtual float Execute_skill(Entity* Enemy, int choice);
 	void damage(int x);
 
 
