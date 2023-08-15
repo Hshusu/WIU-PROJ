@@ -19,25 +19,40 @@ Player::Player(float csmod[6], std::string Name)
 
 int Player::Playerturn(Entity* Enemy)
 {
+	std::cout << "\033[1;36m> You ran into a FIGHT Grid and bumped into an ENEMY!\033[0m" << std::endl;
+
+	std::cout << "A " << "\033[1;35m" << Enemy->getname() << "\033[0m" << " approaches you menacingly!" << std::endl;
+	std::cout << Enemy->getname() << "'s \033[1;31m[HP] > \033[0m" << Enemy->gethp() << std::endl;
+	std::cout << "Your \033[1;31m[HP] > \033[0m" << Hp << " " << "\033[1;36m[MANA] > \033[0m" << mana << std::endl;
+	std::cout << "It's YOUR turn. What will you do?" << std::endl;
+
+	std::cout << " " << std::endl;
+	std::cout << " " << std::endl;
+	for (int i = 0; i < skills.size(); i++)//prints amount relative to number of skills
+	{
+		std::cout << skills[i].name;
+		if (i == scrollwheelpos) {
+			std::cout << "\033[1;31m <-\033[0m" << std::endl;//for generating pointer
+		}
+		else { std::cout << std::endl; }
+		std::cout << skills[i].description << " cost:" << skills[i].cost << (skills[i].manacost ? "mana " : " hp ") << (skills[i].healing ? "heals: " : "deals: ") << skills[i].base << std::endl;
+
+
+	}
+	std::cout << "\033[1;36mUse the [W] and [S] Keys to toggle between skills. [X] to Select skill.\033[0m";
 	while (1) {
-		std::cout << "\033[1;36m> You ran into a FIGHT Grid and bumped into an ENEMY!\033[0m" << std::endl;
+		if ((GetAsyncKeyState('W')) || (GetAsyncKeyState('S')) || (GetAsyncKeyState('X'))) {
 
-		std::cout << "A " << "\033[1;35m" << Enemy->getname() << "\033[0m" << " approaches you menacingly!" << std::endl;
-		std::cout << Enemy->getname() << "'s \033[1;31m[HP] > \033[0m" << Enemy->gethp() << std::endl;
-		std::cout << "Your \033[1;31m[HP] > \033[0m" << Hp << " " << "\033[1;36m[MANA] > \033[0m" << mana << std::endl;
-		std::cout << "It's YOUR turn. What will you do?" << std::endl;
+			system("cls");
+			std::cout << "\033[1;36m> You ran into a FIGHT Grid and bumped into an ENEMY!\033[0m" << std::endl;
 
-		std::cout << " " << std::endl;
-		std::cout << " " << std::endl;
-		for (int i = 0; i < skills.size(); i++)//prints amount relative to number of skills
-		{
-			std::cout << skills[i].name;
-			if (i == scrollwheelpos) {
-				std::cout << "\033[1;31m <-\033[0m" << std::endl;//for generating pointer
-			}
-			else { std::cout << std::endl; }
-			std::cout << skills[i].description << " cost:" << skills[i].cost << (skills[i].manacost ? "mana " : " hp ") << (skills[i].healing ? "heals: " : "deals: ") << skills[i].base << std::endl;
-		
+			std::cout << "A " << "\033[1;35m" << Enemy->getname() << "\033[0m" << " approaches you menacingly!" << std::endl;
+			std::cout << Enemy->getname() << "'s \033[1;31m[HP] > \033[0m" << Enemy->gethp() << std::endl;
+			std::cout << "Your \033[1;31m[HP] > \033[0m" << Hp << " " << "\033[1;36m[MANA] > \033[0m" << mana << std::endl;
+			std::cout << "It's YOUR turn. What will you do?" << std::endl;
+
+			std::cout << " " << std::endl;
+			std::cout << " " << std::endl;
 			if (GetAsyncKeyState('W')) // for controlling pointer
 			{
 				if (scrollwheelpos <= 0) {
@@ -47,10 +62,8 @@ int Player::Playerturn(Entity* Enemy)
 				{
 					scrollwheelpos--;
 				}
-				Sleep(1);
-				system("cls");
 			}
-			 if (GetAsyncKeyState('S'))
+			if (GetAsyncKeyState('S'))
 			{
 
 				if (scrollwheelpos > (skills.size() - 2)) {
@@ -59,18 +72,27 @@ int Player::Playerturn(Entity* Enemy)
 				else
 				{
 					scrollwheelpos++;
-					Sleep(1);
-					system("cls");
+
 				}
 			}
-			 if (GetAsyncKeyState('X')) {
-				 return scrollwheelpos;
-			 }
+			if (GetAsyncKeyState('X')) {
+				return scrollwheelpos;
+			}
 
+			for (int i = 0; i < skills.size(); i++)//prints amount relative to number of skills
+			{
+				std::cout << skills[i].name;
+				if (i == scrollwheelpos) {
+					std::cout << "\033[1;31m <-\033[0m" << std::endl;//for generating pointer
+				}
+				else { std::cout << std::endl; }
+				std::cout << skills[i].description << " cost:" << skills[i].cost << (skills[i].manacost ? "mana " : " hp ") << (skills[i].healing ? "heals: " : "deals: ") << skills[i].base << std::endl;
+
+
+			}
+			std::cout << "\033[1;36mUse the [W] and [S] Keys to toggle between skills. [X] to Select skill.\033[0m";
+			Sleep(100);
 		}
-		std::cout << "\033[1;36mUse the [W] and [S] Keys to toggle between skills. [X] to Select skill.\033[0m";
-		Sleep(100);
-		system("cls");
 	}
 }
 

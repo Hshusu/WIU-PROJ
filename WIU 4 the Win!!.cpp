@@ -58,8 +58,7 @@ int main()
     Npc* placeholderE = new Npc("placeholder", 1.1, 10, 1.1, 20);
     int state = Action;
     scene Map1(1);
-    Map1.gridgen();
-    Map1.plrgen();
+
     while (1) {
         if (state == Action) {
             player->statcalc();
