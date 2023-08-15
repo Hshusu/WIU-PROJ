@@ -22,13 +22,51 @@ void scene::move(const int x, const int y) {
 	}
 }
 
+
+
 scene::scene(int x)
 {
 	playerpos.sety(1);
 	playerpos.setx(1);
 	switch (x)
 	{
+		//Outdoor Maps
+		//World Map (A General Map thats like a top down view of a city (Library, Shop, House...)
+		// 
+		//Indoor Maps
+		//Lobby/Spawn (Area where detective (YOU) Spawn in to select your party members)
+		//Interrogation Room (Where the Police are interrogating the suspect)
+		//Library Receptionist (Where you meet the Librarian)
+		//Library Book Section (Just a random part of the Library. Explore for clues, will bump into forbidden area at the edge)
+		//Library Forbidden Section
+		//Important Person House Room 1
+		//Important Person House Room 2
+		//Important Person House Room 3
+		//Shop
+
 	case 1:
+		map = {
+		{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',},
+		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','O','.','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','#','#','#','#','#','D','O','O','R','#','#','#','#','#','#',},
+		};
+		H = map.size();
+		W = map[0].size();
+		break;
+	case 2:
 		map = {
 		{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',},
 		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
@@ -45,11 +83,10 @@ scene::scene(int x)
 		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
 		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
 		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
-		{'#','#','#','#','#','#','D','O','O','R','#','#','#','#','#','#',},
+		{'#','#','#','#','#','#','D','E','O','R','#','#','#','#','#','#',},
 		};
 		H = map.size();
 		W = map[0].size();
-		break;
 	default:
 		break;
 	}
@@ -92,4 +129,14 @@ void scene::plrupdate() const
 	std::cout << "\033[1;35mP\033[0m" << "";
 	COORD zone12_Coords = { 700, 2 };
 	SetConsoleCursorPosition(h, zone12_Coords);
+}
+
+void scene::checkNPC() const
+{
+	if ((map[playerpos.gety() + 1][playerpos.getx()]) == 'O' 
+		|| (map[playerpos.gety()][playerpos.getx()] + 1) == 'O'
+		|| (map[playerpos.gety() - 1][playerpos.getx()]) == 'O'
+		|| (map[playerpos.gety()][playerpos.getx() - 1]) == 'O') {
+		system("cls");
+	}
 }

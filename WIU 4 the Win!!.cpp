@@ -91,12 +91,12 @@ int main()
                 player->setturn(false);
 
             }
-            if (placeholderE->gethp() > 0) {
+            if (placeholderE->gethp() < 0) {
                 std::cout<< "enemy killed!";
                 state = Explore;
 
             }
-            if (player->gethp() > 0) {
+            if (player->gethp() < 0) {
                 std::cout << "player killed!";
                 state = Explore;
 
@@ -124,6 +124,15 @@ int main()
                     Map1.move(1, 0);
                 }
                 Sleep(10);
+            }
+            if (GetAsyncKeyState('X'))
+            {
+                /*scene Map1(2);
+                system("cls");
+                Map1.gridgen();
+                Map1.plrgen();*/
+
+                Map1.checkNPC();
             }
         }
     }
