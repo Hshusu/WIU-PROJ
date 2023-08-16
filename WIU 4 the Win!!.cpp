@@ -60,7 +60,7 @@ int main()
     scene Map1(1);
 
     while (1) {
-        if (state == Action) {
+        if (state == Explore) {
             player->statcalc();
             system("cls");
             while ((player->getturn()==false) && (placeholderE->getturn()==false)) {
@@ -78,8 +78,8 @@ int main()
                 std::cout << "\033[1;36m> You ran into a FIGHT Grid and bumped into an ENEMY!\033[0m" << std::endl;
 
                 std::cout << "A " << "\033[1;35m" << placeholderE->getname() << "\033[0m" << " approaches you menacingly!" << std::endl;
-                std::cout << placeholderE->getname() << "'s \033[1;31m[HP] > \033[0m" << placeholderE->gethp() << std::endl;
-                std::cout << "Your \033[1;31m[HP] > \033[0m" << player->gethp() << " " << "\033[1;36m[MANA] > \033[0m" << player->getmana() << std::endl;
+                std::cout << placeholderE->getname() << "'s \033[1;31m[HP] > \033[0m" << placeholderE->gethp() <<" CR is :"<<placeholderE->GetCR()<< std::endl;
+                std::cout << "Your \033[1;31m[HP] > \033[0m" << player->gethp() << " " << "\033[1;36m[MANA] > \033[0m" << player->getmana() << " CR is :" << player->GetCR() << std::endl;
                 placeholderE->Execute_skill(player, placeholderE->chooseaction());
                 placeholderE->setturn(false);
 

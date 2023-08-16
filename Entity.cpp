@@ -15,6 +15,10 @@ float Entity::gethp()
 {
 	return Hp;
 }
+float Entity::GetCR()
+{
+	return CR;
+}
 float Entity::getmana()
 {
 	return mana;

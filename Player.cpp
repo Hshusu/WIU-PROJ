@@ -47,8 +47,38 @@ int Player::Playerturn(Entity* Enemy)
 			std::cout << "\033[1;36m> You ran into a FIGHT Grid and bumped into an ENEMY!\033[0m" << std::endl;
 
 			std::cout << "A " << "\033[1;35m" << Enemy->getname() << "\033[0m" << " approaches you menacingly!" << std::endl;
-			std::cout << Enemy->getname() << "'s \033[1;31m[HP] > \033[0m" << Enemy->gethp() << std::endl;
-			std::cout << "Your \033[1;31m[HP] > \033[0m" << Hp << " " << "\033[1;36m[MANA] > \033[0m" << mana << std::endl;
+			std::cout << Enemy->getname() << "'s \033[1;31m[HP] > \033[0m" << Enemy->gethp() << " CR is :" << int(Enemy->GetCR()) << std::endl;
+			int barWidth = 70;
+
+			std::cout << "[";
+			int pos;
+			pos = barWidth *0.01* Enemy->GetCR(); 
+			for (int i = 0; i < barWidth; ++i) {
+				if (i < pos) std::cout << "=";
+				else if (i == pos) std::cout << ">";
+				else std::cout << " ";
+			}
+			std::cout << "] " << int(Enemy->GetCR()) << " %\r";
+			std::cout.flush();
+
+			std::cout << std::endl;
+			std::cout << "Your \033[1;31m[HP] > \033[0m" << Hp << " " << "\033[1;36m[MANA] > \033[0m" << mana<< " CR is :"<<CR << std::endl;
+			std::cout<<std::endl;
+			
+
+			std::cout << "[";
+				if (CR == 0) { pos = barWidth * 0.01 * 100; }
+				else { pos = barWidth * CR; }
+				for (int i = 0; i < barWidth; ++i) {
+					if (i < pos) std::cout << "=";
+					else if (i == pos) std::cout << ">";
+					else std::cout << " ";
+				}
+				std::cout << "] " << int(CR ) << " %\r";
+				std::cout.flush();
+
+				std::cout << std::endl;
+
 			std::cout << "It's YOUR turn. What will you do?" << std::endl;
 
 			std::cout << " " << std::endl;

@@ -33,6 +33,7 @@ public:
 	void takedmg(int x);
 	std::string getname();
 	float gethp();
+	float GetCR();
 	float getmana();
 	int getweaponval();
 	bool getturn();
