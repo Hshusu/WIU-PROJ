@@ -46,7 +46,7 @@ int main()
     cfi.cbSize = sizeof(cfi);
     cfi.nFont = 0;
     cfi.dwFontSize.X = 0;                   // Width of each character in the font
-    cfi.dwFontSize.Y = 50;                  // Height
+    cfi.dwFontSize.Y = 20;                  // Height
     cfi.FontFamily = FF_DONTCARE;
     cfi.FontWeight = FW_NORMAL;
     //std::wcscpy(cfi.FaceName, L"Consolas"); // Choose your font
@@ -107,7 +107,7 @@ int main()
         else if (state == Explore) {
             if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D') ||
                 GetAsyncKeyState('f')) {
-                //system("cls");
+                system("cls");
                 Map1.gridgen();
                 Map1.plrupdate();
                 if (GetAsyncKeyState('S')) {
