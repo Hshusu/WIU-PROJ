@@ -56,7 +56,7 @@ int main()
 
     Player* player = new Player(PMods, "Marcus");
     Npc* placeholderE = new Npc("placeholder", 1.1, 10, 1.1, 20);
-    int state = Action;
+    int state = Explore;
     scene Map1(1);
 
     while (1) {
