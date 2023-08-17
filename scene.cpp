@@ -4,20 +4,20 @@
 HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
 void scene::move(const int x, const int y) {
-	if ((map[playerpos.gety() + y][playerpos.getx() + x]) == '.') {
-		playerpos.sety(playerpos.gety() + y);
-		if (playerpos.gety() < 0) {
-			playerpos.sety(0);
+	if ((map[playerpos.Y + y][playerpos.X + x]) == '.') {
+		playerpos.Y=(playerpos.Y + y);
+		if (playerpos.Y < 0) {
+			playerpos.Y= 0;
 		}
-		if (playerpos.gety() > H - 1) {
-			playerpos.sety(H - 1);
+		if (playerpos.Y > H - 1) {
+			playerpos.Y = (H-1);
 		}
-		playerpos.setx(playerpos.getx() + x);
-		if (playerpos.getx() < 0) {
-			playerpos.setx(0);
+		playerpos.X=(playerpos.X + x);
+		if (playerpos.X < 0) {
+			playerpos.X = 0;
 		}
-		if (playerpos.getx() > W - 1) {
-			playerpos.setx(W - 1);
+		if (playerpos.X > W - 1) {
+			playerpos.X = W-1;
 		}
 	}
 }
@@ -58,11 +58,25 @@ scene::scene(int x)
 		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','S','|','.','#',},
 		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','-','-','-','.','#',},
 		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
-		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
-		{'#','.','.','H','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
-		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
-		{'#','.','.','.','.','.','.','.','.','.','[','.','.','.',']','.','.','.','.','.','.','#',},
-		{'#','.','.','.','.','.','.','.','.','.','|','<','g','>','|','.','.','.','.','.','.','#',},
+		{'#','|','-','-','-','-','-','|','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','|','.','.','.','.','.','|','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','|','.','.','.','.','.','|','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
+		{'#','|','.','.','.','.','.','|','.','.','[','.','.','.',']','.','.','.','.','.','.','#',},
+		{'#','|','h','o','u','s','e','|','.','.','|','<','g','>','|','.','.','.','.','.','.','#',},
+		{'#','|','.','.','.','.','.','|','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
+		{'#','|','.','.','.','.','.','|','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
+		{'#','|','.','.','.','.','.','|','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
+		{'#','|','-','-','-','-','-','|','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
 		{'#','.','.','.','.','.','.','.','.','.','|','_','_','_','|','.','.','.','.','.','.','#',},
 		{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',},
 		};
@@ -106,22 +120,48 @@ scene::scene(int x)
 	}
 	H = map.size();
 	W = map[0].size();
-	playerpos.sety(H/2);
-	playerpos.setx(W/2);
+	playerpos.Y=(H/2);
+	playerpos.X=(W/2);
+	
 }
 
 void scene::gridgen()const
 {
 	
-	COORD zone1_Coords = { max_size.X / 2 - (playerpos.getx() * 3), max_size.Y / 2 - playerpos.gety() };
+	COORD zone1_Coords = { max_size.X / 2 - (playerpos.X * 3), max_size.Y / 2 - playerpos.Y };
 	SetConsoleCursorPosition(h, zone1_Coords);
 	for (int col = 0; col < H; col++)
 	{
 		for (int row = 0; row < W; row++)
 		{
-				std::cout << map[col][row] << "  ";
+			if (((col - playerpos.Y + (max_size.Y / 2))  > 10)&&((row - playerpos.X + (max_size.X / 2)) > 60) && ((col - playerpos.Y + (max_size.Y / 2)) < (max_size.Y-10)) && ((row - playerpos.X + (max_size.X / 2)) < (max_size.X-60))) {
+				switch (map[col][row]) {
+					case '#':
+						SetConsoleTextAttribute(h, 1);
+						std::cout << map[col][row] << "  " << std::flush;
+						break;
+					case '.':
+						SetConsoleTextAttribute(h, 2);
+						std::cout << map[col][row] << "  " << std::flush;
+						break;
+					case 'L':
+						SetConsoleTextAttribute(h, 4);
+						std::cout << map[col][row] << "  " << std::flush;
+						break;
+					default:
+						SetConsoleTextAttribute(h, 7);
+						std::cout << map[col][row] << "  " << std::flush;
+						break;
+				}
+
+				
+			}
+			else {
+				std::cout << "   ";
+			}
 
 		}
+
 		zone1_Coords.Y++;
 		SetConsoleCursorPosition(h, zone1_Coords);
 	}
@@ -129,8 +169,8 @@ void scene::gridgen()const
 
 void scene::plrgen() const
 {
-	COORD zone1_Coords = { 7, 2 };
-	SetConsoleCursorPosition(h, zone1_Coords);
+	COORD zone2_Coords = { 7, 2 };
+	SetConsoleCursorPosition(h, zone2_Coords);
 
 	std::cout << "\033[1;35mP\033[0m";
 }
@@ -147,16 +187,15 @@ void scene::plrupdate() const
 	COORD zone1_Coords = { max_size.X / 2 , max_size.Y / 2};
 	SetConsoleCursorPosition(h, zone1_Coords);
 	std::cout << "\033[1;35mP\033[0m";
-	COORD zone12_Coords = { 700, 2 };
-	SetConsoleCursorPosition(h, zone12_Coords);
+
 }
 
 void scene::checkNPC() const
 {
-	if ((map[playerpos.gety() + 1][playerpos.getx()]) == 'O' 
-		|| (map[playerpos.gety()][playerpos.getx()] + 1) == 'O'
-		|| (map[playerpos.gety() - 1][playerpos.getx()]) == 'O'
-		|| (map[playerpos.gety()][playerpos.getx() - 1]) == 'O') {
+	if ((map[playerpos.Y + 1][playerpos.X]) == 'O' 
+		|| (map[playerpos.Y][playerpos.X] + 1) == 'O'
+		|| (map[playerpos.Y - 1][playerpos.X]) == 'O'
+		|| (map[playerpos.Y][playerpos.X - 1]) == 'O') {
 		system("cls");
 	}
 }

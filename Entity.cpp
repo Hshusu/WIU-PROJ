@@ -3,7 +3,7 @@
 void Entity::takedmg(int x)
 {
 	Hp = Hp - x;
-	if (Hp < 0) {
+	if (Hp < 1) {
 		Hp = 0;
 	};
 }
@@ -14,6 +14,10 @@ std::string Entity::getname()
 float Entity::gethp()
 {
 	return Hp;
+}
+float Entity::getMaxHP()
+{
+	return MaxHp;
 }
 float Entity::GetCR()
 {
@@ -31,6 +35,21 @@ int Entity::getweaponval()
 	else {
 		return 0;
 	}
+}
+int Entity::getWeakness()
+{
+	return Weakness;
+}
+int Entity::getRes()
+{
+	return Res;
+}
+void Entity::CrCHange(int x)
+{
+	CR = CR - x;
+	if (CR < 0) {
+		CR = 0;
+	};
 }
 bool Entity::getturn()
 {
@@ -91,9 +110,24 @@ void Entity::Execute_skill(Entity* Enemy, int choice)
 			std::cout << name << " used " << skills[choice].name << " on itself"<<std::endl ;
 		}
 		else {
-			Enemy->takedmg(((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1)))-Enemy->getarmorval()+getweaponval());
-			std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname()<< " dealing "<<abs((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval())<<std::endl;
-		}
+			if (skills[choice].Element == Enemy->getWeakness()) {
+				Enemy->CrCHange(50);
+				Enemy->takedmg(((skills[choice].base * dmgmod *1.5* (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
+				std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod*1.5 * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
+				std::cout << "it did critical damage!!   Pushing the enemies turn back" << std::endl;
+
+			}
+			else if((skills[choice].Element == Enemy->getRes())) {
+				Enemy->takedmg(((skills[choice].base * dmgmod * 0.5 * (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
+				std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod * 1.5 * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
+				std::cout << "it did low damage......" << std::endl;
+			}
+			else {
+				Enemy->takedmg(((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
+				std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
+			}
+			}
+
 	
 }
 

@@ -1,7 +1,9 @@
 #include "Npc.h"
 #include <random>
-Npc::Npc(std::string name, float dmgmod, float MaxHp, float speed, float MaxMana)
+Npc::Npc(std::string name, float dmgmod, float MaxHp, float speed, float MaxMana , int Weak, int res)
 {
+	Weakness = Weak;
+	Res = res;
 	this->name = name;
 	this->dmgmod = dmgmod;
 	Hp=this->MaxHp = MaxHp;

@@ -1,7 +1,4 @@
-﻿  Player.cpp
-D:\game dev projects\pgrm assignment\WIU-PROJ\Player.cpp(55,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\game dev projects\pgrm assignment\WIU-PROJ\Player.cpp(70,42): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\game dev projects\pgrm assignment\WIU-PROJ\Player.cpp(71,27): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\game dev projects\pgrm assignment\WIU-PROJ\Player.cpp(89,42): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-D:\game dev projects\pgrm assignment\WIU-PROJ\Player.cpp(150,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  WIU 4 the Win!!.vcxproj -> D:\game dev projects\pgrm assignment\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe
+﻿  scene.cpp
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\scene.cpp(121,16): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\scene.cpp(122,19): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  WIU 4 the Win!!.vcxproj -> C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe

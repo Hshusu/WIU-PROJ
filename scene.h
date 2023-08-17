@@ -6,7 +6,7 @@
 class scene
 {
 private:
-	location playerpos;
+	COORD playerpos;
 	int W, H;
 	std::vector<std::vector<char>> map;
 	HANDLE screen = GetStdHandle(STD_OUTPUT_HANDLE);

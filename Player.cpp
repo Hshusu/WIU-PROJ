@@ -3,8 +3,10 @@
 #include<conio.h>
 #include <windows.h>
 
-Player::Player(float csmod[6], std::string Name)
+Player::Player(float csmod[6], std::string Name, int Weak, int res)
 {
+	Weakness = Weak;
+	Res = res;
 	this->name = name;
 	for (int i = 0; i < 6; i++) {
 		this->csmod[i] = csmod[i];
@@ -12,22 +14,146 @@ Player::Player(float csmod[6], std::string Name)
 	statcalc();
 	Hp = MaxHp;
 	mana = MaxMana;
-	skills.push_back({ "\033[1;33mShield bash\033[0m","A well rounded maneuver that blocks and deals damage.", 5, 4,false,false,true });
-	skills.push_back({ "\033[1;32mMeditate\033[0m","Heals hp and blocks.", 50, 15 ,true,true,false });
-	skills.push_back({ "\033[1;31mBerzerk blade\033[0m","High damage and high cost slash.", 10, 15 ,false,false,false });
+	skills.push_back({ "\033[1;33mShield bash\033[0m","A well rounded maneuver that blocks and deals damage.", 5, 4,false,false,true ,None,0});
+	skills.push_back({ "\033[1;32mMeditate\033[0m","Heals hp and blocks. Also advances turn by 50%", 50, 15 ,true,true,false,Healing ,-50});
+	skills.push_back({ "\033[1;31mBerzerk blade\033[0m","High damage and high cost slash.", 10, 15 ,false,false,false,Fire,0 });
 }
-
-int Player::Playerturn(Entity* Enemy)
+//Fire,
+//Ice,
+//Lightning,
+//Wind,
+//Darkness,
+//Siphon,
+//None,
+void Player::Uigen(Entity Enemy)
 {
 	std::cout << "\033[1;36m> You ran into a FIGHT Grid and bumped into an ENEMY!\033[0m" << std::endl;
 
-	std::cout << "A " << "\033[1;35m" << Enemy->getname() << "\033[0m" << " approaches you menacingly!" << std::endl;
-	std::cout << Enemy->getname() << "'s \033[1;31m[HP] > \033[0m" << Enemy->gethp() << std::endl;
+	std::cout << "A " << "\033[1;35m" << Enemy.getname() << "\033[0m" << " approaches you menacingly!" << std::endl;
+	std::cout << Enemy.getname() << "'s \033[1;31m[HP] > \033[0m" << Enemy.gethp() << "   they are weak to :"; 
+	switch (Enemy.getWeakness())
+	{
+	case Fire:
+		std::cout << "\033[1;31mFire\033[0m";
+		break;
+	case Ice:
+		std::cout << "\033[1;34mIce\033[0m";
+		break;
+	case Lightning:
+		std::cout << "\033[0;33mLightning\033[0m";
+		break;
+	case Wind:
+		std::cout << "\033[0;32mWind\033[0m";
+		break;
+	case Darkness:
+		std::cout << "\033[0;35mDarkness\033[0m";
+		break;
+	case Siphon:
+		std::cout << "Siphon";
+		break;
+
+	default:
+		std::cout << "Nothing!!";
+		break;
+	}
+	std::cout << std::endl << " They are Resistant to  : ";
+	switch (Enemy.getRes())
+	{
+	case Fire:
+		std::cout << "\033[1;31mFire\033[0m";
+		break;
+	case Ice:
+		std::cout << "\033[1;34mIce\033[0m";
+		break;
+	case Lightning:
+		std::cout << "\033[0;33mLightning\033[0m";
+		break;
+	case Wind:
+		std::cout << "\033[0;32mWind\033[0m";
+		break;
+	case Darkness:
+		std::cout << "\033[0;35mDarkness\033[0m";
+		break;
+	case Siphon:
+		std::cout << "Siphon";
+		break;
+
+	default:
+		std::cout << "Nothing!!";
+		break;
+	}
+	std::cout << std::endl;
 	std::cout << "Your \033[1;31m[HP] > \033[0m" << Hp << " " << "\033[1;36m[MANA] > \033[0m" << mana << std::endl;
 	std::cout << "It's YOUR turn. What will you do?" << std::endl;
 
 	std::cout << " " << std::endl;
-	std::cout << " " << std::endl;
+	std::cout << " " << std::endl;	
+			int pos;
+			std::cout << "\033[1;36m> You ran into a FIGHT Grid and bumped into an ENEMY!\033[0m" << std::endl;
+
+			std::cout << "A " << "\033[1;35m" << Enemy.getname() << "\033[0m" << " approaches you menacingly!" << std::endl;
+			std::cout << Enemy.getname() << "'s \033[1;31m[HP] > \033[0m" << Enemy.gethp() << " CR is :" << int(Enemy.GetCR()) << std::endl;
+			int barWidth = 70;
+
+			std::cout << "[";
+			pos = barWidth * Enemy.gethp() / Enemy.getMaxHP();
+			for (int i = 0; i < barWidth; ++i) {
+				if (i < pos) std::cout << "\033[1;32m=\033[0m";
+				else if (i == pos) std::cout << "\033[1;32m>\033[0m";
+				else std::cout << " ";
+			}
+			std::cout << "] " << int(Enemy.gethp());
+			std::cout.flush();
+			std::cout << std::endl;
+			std::cout << "[";
+			pos = barWidth * 0.01 * Enemy.GetCR();
+			for (int i = 0; i < barWidth; ++i) {
+				if (i < pos) std::cout << "=";
+				else if (i == pos) std::cout << ">";
+				else std::cout << " ";
+			}
+			std::cout << "] " << int(Enemy.GetCR()) << " %\r";
+			std::cout.flush();
+
+			std::cout << std::endl;
+			std::cout << "Your \033[1;31m[HP] > \033[0m" << Hp << " " << "\033[1;36m[MANA] > \033[0m" << mana << " CR is :" << CR << std::endl;
+			std::cout << std::endl;
+
+			std::cout << "[";
+			pos = barWidth * Hp / MaxHp;
+			for (int i = 0; i < barWidth; ++i) {
+				if (i < pos) std::cout << "\033[1;32m=\033[0m";
+				else if (i == pos) std::cout << "\033[1;32m>\033[0m";
+				else std::cout << " ";
+			}
+			std::cout << "] " << int(Hp);
+			std::cout.flush();
+			std::cout << std::endl;
+			std::cout << "[";
+			if (CR == 0) 
+			{ pos = barWidth * 1; }
+			else { pos = barWidth * CR/100; }
+			for (int i = 0; i < barWidth; ++i) {
+				if (i < pos) std::cout << "=";
+				else if (i == pos) std::cout << ">";
+				else std::cout << " ";
+			}
+			if (CR == 0) { std::cout << "] " << 100 << " %\r"; }
+			else { std::cout << "] " << int(CR) << " %\r"; }
+			std::cout.flush();
+
+			std::cout << std::endl;
+
+			std::cout << "It's YOUR turn. What will you do?" << std::endl;
+
+			std::cout << " " << std::endl;
+			std::cout << " " << std::endl;
+}
+
+int Player::Playerturn(Entity* Enemy)
+{
+
+	Uigen(*Enemy);
 	for (int i = 0; i < skills.size(); i++)//prints amount relative to number of skills
 	{
 		std::cout << skills[i].name;
@@ -44,45 +170,7 @@ int Player::Playerturn(Entity* Enemy)
 		if ((GetAsyncKeyState('W')) || (GetAsyncKeyState('S')) || (GetAsyncKeyState('X'))) {
 
 			system("cls");
-			std::cout << "\033[1;36m> You ran into a FIGHT Grid and bumped into an ENEMY!\033[0m" << std::endl;
-
-			std::cout << "A " << "\033[1;35m" << Enemy->getname() << "\033[0m" << " approaches you menacingly!" << std::endl;
-			std::cout << Enemy->getname() << "'s \033[1;31m[HP] > \033[0m" << Enemy->gethp() << " CR is :" << int(Enemy->GetCR()) << std::endl;
-			int barWidth = 70;
-
-			std::cout << "[";
-			int pos;
-			pos = barWidth *0.01* Enemy->GetCR(); 
-			for (int i = 0; i < barWidth; ++i) {
-				if (i < pos) std::cout << "=";
-				else if (i == pos) std::cout << ">";
-				else std::cout << " ";
-			}
-			std::cout << "] " << int(Enemy->GetCR()) << " %\r";
-			std::cout.flush();
-
-			std::cout << std::endl;
-			std::cout << "Your \033[1;31m[HP] > \033[0m" << Hp << " " << "\033[1;36m[MANA] > \033[0m" << mana<< " CR is :"<<CR << std::endl;
-			std::cout<<std::endl;
-			
-
-			std::cout << "[";
-				if (CR == 0) { pos = barWidth * 0.01 * 100; }
-				else { pos = barWidth * CR; }
-				for (int i = 0; i < barWidth; ++i) {
-					if (i < pos) std::cout << "=";
-					else if (i == pos) std::cout << ">";
-					else std::cout << " ";
-				}
-				std::cout << "] " << int(CR ) << " %\r";
-				std::cout.flush();
-
-				std::cout << std::endl;
-
-			std::cout << "It's YOUR turn. What will you do?" << std::endl;
-
-			std::cout << " " << std::endl;
-			std::cout << " " << std::endl;
+			Uigen(*Enemy);
 			if (GetAsyncKeyState('W')) // for controlling pointer
 			{
 				if (scrollwheelpos <= 0) {
@@ -121,7 +209,7 @@ int Player::Playerturn(Entity* Enemy)
 
 			}
 			std::cout << "\033[1;36mUse the [W] and [S] Keys to toggle between skills. [X] to Select skill.\033[0m";
-			Sleep(100);
+			Sleep(100 );
 		}
 	}
 }
@@ -139,11 +227,11 @@ void Player::statcalc()
 	MaxMana = (characterbase[2] * 5) + (characterbase[5] * 10);
 
 	//damage caluclations
-	dmgmod = log10(characterbase[0] + (characterbase[1] * 0.5f) + characterbase[8]);
+	dmgmod = log10(characterbase[0] + (characterbase[1] * 0.5f));
 	//speed calculations
 	speed = log10((characterbase[1] * 1.5f) + (characterbase[0] * 0.8f) + 5);//log is used inorder to prevent modifiers from becoming too high
 	//magic modifier
-	magicmod = log10(characterbase[2] + (characterbase[5] * 0.5f) + characterbase[8]);
+	magicmod = log10(characterbase[2] + (characterbase[5] * 0.5f) );
 }
 int Player::getskillcount()
 {

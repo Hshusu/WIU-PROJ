@@ -9,8 +9,9 @@ private:
 	int cslvl[6]{ 0, 0, 0, 0, 0, 0 };
 	int scrollwheelpos=0;
 public:
-
-	Player(float csmod[6], std::string Name);
+	
+	Player(float csmod[6], std::string Name, int Weak, int res);
+	void Uigen(Entity Enemy);
 	int Playerturn(Entity* Enemy);
 	void statcalc();
 	int getskillcount();

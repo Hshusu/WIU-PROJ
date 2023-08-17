@@ -20,7 +20,16 @@ enum state {
     shop,
 
 };
+void ShowConsoleCursor(bool showFlag)
+{
+    HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
 
+    CONSOLE_CURSOR_INFO     cursorInfo;
+
+    GetConsoleCursorInfo(out, &cursorInfo);
+    cursorInfo.bVisible = showFlag; // set the cursor visibility
+    SetConsoleCursorInfo(out, &cursorInfo);
+}
 void maxsc()
 {
     HWND Hwnd = GetForegroundWindow();
@@ -53,14 +62,14 @@ int main()
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
 
     float PMods[6] = { 1,1,1,1,1,1 };
-
-    Player* player = new Player(PMods, "Marcus");
-    Npc* placeholderE = new Npc("placeholder", 1.1, 10, 1.1, 20);
+    bool sceneloaded = false;
+    Player* player = new Player(PMods, "Marcus",Lightning,Ice);
+    Npc* placeholderE = new Npc("placeholder", 1.1, 10, 1.1, 20,Fire,Darkness);
     int state = Explore;
     scene Map1(1);
 
     while (1) {
-        if (state == Explore) {
+        if (state == Action) {
             player->statcalc();
             system("cls");
             while ((player->getturn()==false) && (placeholderE->getturn()==false)) {
@@ -72,14 +81,9 @@ int main()
                 }
 
             }
-            
 			if (placeholderE->getturn() == true)//enemies turn
 			{
-                std::cout << "\033[1;36m> You ran into a FIGHT Grid and bumped into an ENEMY!\033[0m" << std::endl;
-
-                std::cout << "A " << "\033[1;35m" << placeholderE->getname() << "\033[0m" << " approaches you menacingly!" << std::endl;
-                std::cout << placeholderE->getname() << "'s \033[1;31m[HP] > \033[0m" << placeholderE->gethp() <<" CR is :"<<placeholderE->GetCR()<< std::endl;
-                std::cout << "Your \033[1;31m[HP] > \033[0m" << player->gethp() << " " << "\033[1;36m[MANA] > \033[0m" << player->getmana() << " CR is :" << player->GetCR() << std::endl;
+                player->Uigen(*placeholderE);
                 placeholderE->Execute_skill(player, placeholderE->chooseaction());
                 placeholderE->setturn(false);
 
@@ -90,24 +94,32 @@ int main()
                 player->setturn(false);
 
             }
-            if (placeholderE->gethp() < 0) {
+            if (placeholderE->gethp() <= 0) {
                 std::cout<< "enemy killed!";
                 state = Explore;
 
             }
-            if (player->gethp() < 0) {
+            if (player->gethp() <= 0) {
                 std::cout << "player killed!";
                 state = Explore;
 
             }
-            Sleep(1000);
+            Sleep(2000);
             system("cls");
 
         }
         else if (state == Explore) {
-            if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D') ||
-                GetAsyncKeyState('f')) {
+            if (sceneloaded == false) {
+                Map1.gridgen();
+                Map1.plrupdate();
+                sceneloaded = true;
+            }
+            if (GetAsyncKeyState('F')) {
+                Map1.gridgen();
+            }
+            if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D')) {
                 system("cls");
+                ShowConsoleCursor(false);
                 Map1.gridgen();
                 Map1.plrupdate();
                 if (GetAsyncKeyState('S')) {
@@ -122,7 +134,7 @@ int main()
                 if (GetAsyncKeyState('D')) {
                     Map1.move(1, 0);
                 }
-                Sleep(10);
+                Sleep(1);
             }
             if (GetAsyncKeyState('X'))
             {
