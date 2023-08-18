@@ -118,8 +118,8 @@ scene::scene(int x)
 	default:
 		break;
 	}
-	H = map.size();
-	W = map[0].size();
+	H = 33;
+	W = 22;
 	playerpos.Y=(H/2);
 	playerpos.X=(W/2);
 	
@@ -128,33 +128,33 @@ scene::scene(int x)
 void scene::gridgen()const
 {
 	
-	COORD zone1_Coords = { max_size.X / 2 - (playerpos.X * 3), max_size.Y / 2 - playerpos.Y };
+	COORD zone1_Coords = { 137 / 2 - (playerpos.X * 3), 40 / 2 - playerpos.Y };
 	SetConsoleCursorPosition(h, zone1_Coords);
 	for (int col = 0; col < H; col++)
 	{
 		for (int row = 0; row < W; row++)
 		{
-			if (((col - playerpos.Y + (max_size.Y / 2))  > 10)&&((row - playerpos.X + (max_size.X / 2)) > 60) && ((col - playerpos.Y + (max_size.Y / 2)) < (max_size.Y-10)) && ((row - playerpos.X + (max_size.X / 2)) < (max_size.X-60))) {
+			if (((col - playerpos.Y + (40 / 2)) > 10) && ((row - playerpos.X + (138 / 2)) > 60) && ((col - playerpos.Y + (40 / 2)) < (40 - 10)) && ((row - playerpos.X + (138 / 2)) < (138 - 60))) {
 				switch (map[col][row]) {
-					case '#':
-						SetConsoleTextAttribute(h, 1);
-						std::cout << map[col][row] << "  " << std::flush;
-						break;
-					case '.':
-						SetConsoleTextAttribute(h, 2);
-						std::cout << map[col][row] << "  " << std::flush;
-						break;
-					case 'L':
-						SetConsoleTextAttribute(h, 4);
-						std::cout << map[col][row] << "  " << std::flush;
-						break;
-					default:
-						SetConsoleTextAttribute(h, 7);
-						std::cout << map[col][row] << "  " << std::flush;
-						break;
+				case '#':
+					SetConsoleTextAttribute(h, 1);
+					std::cout << map[col][row] << "  " << std::flush;
+					break;
+				case '.':
+					SetConsoleTextAttribute(h, 2);
+					std::cout << map[col][row] << "  " << std::flush;
+					break;
+				case 'L':
+					SetConsoleTextAttribute(h, 4);
+					std::cout << map[col][row] << "  " << std::flush;
+					break;
+				default:
+					SetConsoleTextAttribute(h, 7);
+					std::cout << map[col][row] << "  " << std::flush;
+					break;
 				}
 
-				
+
 			}
 			else {
 				std::cout << "   ";
