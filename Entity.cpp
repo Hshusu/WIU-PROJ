@@ -1,5 +1,8 @@
 #include<iostream>
+
 #include "Entity.h"
+#include "AttackGame.h"
+
 void Entity::takedmg(int x)
 {
 	Hp = Hp - x;
@@ -112,6 +115,8 @@ void Entity::Execute_skill(Entity* Enemy, int choice)
 		else {
 			if (skills[choice].Element == Enemy->getWeakness()) {
 				Enemy->CrCHange(50);
+				setdmgB4game(((skills[choice].base * dmgmod * 1.5 * (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
+				
 				Enemy->takedmg(((skills[choice].base * dmgmod *1.5* (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
 				std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod*1.5 * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
 				std::cout << "it did critical damage!!   Pushing the enemies turn back" << std::endl;
@@ -123,6 +128,8 @@ void Entity::Execute_skill(Entity* Enemy, int choice)
 				std::cout << "it did low damage......" << std::endl;
 			}
 			else {
+				setdmgB4game(((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
+				AttackGame();
 				Enemy->takedmg(((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
 				std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
 			}
@@ -131,7 +138,18 @@ void Entity::Execute_skill(Entity* Enemy, int choice)
 	
 }
 
+void Entity::setdmgB4game(float dmg)
+{
+	dmgB4game = dmg;
+}
+
+float Entity::getdmgB4game(void)
+{
+	return dmgB4game;
+}
+
 void Entity::damage(int x)
 {
+
 }
 

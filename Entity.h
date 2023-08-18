@@ -31,6 +31,7 @@ protected:
 	Equipment* weapon;
 	Equipment* armor;
 	std::string name;
+	float dmgB4game;
 	float dmgmod;
 	float magicmod;
 	float mana;
@@ -43,6 +44,8 @@ protected:
 	bool turn = false;
 	std::vector<skilldetail>skills;
 public:
+	float getdmgB4game();
+	void setdmgB4game(float dmg);
 	void takedmg(int x);
 	std::string getname();
 	float gethp();

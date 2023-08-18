@@ -24,7 +24,8 @@ int Npc::chooseaction()
 		return 0;
 		//place holder is used because enemy does not have manavalues
 	}
-	else {
+	else 
+	{
 		return 1;
 	}
 }
