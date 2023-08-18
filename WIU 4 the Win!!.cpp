@@ -66,7 +66,7 @@ int main()
     bool sceneloaded = false;
     Player* player = new Player(PMods, "Marcus",Lightning,Ice);
     Npc* placeholderE = new Npc("placeholder", 1.1, 10, 1.1, 20,Fire,Darkness);
-    int state = Explore;
+    int state = Action;
     scene Map1(1);
 
     while (1) {

@@ -1,5 +1,10 @@
 #include "Npc.h"
+#include "Dodge.h"
+#include <chrono>
+#include <thread>
+#include <iostream>
 #include <random>
+
 Npc::Npc(std::string name, float dmgmod, float MaxHp, float speed, float MaxMana , int Weak, int res)
 {
 	Weakness = Weak;
@@ -24,7 +29,11 @@ int Npc::chooseaction()
 		return 0;
 		//place holder is used because enemy does not have manavalues
 	}
-	else {
+	else 
+	{
+		Dodge Minigame;
+		Minigame.startGame();
+
 		return 1;
 	}
 }

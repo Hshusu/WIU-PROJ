@@ -1,10 +1,4 @@
-<<<<<<< Updated upstream
-﻿  scene.cpp
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\scene.cpp(121,16): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\scene.cpp(122,19): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  WIU 4 the Win!!.vcxproj -> C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe
-=======
-﻿  WIU 4 the Win!!.cpp
-C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(68,79): warning C4305: 'argument': truncation from 'double' to 'float'
+﻿  Dodge.cpp
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(489,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(529,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   WIU 4 the Win!!.vcxproj -> C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe
->>>>>>> Stashed changes

@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Dodge.h"
 #include<iostream>
 #include<conio.h>
 #include <windows.h>
@@ -27,6 +28,9 @@ Player::Player(float csmod[6], std::string Name, int Weak, int res)
 //None,
 void Player::Uigen(Entity Enemy)
 {
+
+	
+
 	std::cout << "\033[1;36m> You ran into a FIGHT Grid and bumped into an ENEMY!\033[0m" << std::endl;
 
 	std::cout << "A " << "\033[1;35m" << Enemy.getname() << "\033[0m" << " approaches you menacingly!" << std::endl;
