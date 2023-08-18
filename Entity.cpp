@@ -107,7 +107,7 @@ void Entity::Execute_skill(Entity* Enemy, int choice)
 			if (Hp > MaxHp) {
 				Hp = MaxHp;
 			}
-			std::cout << name << " used " << skills[choice].name << " on itself"<<std::endl ;
+			std::cout << name << " used " << skills[choice].name << " on themself"<<std::endl ;
 		}
 		else {
 			if (skills[choice].Element == Enemy->getWeakness()) {
@@ -117,7 +117,7 @@ void Entity::Execute_skill(Entity* Enemy, int choice)
 				std::cout << "it did critical damage!!   Pushing the enemies turn back" << std::endl;
 
 			}
-			else if((skills[choice].Element == Enemy->getRes())) {
+			else if((skills[choice].Element == Enemy->getRes())) { 
 				Enemy->takedmg(((skills[choice].base * dmgmod * 0.5 * (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
 				std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod * 1.5 * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
 				std::cout << "it did low damage......" << std::endl;
@@ -131,7 +131,5 @@ void Entity::Execute_skill(Entity* Enemy, int choice)
 	
 }
 
-void Entity::damage(int x)
-{
-}
+
 

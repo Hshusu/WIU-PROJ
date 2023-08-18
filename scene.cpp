@@ -27,6 +27,11 @@ void scene::move(const int x, const int y) {
 scene::scene(int x)
 {
 
+
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	scrn.X = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	scrn.Y = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+
 	switch (x)
 	{
 		//Outdoor Maps
@@ -53,7 +58,7 @@ scene::scene(int x)
 		{'#','|','.','.','.','.','.','.','.','.','.','.','.','.','*','^','*','.','.','.','.','#',},
 		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','{','M','}','.','.','.','.','#',},
 		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','_','.','.','#',},
-		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','/','_','_','.','#',},
+		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','/','_','\\','.','#',},
 		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','-','-','-','.','#',},
 		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','S','|','.','#',},
 		{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','-','-','-','.','#',},
@@ -104,7 +109,7 @@ scene::scene(int x)
 	case 3:
 		//reception room
 		map = {
-		{'#','#','#','#','#',},
+		{'#','#','#','#','#','#','#','#',},
 		{'#','.','.','.','#',},
 		{'#','.','F','.','#',},
 		{'#','.','.','.','#',},
@@ -118,8 +123,8 @@ scene::scene(int x)
 	default:
 		break;
 	}
-	H = 33;
-	W = 22;
+	H = map.size();
+	W = map[0].size();
 	playerpos.Y=(H/2);
 	playerpos.X=(W/2);
 	
@@ -128,7 +133,7 @@ scene::scene(int x)
 void scene::gridgen()const
 {
 	
-	COORD zone1_Coords = { 137 / 2 - (playerpos.X * 3), 40 / 2 - playerpos.Y };
+	COORD zone1_Coords = { max_size.X / 2 - (playerpos.X * 3), max_size.Y / 2 - playerpos.Y };
 	SetConsoleCursorPosition(h, zone1_Coords);
 	for (int col = 0; col < H; col++)
 	{
@@ -169,7 +174,7 @@ void scene::gridgen()const
 
 void scene::plrgen() const
 {
-	COORD zone2_Coords = { 7, 2 };
+	COORD zone2_Coords = { max_size.X/7, max_size.Y/2 };
 	SetConsoleCursorPosition(h, zone2_Coords);
 
 	std::cout << "\033[1;35mP\033[0m";
@@ -184,7 +189,7 @@ void scene::plrgen() const
 //}
 void scene::plrupdate() const
 {
-	COORD zone1_Coords = { max_size.X / 2 , max_size.Y / 2};
+	COORD zone1_Coords = { max_size.X / 2, max_size.Y / 2 };
 	SetConsoleCursorPosition(h, zone1_Coords);
 	std::cout << "\033[1;35mP\033[0m";
 

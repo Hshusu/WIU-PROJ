@@ -9,7 +9,7 @@ Npc::Npc(std::string name, float dmgmod, float MaxHp, float speed, float MaxMana
 	Hp=this->MaxHp = MaxHp;
 	this->speed = speed;
 	mana = this->MaxMana = MaxMana;
-	skills.push_back({ "Heal"," ", 5, 4,false,false,true });
+	skills.push_back({ "Heal"," ", 5, 4,true,true,false });
 	skills.push_back({ "Slash"," ", 0, 3,false,false,false });
 }
 int Npc::chooseaction()

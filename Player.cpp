@@ -3,11 +3,24 @@
 #include<conio.h>
 #include <windows.h>
 
-Player::Player(float csmod[6], std::string Name, int Weak, int res)
+Player::Player(std::string name, float dmgmod, float MaxHp, float speed, float MaxMana, int Weak, int res)
 {
 	Weakness = Weak;
 	Res = res;
 	this->name = name;
+	this->dmgmod = dmgmod;
+	Hp = this->MaxHp = MaxHp;
+	this->speed = speed;
+	mana = this->MaxMana = MaxMana;
+	skills.push_back({ "Heal"," ", 5, 4,true,true,false });
+	skills.push_back({ "Slash"," ", 0, 3,false,false,false });
+}
+
+Player::Player(float csmod[6], std::string Name, int Weak, int res)
+{
+	Weakness = Weak;
+	Res = res;
+	this->name = Name;
 	for (int i = 0; i < 6; i++) {
 		this->csmod[i] = csmod[i];
 	}
@@ -27,10 +40,8 @@ Player::Player(float csmod[6], std::string Name, int Weak, int res)
 //None,
 void Player::Uigen(Entity Enemy)
 {
-	std::cout << "\033[1;36m> You ran into a FIGHT Grid and bumped into an ENEMY!\033[0m" << std::endl;
-
 	std::cout << "A " << "\033[1;35m" << Enemy.getname() << "\033[0m" << " approaches you menacingly!" << std::endl;
-	std::cout << Enemy.getname() << "'s \033[1;31m[HP] > \033[0m" << Enemy.gethp() << "   they are weak to :"; 
+	std::cout <<  "they are weak to :"; 
 	switch (Enemy.getWeakness())
 	{
 	case Fire:
@@ -56,7 +67,7 @@ void Player::Uigen(Entity Enemy)
 		std::cout << "Nothing!!";
 		break;
 	}
-	std::cout << std::endl << " They are Resistant to  : ";
+	std::cout << std::endl << "They are Resistant to  : ";
 	switch (Enemy.getRes())
 	{
 	case Fire:
@@ -83,15 +94,9 @@ void Player::Uigen(Entity Enemy)
 		break;
 	}
 	std::cout << std::endl;
-	std::cout << "Your \033[1;31m[HP] > \033[0m" << Hp << " " << "\033[1;36m[MANA] > \033[0m" << mana << std::endl;
-	std::cout << "It's YOUR turn. What will you do?" << std::endl;
+	
 
-	std::cout << " " << std::endl;
-	std::cout << " " << std::endl;	
 			int pos;
-			std::cout << "\033[1;36m> You ran into a FIGHT Grid and bumped into an ENEMY!\033[0m" << std::endl;
-
-			std::cout << "A " << "\033[1;35m" << Enemy.getname() << "\033[0m" << " approaches you menacingly!" << std::endl;
 			std::cout << Enemy.getname() << "'s \033[1;31m[HP] > \033[0m" << Enemy.gethp() << " CR is :" << int(Enemy.GetCR()) << std::endl;
 			int barWidth = 70;
 
@@ -115,9 +120,9 @@ void Player::Uigen(Entity Enemy)
 			std::cout << "] " << int(Enemy.GetCR()) << " %\r";
 			std::cout.flush();
 
-			std::cout << std::endl;
+			std::cout << std::endl<<std::endl;
 			std::cout << "Your \033[1;31m[HP] > \033[0m" << Hp << " " << "\033[1;36m[MANA] > \033[0m" << mana << " CR is :" << CR << std::endl;
-			std::cout << std::endl;
+
 
 			std::cout << "[";
 			pos = barWidth * Hp / MaxHp;
@@ -144,10 +149,7 @@ void Player::Uigen(Entity Enemy)
 
 			std::cout << std::endl;
 
-			std::cout << "It's YOUR turn. What will you do?" << std::endl;
-
-			std::cout << " " << std::endl;
-			std::cout << " " << std::endl;
+			std::cout << "It's " << name << " 's turn. " << std::endl;
 }
 
 int Player::Playerturn(Entity* Enemy)

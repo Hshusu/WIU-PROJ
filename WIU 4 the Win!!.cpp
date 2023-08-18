@@ -20,6 +20,7 @@ enum state {
     shop,
 
 };
+
 void ShowConsoleCursor(bool showFlag)
 {
     HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -45,9 +46,23 @@ void fullsc()
     SetWindowPos(Hwnd, HWND_TOP, 0, 0, x, y, 0);
 
 }
+bool crParty(Player* player[4]) {
+    for (int i = 0; i < 4; i++) {
+        if (player[i] != nullptr) {
 
+            if (player[i]->CrCheck())
+            {
+                return true;
+
+            }
+        }
+    }
+    return false;
+}
 int main()
 {
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    COORD scrn;
     maxsc();
     //fullsc();
 
@@ -60,50 +75,65 @@ int main()
     cfi.FontWeight = FW_NORMAL;
     //std::wcscpy(cfi.FaceName, L"Consolas"); // Choose your font
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-
+    const int max_Psize = 4;
     float PMods[6] = { 1,1,1,1,1,1 };
     bool sceneloaded = false;
-    Player* player = new Player(PMods, "Marcus",Lightning,Ice);
-    Npc* placeholderE = new Npc("placeholder", 1.1, 10, 1.1, 20,Fire,Darkness);
-    int state = Explore;
+    Player* player[max_Psize] = { nullptr };
+    player[0] = new Player(PMods, "Marcus", Lightning, Ice);
+    player[1]= new Player("Remus", 1.1, 10, 1.3, 20, Fire, Darkness);
+    Npc* placeholderE = new Npc("placeholder", 2, 10, 1.1, 20,Fire,Darkness);
+    int state = Action;
     scene Map1(1);
 
     while (1) {
         if (state == Action) {
-            player->statcalc();
+            player[0]->statcalc();
             system("cls");
-            while ((player->getturn()==false) && (placeholderE->getturn()==false)) {
+            while (1) {
                 //for controlling turn order . value increments up to 100 first to 100 gets turn
                 //speed caries over from previous turns of opponent
-                if ((player->CrCheck()) || (placeholderE->CrCheck()))
-                {
+                if (placeholderE->CrCheck()) {
                     break;
                 }
 
+                if (crParty(player)) {
+                    break;
+                }
             }
 			if (placeholderE->getturn() == true)//enemies turn
 			{
-                player->Uigen(*placeholderE);
-                placeholderE->Execute_skill(player, placeholderE->chooseaction());
+                player[0]->Uigen(*placeholderE);
+                placeholderE->Execute_skill(player[0], placeholderE->chooseaction());
                 placeholderE->setturn(false);
 
 			}
-            if(player->getturn()==true){
-               
-                player->Execute_skill(placeholderE, player->Playerturn(placeholderE));
-                player->setturn(false);
+            for (int i = 0; i < max_Psize; i++) {
+                if (player[i] != nullptr) {
+                    if (player[i]->getturn() == true) {
 
+                        player[i]->Execute_skill(placeholderE, player[i]->Playerturn(placeholderE));
+                        player[i]->setturn(false);
+                        break;
+
+                    }
+                }
             }
             if (placeholderE->gethp() <= 0) {
                 std::cout<< "enemy killed!";
                 state = Explore;
 
             }
-            if (player->gethp() <= 0) {
-                std::cout << "player killed!";
-                state = Explore;
+            for (int i = 0; i < max_Psize; i++) {
+                if (player[i] != nullptr) {
+                    if (player[i]->gethp() <= 0) {
+                        std::cout <<player[i]->getname()<<" killed!";
+                        state = Explore;
+                        break;
 
+                    }
+                }
             }
+
             Sleep(2000);
             system("cls");
 
@@ -118,7 +148,7 @@ int main()
                 Map1.gridgen();
             }
             if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D')) {
-           /*     system("cls");*/
+                system("cls");
                 ShowConsoleCursor(false);
                 Map1.gridgen();
                 Map1.plrupdate();

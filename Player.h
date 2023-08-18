@@ -9,7 +9,7 @@ private:
 	int cslvl[6]{ 0, 0, 0, 0, 0, 0 };
 	int scrollwheelpos=0;
 public:
-	
+	Player(std::string name, float dmgmod, float MaxHp, float speed, float MaxMana, int Weak, int res);
 	Player(float csmod[6], std::string Name, int Weak, int res);
 	void Uigen(Entity Enemy);
 	int Playerturn(Entity* Enemy);
