@@ -118,7 +118,7 @@ int main()
                 Map1.gridgen();
             }
             if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D')) {
-                system("cls");
+           /*     system("cls");*/
                 ShowConsoleCursor(false);
                 Map1.gridgen();
                 Map1.plrupdate();
@@ -134,7 +134,7 @@ int main()
                 if (GetAsyncKeyState('D')) {
                     Map1.move(1, 0);
                 }
-                Sleep(1);
+                
             }
             if (GetAsyncKeyState('X'))
             {
