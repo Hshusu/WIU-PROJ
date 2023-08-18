@@ -1,4 +1,19 @@
 ﻿  Dodge.cpp
-C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(489,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(529,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(490,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(530,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(556,50): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=double
+          ]
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(597,50): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=double
+          ]
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(639,50): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=double
+          ]
   WIU 4 the Win!!.vcxproj -> C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe

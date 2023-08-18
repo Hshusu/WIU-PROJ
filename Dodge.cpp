@@ -228,11 +228,11 @@ void Dodge::wallGame(char grid[rows][cols], int& playerX, int& playerY, std::vec
     clearScreen();
 
 
-    std::cout << "\033[2K";
+    /*std::cout << "\033[2K";*/
 
-    std::cout << "Health: " << health << endl;;
+    setCursorPosition(100, 0);
 
-    std::cout << "\nManoeuvre around the incoming walls!" << endl;
+    std::cout << "Manoeuvre around the incoming walls!" << endl;
 
 
     printGrid(grid, playerX, playerY, projectiles, obstacles, spikes);
@@ -316,10 +316,11 @@ void Dodge::wallGame(char grid[rows][cols], int& playerX, int& playerY, std::vec
 void Dodge::explosionGame(char grid[rows][cols], int& playerX, int& playerY, std::vector<Projectile>& projectiles, std::vector<Obstacle>& obstacles, std::vector<Spike>& spikes) 
 {
     clearScreen();
-    std::cout << "\033[2K";
-    std::cout << "Health: " << health << endl;
+    /*std::cout << "\033[2K";*/
+  
+    setCursorPosition(100, 0);
 
-    std::cout << "\n\n\n\n\n\nDodge the incoming explosions!" << endl;
+    std::cout << "Dodge the incoming explosions!" << endl;
 
     printGrid(grid, playerX, playerY, projectiles, obstacles, spikes);
 
@@ -490,21 +491,21 @@ void Dodge::startGame()
 
     int randomNum = rand() % 3;
 
-
+    
     if (randomNum == 0)
     {
-        Falling = true;
+         Falling = true;
 
     }
     else if (randomNum == 1)
     {
-        Falling = true;
+        wall = true;
 
 
     }
     else
     {
-        Falling = true;
+        BossAttack = true;
     }
 
 
@@ -527,13 +528,13 @@ void Dodge::startGame()
 
     // Seed the random number generator
     srand(time(NULL));
-    std::cout << "                                      " << std::endl;
+    /*std::cout << "                                      " << std::endl;
     std::cout << " _____   ____  _____   _____ ______ " << std::endl;
     std::cout << "|  __ \\ / __ \\|  __ \\ / ____|  ____|" << std::endl;
     std::cout << "| |  | | |  | | |  | | |  __| |__   " << std::endl;
     std::cout << "| |  | | |  | | |  | | | |_ |  __|  " << std::endl;
     std::cout << "| |__| | |__| | |__| | |__| | |____ " << std::endl;
-    std::cout << "|_____/ \\____/|_____/ \\_____|______|" << std::endl;
+    std::cout << "|_____/ \\____/|_____/ \\_____|______|" << std::endl;*/
 
 
 
@@ -549,6 +550,28 @@ void Dodge::startGame()
         std::chrono::high_resolution_clock::time_point currentTime = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> elapsedDuration = currentTime - startTime;
         fallingGame(grid, playerX, playerY, projectiles, obstacles, spikes);
+        int pos;
+        int barwidth = 30;
+
+        pos = barwidth * elapsedDuration.count() / maxDurationInSeconds;
+
+        setCursorPosition(105, 5);
+        for (int i = 0; i < barwidth; ++i) 
+        {
+
+            std::cout << "=";
+
+            
+            if (i < pos) std::cout << "\033[1;32m=\033[0m";
+            else if (i == pos) std::cout << "\033[1;32m>\033[0m";
+            else std::cout << " ";
+
+            
+
+
+    
+        }
+        setCursorPosition(0, 20);
 
         if (elapsedDuration.count() >= maxDurationInSeconds) {
             continuegame = true; // Exit the loop after 10 seconds
@@ -561,29 +584,81 @@ void Dodge::startGame()
 
 
 
-    while (wall == true)
+    while (wall == true && continuegame == false)
     {
         std::chrono::high_resolution_clock::time_point currentTime = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> elapsedDuration = currentTime - startTime;
 
         wallGame(grid, playerX, playerY, projectiles, obstacles, spikes);
 
+        int pos;
+        int barwidth = 30;
+
+        pos = barwidth * elapsedDuration.count() / maxDurationInSeconds;
+
+        setCursorPosition(105, 5);
+        for (int i = 0; i < barwidth; ++i)
+        {
+
+            std::cout << "=";
+
+
+            if (i < pos) std::cout << "\033[1;32m=\033[0m";
+            else if (i == pos) std::cout << "\033[1;32m>\033[0m";
+            else std::cout << " ";
+
+
+
+
+
+        }
+        setCursorPosition(0, 20);
+
+
         if (elapsedDuration.count() >= maxDurationInSeconds) {
-            continuegame = false; // Exit the loop after 10 seconds
+            continuegame = true; // Exit the loop after 10 seconds
+            break;
+
+
         }
     }
 
 
 
-    while (BossAttack == true)
+    while (BossAttack == true && continuegame == false)
     {
         std::chrono::high_resolution_clock::time_point currentTime = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> elapsedDuration = currentTime - startTime;
 
         explosionGame(grid, playerX, playerY, projectiles, obstacles, spikes);
 
+
+        int pos;
+        int barwidth = 30;
+
+        pos = barwidth * elapsedDuration.count() / maxDurationInSeconds;
+
+        setCursorPosition(105, 5);
+        for (int i = 0; i < barwidth; ++i)
+        {
+
+            std::cout << "=";
+
+
+            if (i < pos) std::cout << "\033[1;32m=\033[0m";
+            else if (i == pos) std::cout << "\033[1;32m>\033[0m";
+            else std::cout << " ";
+
+
+
+
+
+        }
+        setCursorPosition(0, 20);
+
         if (elapsedDuration.count() >= maxDurationInSeconds) {
             continuegame = false; // Exit the loop after 10 seconds
+            break;
         }
     }
 
