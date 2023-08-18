@@ -50,7 +50,8 @@ int main()
 {
     maxsc();
     //fullsc();
-
+    HANDLE screen = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD max_size = GetLargestConsoleWindowSize(screen);
     CONSOLE_FONT_INFOEX cfi;
     cfi.cbSize = sizeof(cfi);
     cfi.nFont = 0;
