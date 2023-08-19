@@ -141,6 +141,8 @@ void Dodge::printGrid(char grid[rows][cols], int playerX, int playerY, std::vect
 
 void Dodge::fallingGame(char grid[rows][cols], int& playerX, int& playerY, std::vector<Projectile>& projectiles, std::vector<Obstacle>& obstacles, std::vector<Spike>& spikes)
 {
+    
+
     clearScreen();
 
   /*  std::cout << "\033[2K";*/
@@ -162,7 +164,7 @@ void Dodge::fallingGame(char grid[rows][cols], int& playerX, int& playerY, std::
     for (int i = 0; i < obstacles.size(); i++) {
         if (checkCollision(playerX, playerY, obstacles[i].x, obstacles[i].y)) {
 
-            health -= 10;
+            enemyDamage = true;
             obstacles.erase(obstacles.begin() + i);
             i--; // Adjust index after erasing
         }
@@ -172,8 +174,8 @@ void Dodge::fallingGame(char grid[rows][cols], int& playerX, int& playerY, std::
         for (int j = 0; j < spikes[i].height; j++) {
             if (checkCollision(playerX, playerY, spikes[i].x + j, spikes[i].y)) {
 
-                health -= 20;
                 break;
+                
             }
         }
     }
@@ -228,6 +230,7 @@ void Dodge::wallGame(char grid[rows][cols], int& playerX, int& playerY, std::vec
     clearScreen();
 
 
+
     /*std::cout << "\033[2K";*/
 
     setCursorPosition(100, 0);
@@ -249,7 +252,7 @@ void Dodge::wallGame(char grid[rows][cols], int& playerX, int& playerY, std::vec
         for (int j = 0; j < spikes[i].height; j++) {
             if (checkCollision(playerX, playerY, spikes[i].x + j, spikes[i].y)) {
 
-                health -= 20;
+                enemyDamage = true;
                 break; // No need to check further, player is hit
             }
         }
@@ -318,6 +321,8 @@ void Dodge::explosionGame(char grid[rows][cols], int& playerX, int& playerY, std
     clearScreen();
     /*std::cout << "\033[2K";*/
   
+
+
     setCursorPosition(100, 0);
 
     std::cout << "Dodge the incoming explosions!" << endl;
@@ -380,7 +385,7 @@ void Dodge::explosionGame(char grid[rows][cols], int& playerX, int& playerY, std
         for (int j = playerY - 1; j <= playerY + 1; j++) {
             if (i >= 0 && i < rows && j >= 0 && j < cols) {
                 if (grid[i][j] == 'E' && i == playerX && j == playerY) {
-                    health -= 20;
+                    enemyDamage = true;
                     grid[i][j] = ' ';
                 }
             }
@@ -499,7 +504,7 @@ void Dodge::startGame()
     }
     else if (randomNum == 1)
     {
-        wall = true;
+       wall = true;
 
 
     }
@@ -547,6 +552,7 @@ void Dodge::startGame()
     while (Falling == true && continuegame == false)
     {
         
+        
         std::chrono::high_resolution_clock::time_point currentTime = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> elapsedDuration = currentTime - startTime;
         fallingGame(grid, playerX, playerY, projectiles, obstacles, spikes);
@@ -579,6 +585,17 @@ void Dodge::startGame()
             
             
         }
+
+        if (enemyDamage == true) 
+        {
+            enemyDamage = false;
+            continuegame = false;
+            break;
+
+
+        }
+
+
     }
 
 
@@ -621,6 +638,15 @@ void Dodge::startGame()
 
 
         }
+
+        if (enemyDamage == true)
+        {
+            enemyDamage = false;
+            continuegame = false;
+            break;
+
+
+        }
     }
 
 
@@ -659,6 +685,15 @@ void Dodge::startGame()
         if (elapsedDuration.count() >= maxDurationInSeconds) {
             continuegame = false; // Exit the loop after 10 seconds
             break;
+        }
+
+        if (enemyDamage == true)
+        {
+            enemyDamage = false;
+            continuegame = false;
+            break;
+
+
         }
     }
 

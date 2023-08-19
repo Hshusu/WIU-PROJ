@@ -31,6 +31,9 @@ int Npc::chooseaction()
 	}
 	else 
 	{
+
+		//start dodge minigame
+
 		Dodge Minigame;
 		Minigame.startGame();
 

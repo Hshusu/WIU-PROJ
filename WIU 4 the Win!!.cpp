@@ -8,6 +8,7 @@
 #include "Entity.h"
 #include "Player.h"
 #include "Equipment.h"
+#include "Dodge.h"
 
 #include "Npc.h"
 

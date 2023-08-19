@@ -10,6 +10,7 @@ private:
     int countdownValue = 3;
     bool startDelay = true;
     bool continuegame = false;
+    
     int health = 100;
 
     int kX = -1;
@@ -73,6 +74,8 @@ public:
    
     static const int rows = 10;
     static const int cols = 10;
+
+    bool enemyDamage = false;
 
     // Forward declarations
 
