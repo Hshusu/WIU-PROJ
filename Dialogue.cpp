@@ -78,12 +78,12 @@ void Dialogue::InitDialogue()
         std::stringstream responsesStream(responsesLine);
 
         /* DEBUGGING: Outputs the original line */
-        /*std::cout << "line: " << line << "\n\n";*/
+        /*std::cout << "line: " << responsesLine << "\n\n";*/
 
         while (std::getline(responsesStream, responsesVal, '|'))   /* For each individual field */
         {
             /* DEBUGGING: Outputs each field value */
-            /*std::cout << "  value: " << val << '\n';
+            /*std::cout << "value: " << responsesVal << '\n';
             std::cout << '\n';*/
 
             switch (dialogueState)
@@ -98,16 +98,16 @@ void Dialogue::InitDialogue()
                 break;
             }
             //DEBUGGING!
-            /*for (int row = 0; row < test; ++row) {
-                for (int col = 0; col < 1; ++col) {
-                    std::cout << "Row: " << row << " Col: " << col << " " << ResponsePtr->getElement(row, col) << std::endl;
-                }
-            }
-            for (int row = 0; row < test; ++row) {
-                for (int col = 0; col < 1; ++col) {
-                    std::cout << "Row: " << row << " Col: " << col << " " << QuestionPtr->getElement(row, col) << std::endl;
-                }
-            }*/
+            //for (int row = 0; row < totalResponseLines; ++row) {
+            //    for (int col = 0; col < 1; ++col) {
+            //        std::cout << "Row: " << row << " Col: " << col << " " << ChoicePtr->getElement(row, col) << std::endl;
+            //    }
+            //}
+            //for (int row = 0; row < totalResponseLines; ++row) {
+            //    for (int col = 0; col < 1; ++col) {
+            //        std::cout << "Row: " << row << " Col: " << col << " " << ResponsePtr->getElement(row, col) << std::endl;
+            //    }
+            //}
         }
         if (rowCounter == totalResponseLines - 1)
         {
@@ -137,13 +137,13 @@ void Dialogue::InitDialogue()
     }
 
     //Dialogue* newDialogue = new Dialogue(QuestionsPtr, PopulatedResponsePtr, PopulatedChoicePtr);
-
+    //system("pause");
     //New Constructor
     Utility::MaxScreen();
     Utility::SetupFont(50);
 
     int UserChoice = 0;
-    int TempChoice = 0;
+    int TempChoice = 1;
 
     int dialogueNumber = 1;
     int questionCounter = 0;
@@ -242,7 +242,7 @@ void Dialogue::InitDialogue()
         std::string header(LINELENGTH, ' ');
         std::cout << header << '\n';
 
-        Utility::PositionText(0, 7);
+        Utility::PositionText(0, 5);
         Utility::Print(CENTRE, Cyan + dialogueID + ResetColour + "'s Thoughts:", LINELENGTH);
 
         if (AggressionMeter > 80 && AggressionMeter <= 100)
@@ -279,15 +279,25 @@ void Dialogue::InitDialogue()
         }
 
         //Bottom
-        Utility::PositionText(0, 12);
-        std::cout << "+-----------------------------------------------------------------------+" << std::endl;
-        std::cout << Green << " > " << ResetColour << QuestionsPtr->getElement(questionCounter, 0) << std::endl;
+        Utility::PositionText(0, 8);
         std::cout << "+-----------------------------------------------------------------------+" << std::endl;
 
-        std::cout << Options[0] << " " << currentDialogue->ChoiceText[0] << std::endl;
-        std::cout << Options[1] << " " << currentDialogue->ChoiceText[1] << std::endl;
-        std::cout << Options[2] << " * " << Red << "Slaps " << dialogueID << ResetColour << " *" << std::endl;
+        Utility::WrapText((std::string)Green + " " + ResetColour + QuestionsPtr->getElement(questionCounter, 0), 80, std::cout, 0);
+        Utility::PositionText(0, 12);
+
+        std::cout << "+-----------------------------------------------------------------------+" << std::endl;
+
+        Utility::WrapText(Options[0] + " " + currentDialogue->ChoiceText[0], 80, std::cout, 0);
+        Utility::PositionText(0, 15);
+
+        Utility::WrapText(Options[1] + " " + currentDialogue->ChoiceText[1], 80, std::cout, 0);
+        Utility::PositionText(0, 17);
+
+        std::cout << Options[2] << " * " << Red << "Slaps " << dialogueID << ResetColour << " *";
+        Utility::PositionText(0, 18);
+
         std::cout << Options[3] << " " << "Goodbye" << std::endl;
+
         std::cout << "+-----------------------------------------------------------------------+" << std::endl;
 
         bool selectingKey = true;
@@ -353,9 +363,11 @@ void Dialogue::InitDialogue()
                 //dialogueNumber /= 2;
                 //currentDialogue = currentDialogue->PreviousChoice;
 
-                Utility::PositionText(0, 13);
+                Utility::PositionText(0, 9);
+                std::cout << "                                                                      " << std::endl;
+                std::cout << "                                                                      " << std::endl;
                 std::cout << "                                                                      ";
-                Utility::PositionText(0, 13);
+                Utility::PositionText(0, 9);
                 std::cout << Green << " > " << ResetColour << "Alright, Goodbye!" << std::endl;
                 Sleep(500);
                 delete QuestionsPtr;
@@ -369,9 +381,11 @@ void Dialogue::InitDialogue()
             else if (UserChoice == 3) //Slap
             {
                 AggressionMeter -= Utility::randomNumber(1, 10);
-                Utility::PositionText(0, 13);
+                Utility::PositionText(0, 9);
+                std::cout << "                                                                      " << std::endl;
+                std::cout << "                                                                      " << std::endl;
                 std::cout << "                                                                      ";
-                Utility::PositionText(0, 13);
+                Utility::PositionText(0, 9);
                 std::cout << Green << " > " << ResetColour << Red << "Ouch! What do you think you're doing?!" << ResetColour << std::endl;
                 Sleep(1000);
             }
@@ -382,10 +396,12 @@ void Dialogue::InitDialogue()
                 {
                     //std::cout << "You have chosen Option 1: " << currentDialogue->ChoiceText[0] << std::endl;
 
-                    Utility::PositionText(0, 13);
+                    Utility::PositionText(0, 9);
+                    std::cout << "                                                                      " << std::endl;
+                    std::cout << "                                                                      " << std::endl;
                     std::cout << "                                                                      ";
-                    Utility::PositionText(0, 13);
-                    std::cout << " > " << ResponsePtr->getElement(dialogueNumber - 1, 0) << std::endl;
+                    Utility::PositionText(0, 9);
+                    std::cout << " > " << ResponsePtr->getElement((dialogueNumber - 1) % totalResponseLines, 0) << std::endl;
 
                     dialogueNumber *= 2;
 
@@ -395,11 +411,7 @@ void Dialogue::InitDialogue()
                     catch (...) {
                         // Block of code to handle errors
                         std::cout << "Tree had ended!" << std::endl;
-                        if (currentDialogue != nullptr)
-                        {
-                            delete currentDialogue;
-                            currentDialogue = nullptr;
-                        }
+                        DialogueStatus = false;
                         break;
 
                     }
@@ -409,14 +421,16 @@ void Dialogue::InitDialogue()
                 {
                     //std::cout << "You have chosen Option 2: " << currentDialogue->ChoiceText[1] << std::endl;
 
-                    Utility::PositionText(0, 13);
+                    Utility::PositionText(0, 9);
+                    std::cout << "                                                                      " << std::endl;
+                    std::cout << "                                                                      " << std::endl;
                     std::cout << "                                                                      ";
-                    Utility::PositionText(0, 13);
-                    std::cout << " > " << ResponsePtr->getElement(dialogueNumber - 1, 1) << std::endl;
+                    Utility::PositionText(0, 9);
+                    std::cout << " > " << ResponsePtr->getElement((dialogueNumber - 1) % totalResponseLines, 1) << std::endl;
 
                     dialogueNumber = dialogueNumber * 2 + 1;
 
-                    currentDialogue = new Dialogue(ChoicePtr->getElement(dialogueNumber - 1, 0), ChoicePtr->getElement(dialogueNumber - 1, 1));
+                    /*currentDialogue = new Dialogue(ChoicePtr->getElement((dialogueNumber - 1) % totalResponseLines, 0), ChoicePtr->getElement((dialogueNumber - 1) % totalResponseLines, 1));*/
 
                     try { // Block of code to try
                         currentDialogue = new Dialogue(ChoicePtr->getElement(dialogueNumber - 1, 0), ChoicePtr->getElement(dialogueNumber - 1, 1));
@@ -424,11 +438,7 @@ void Dialogue::InitDialogue()
                     catch (...) {
                         // Block of code to handle errors
                         std::cout << "Tree had ended!" << std::endl;
-                        if (currentDialogue != nullptr)
-                        {
-                            delete currentDialogue;
-                            currentDialogue = nullptr;
-                        }
+                        DialogueStatus = false;
                         break;
                     }
                     Sleep(1000);
@@ -460,6 +470,6 @@ Dialogue::Dialogue(std::string Input1, std::string Input2)
 Dialogue::~Dialogue()
 {
     delete PreviousChoice;
-    delete ChoiceText;
+    //delete ChoiceText;
     //delete currentDialogue;
 }

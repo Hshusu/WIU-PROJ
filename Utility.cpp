@@ -56,3 +56,21 @@ void Utility::ShowConsoleCursor(bool showFlag)
     cursorInfo.bVisible = showFlag;
     SetConsoleCursorInfo(outputHandle, &cursorInfo);
 }
+
+void Utility::WrapText(std::string const& input, size_t width, std::ostream& os, size_t indent = 0) {
+    std::istringstream in(input);
+
+    os << std::string(indent, ' ');
+    size_t current = indent;
+    std::string word;
+
+    while (in >> word) {
+        if (current + word.size() > width) {
+            os << "\n" << std::string(indent, ' ');
+            current = indent;
+            std::cout << " ";
+        }
+        os << word << ' ';
+        current += word.size() + 1;
+    }
+}

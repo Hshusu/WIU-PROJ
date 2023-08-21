@@ -21,42 +21,44 @@ void Map::Move(const int x, const int y) {
 
 void Map::GenerateGrid()const
 {
-	COORD GridCoords = { max_Size.X / 2 - (Player_Pos.X * 3), max_Size.Y / 2 - Player_Pos.Y };
+	COORD GridCoords = { max_Size.X / 3 - (Player_Pos.X * 3), max_Size.Y / 4 - Player_Pos.Y };
 	SetConsoleCursorPosition(outputHandle, GridCoords);
-
 	for (int col = 0; col < H; col++)
 	{
 		for (int row = 0; row < W; row++)
 		{
-			if (((col - Player_Pos.Y + (40 / 2)) > 10) &&
-				((row - Player_Pos.X + (138 / 2)) > 60) && 
-				((col - Player_Pos.Y + (40 / 2)) < (40 - 10)) && 
-				((row - Player_Pos.X + (138 / 2)) < (138 - 60))) 
-			{
+			if ((col == Player_Pos.Y) && (row == Player_Pos.X)) {
+				SetConsoleTextAttribute(outputHandle, 4);
+				std::cout << "P" << "  ";
+			}
+			else if (((col - Player_Pos.Y + (40 / 2)) > 10) && ((row - Player_Pos.X + (138 / 2)) > 60) && ((col - Player_Pos.Y + (40 / 2)) < 30) && ((row - Player_Pos.X + (138 / 2)) < 78)) {
 				switch (mapVector[col][row]) {
 				case '#':
 					SetConsoleTextAttribute(outputHandle, 1);
-					std::cout << mapVector[col][row] << "  " << std::flush;
+					std::cout << mapVector[col][row] << "  ";
 					break;
 				case '.':
 					SetConsoleTextAttribute(outputHandle, 2);
-					std::cout << mapVector[col][row] << "  " << std::flush;
+					std::cout << mapVector[col][row] << "  ";
 					break;
 				case 'L':
 					SetConsoleTextAttribute(outputHandle, 4);
-					std::cout << mapVector[col][row] << "  " << std::flush;
+					std::cout << mapVector[col][row] << "  ";
 					break;
 				default:
 					SetConsoleTextAttribute(outputHandle, 7);
-					std::cout << mapVector[col][row] << "  " << std::flush;
+					std::cout << mapVector[col][row] << "  ";
 					break;
 				}
+
+
 			}
-			else
-			{
+			else {
 				std::cout << "   ";
 			}
+
 		}
+
 		GridCoords.Y++;
 		SetConsoleCursorPosition(outputHandle, GridCoords);
 	}

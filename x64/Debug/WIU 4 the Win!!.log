@@ -1,29 +1,6 @@
-﻿  Dialogue.cpp
-  Entity.cpp
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Entity.cpp(134,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Entity.cpp(140,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Entity.cpp(145,116): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Equipment.cpp
-  Location.cpp
-  Matrix.cpp
-  NPC.cpp
-  Player.cpp
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(5,20): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(31,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(132,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(142,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(156,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(170,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Map.cpp
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(178,20): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(179,23): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  Utility.cpp
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Utility.cpp(44,51): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Utility.cpp(45,37): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  WIU 4 the Win!!.cpp
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(78,40): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(78,31): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(79,57): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(63,8): warning C4101: 'Screen': unreferenced local variable
-  Generating Code...
+﻿  WIU 4 the Win!!.cpp
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(79,40): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(79,31): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(80,57): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(64,8): warning C4101: 'Screen': unreferenced local variable
   WIU 4 the Win!!.vcxproj -> C:\Users\Remus\Documents\GitHub\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe

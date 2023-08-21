@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <cwchar>
 #include <random>
+#include <sstream>
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -41,6 +42,7 @@
 #define WhiteBackground "\033[47m"
 
 #define ResetColour "\033[0m"
+
 enum Position { LEFT, CENTRE, RIGHT };
 static HANDLE outputHandle = GetStdHandle(STD_OUTPUT_HANDLE); 
 
@@ -65,4 +67,8 @@ namespace Utility
     void Print(Position pos, std::string s, int linelength);
 
     void ShowConsoleCursor(bool showFlag);
+
+    /* Wraps the Text */
+    void WrapText(std::string const& input, size_t width, std::ostream& os, size_t indent);
+    void ResetWrapCounter();
 };

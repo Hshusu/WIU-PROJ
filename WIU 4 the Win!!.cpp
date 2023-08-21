@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <windows.h>
 #include <cwchar>
+#include <WinUser.h>
 
 #include "Utility.h"
 
@@ -57,7 +58,7 @@ bool crParty(Player* player[4]) {
 
 int main()
 {
-	int States = EXPLORATION;
+	int States = DIALOGUE;
 
 	//General
 	COORD Screen;
@@ -80,7 +81,8 @@ int main()
 
 	while (true)
 	{
-		//system("cls");
+		ShowScrollBar(GetConsoleWindow(), SB_BOTH, false);
+		system("cls");
 
 		if (States == EXPLORATION)
 		{
@@ -118,7 +120,7 @@ int main()
 		}
 		else if (States == DIALOGUE)
 		{
-			Dialogue* newDialogue = new Dialogue("[Tevyat Townsfolk] The Debug NPC", "Test Questions.txt", "Test Responses.txt");
+			Dialogue* newDialogue = new Dialogue("[Arcadia's Tomekeeper] Isabella Nightshade", "Isabella Questions.txt", "Isabella Responses.txt");
 			newDialogue->InitDialogue();
 			if (newDialogue->getDialogueStatus() == false)
 			{
@@ -182,7 +184,120 @@ int main()
 		}
 		else if (States == ITEM)
 		{
+			//Clue bloodyKnife("Bloody Knife", "A knife with traces of blood near the crime scene.", ClueType::Physical);
+			//Clue tornNote("Torn Note", "A torn note with partial text mentioning a meeting at midnight.", ClueType::Physical);
+			//Character john("John", "I heard a loud noise and saw someone running away from the crime scene.");
+			//Character emily("Emily", "I wasn't at the crime scene, I was at a coffee shop all night.");
+			//ConclusiveClue escapeRoute("Culprit's Escape Route", "The bloody knife and witness testimony indicate the direction the culprit likely escaped.");
+			//ConclusiveClue alibiContradiction("Alibi Contradiction", "The torn note suggests an alibi contradiction for suspect Emily's claim of being at a coffee shop.");
+			//ConclusiveClue burglaryConnection("Burglary Connection", "The broken window and stolen jewelry indicate a burglary motive for the crime.");
 
+			//Puzzle puzzle;
+			//puzzle.GatherClue(&bloodyKnife);
+			//puzzle.GatherClue(&tornNote);
+			//puzzle.AddConclusiveClue(&escapeRoute);
+			//puzzle.AddConclusiveClue(&alibiContradiction);
+			//puzzle.AddConclusiveClue(&burglaryConnection);
+
+			//std::vector<Character> characters = { john, emily };
+
+			//PlayerJournal journal(5); // 5 entries per page
+
+			//int currentPage = 1;
+
+			//int playerChoice;
+			//while (true) {
+			//	system("pause");
+			//	DisplayUI(puzzle, characters);
+
+			//	std::cout << "\nSelect an action:\n";
+			//	std::cout << "1. Question a character\n";
+			//	std::cout << "2. Combine clues\n";
+			//	std::cout << "3. Form conclusion\n";
+			//	std::cout << "4. Quit\n";
+
+			//	playerChoice = GetPlayerChoice(1, 18);
+
+			//	switch (playerChoice) {
+			//	case 1: {
+			//		std::cout << "Select a character to question:\n";
+			//		for (int i = 0; i < characters.size(); ++i) {
+			//			std::cout << i + 1 << ". " << characters[i].name << "\n";
+			//		}
+			//		int characterChoice = GetPlayerChoice(1, characters.size()) - 1;
+			//		puzzle.GatherClue(new Clue(characters[characterChoice].name + "'s Testimony", characters[characterChoice].testimony, ClueType::Testimonial));
+
+			//		journal.AddEntry("Questioned a character");
+			//		break;
+			//	}
+			//	case 2: {
+			//		std::cout << "Select two clues to combine:\n";
+
+			//		// Display available clues for selection
+			//		for (int i = 0; i < puzzle.gatheredClues.size(); ++i) {
+			//			std::cout << i + 1 << ". " << puzzle.gatheredClues[i]->name << "\n";
+			//		}
+
+			//		// Get player's choices
+			//		int clueIndex1, clueIndex2;
+			//		do {
+			//			std::cout << "Enter the index of the first clue: ";
+			//			std::cin >> clueIndex1;
+			//		} while (clueIndex1 < 1 || clueIndex1 > puzzle.gatheredClues.size());
+
+			//		do {
+			//			std::cout << "Enter the index of the second clue: ";
+			//			std::cin >> clueIndex2;
+			//		} while (clueIndex2 < 1 || clueIndex2 > puzzle.gatheredClues.size() || clueIndex2 == clueIndex1);
+
+			//		// Get the selected clues
+			//		Clue* selectedClue1 = puzzle.gatheredClues[clueIndex1 - 1];
+			//		Clue* selectedClue2 = puzzle.gatheredClues[clueIndex2 - 1];
+
+			//		// Combine selected clues
+			//		if (selectedClue1->type == ClueType::Physical && selectedClue2->type == ClueType::Physical) {
+			//			std::cout << "Combining " << selectedClue1->name << " and " << selectedClue2->name << "...\n";
+			//			std::cout << "Deduction: The physical evidence supports the witness testimony.\n";
+			//			// Optionally, you can add more complex deduction logic here
+			//		}
+			//		else if (selectedClue1->type == ClueType::Testimonial && selectedClue2->type == ClueType::Physical) {
+			//			std::cout << "Combining " << selectedClue1->name << " and " << selectedClue2->name << "...\n";
+			//			std::cout << "Deduction: The witness testimony corroborates the physical evidence.\n";
+			//			// Optionally, you can add more complex deduction logic here
+			//		}
+			//		else {
+			//			std::cout << "The selected clues cannot be combined in this way.\n";
+			//		}
+			//		journal.AddEntry("Combined clues!");
+			//		break;
+			//	}
+			//	case 3: {
+			//		puzzle.FormConclusion("Culprit's Motive");
+			//		break;
+			//	}
+			//	case 4:
+			//		std::cout << "Exiting the game.\n";
+			//		break;
+			//	case 5:
+			//		// View journal
+			//		journal.DisplayJournalPage(currentPage);
+			//		break;
+			//	case 6: {
+			//		// Search journal
+			//		std::string keyword;
+			//		std::cout << "Enter keyword to search: ";
+			//		std::cin.ignore();
+			//		std::getline(std::cin, keyword);
+			//		journal.SearchJournal(keyword);
+			//		break;
+			//	}
+			//	case 18:
+			//		// Increment to the next page
+			//		currentPage++;
+			//		break;
+			//		// ... Handle other cases
+			//	}
+			//} while (playerChoice != 4);
 		}
 		else if (States == EXIT)
 		{
