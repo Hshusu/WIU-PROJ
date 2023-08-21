@@ -1,17 +1,21 @@
-#include "location.h"
-int location::getx() const {
-	return x;
-} 
-int location::gety() const {
-	return y;
+#include "Location.h"
+
+int Location::getLocationX() const
+{
+	return Location_X;
 }
 
-void location::setx(const int x)
+int Location::getLocationY() const
 {
-	this->x = x;
+	return Location_Y;
 }
 
-void location::sety(const int y)
+void Location::setLocationX(const int LocX)
 {
-	this->y = y;
+	Location_X = LocX;
+}
+
+void Location::setLocationY(const int LocY)
+{
+	Location_Y = LocY;
 }

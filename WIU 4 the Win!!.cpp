@@ -3,178 +3,195 @@
 #include <chrono>
 #include <conio.h>
 #include <windows.h>
-#include "location.h"
-#include "scene.h"
-#include "Entity.h"
-#include "Player.h"
-#include "Equipment.h"
-
-#include "Npc.h"
-
 #include <cwchar>
 
-enum state {
-    Explore,
-    Action,
-    leveup,
-    shop,
+#include "Utility.h"
 
+#include "Player.h"
+
+//Exploration
+#include "Map.h"
+#include "Location.h"
+
+//Combat
+#include "Entity.h"
+#include "Npc.h"
+
+//Dialogue
+#include "Dialogue.h"
+
+//Events
+#include "Equipment.h"
+
+//Puzzles
+
+enum StateNames
+{
+	//Main
+	EXPLORATION,
+	WEAPON,
+	//Events
+	LEVELUP,
+	DIALOGUE,
+	//Actions
+	COMBAT,
+	ITEM,
+	//Exit
+	EXIT,
+	RESET,
 };
 
-void ShowConsoleCursor(bool showFlag)
-{
-    HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    CONSOLE_CURSOR_INFO     cursorInfo;
-
-    GetConsoleCursorInfo(out, &cursorInfo);
-    cursorInfo.bVisible = showFlag; // set the cursor visibility
-    SetConsoleCursorInfo(out, &cursorInfo);
-}
-void maxsc()
-{
-    HWND Hwnd = GetForegroundWindow();
-    ShowWindow(Hwnd, SW_MAXIMIZE);
-}
-void fullsc()
-{
-    HWND Hwnd = GetForegroundWindow();
-    int x = GetSystemMetrics(SM_CXSCREEN);
-    int y = GetSystemMetrics(SM_CYSCREEN);
-    LONG winstyle = GetWindowLong(Hwnd, GWL_STYLE);
-    SetWindowLong(Hwnd, GWL_STYLE, (winstyle | WS_POPUP | WS_MAXIMIZE) & ~WS_CAPTION & ~WS_THICKFRAME & ~WS_BORDER);
-    SetWindowPos(Hwnd, HWND_TOP, 0, 0, x, y, 0);
-
-}
 bool crParty(Player* player[4]) {
-    for (int i = 0; i < 4; i++) {
-        if (player[i] != nullptr) {
+	for (int i = 0; i < 4; i++) {
+		if (player[i] != nullptr) {
 
-            if (player[i]->CrCheck())
-            {
-                return true;
-
-            }
-        }
-    }
-    return false;
-}
-int main()
-{
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    COORD scrn;
-    maxsc();
-    //fullsc();
-
-    CONSOLE_FONT_INFOEX cfi;
-    cfi.cbSize = sizeof(cfi);
-    cfi.nFont = 0;
-    cfi.dwFontSize.X = 0;                   // Width of each character in the font
-    cfi.dwFontSize.Y = 20;                  // Height
-    cfi.FontFamily = FF_DONTCARE;
-    cfi.FontWeight = FW_NORMAL;
-    //std::wcscpy(cfi.FaceName, L"Consolas"); // Choose your font
-    SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-    const int max_Psize = 4;
-    float PMods[6] = { 1,1,1,1,1,1 };
-    bool sceneloaded = false;
-    Player* player[max_Psize] = { nullptr };
-    player[0] = new Player(PMods, "Marcus", Lightning, Ice);
-    player[1]= new Player("Remus", 1.1, 10, 1.3, 20, Fire, Darkness);
-    Npc* placeholderE = new Npc("placeholder", 2, 10, 1.1, 20,Fire,Darkness);
-    int state = Action;
-    scene Map1(1);
-
-    while (1) {
-        if (state == Action) {
-            player[0]->statcalc();
-            system("cls");
-            while (1) {
-                //for controlling turn order . value increments up to 100 first to 100 gets turn
-                //speed caries over from previous turns of opponent
-                if (placeholderE->CrCheck()) {
-                    break;
-                }
-
-                if (crParty(player)) {
-                    break;
-                }
-            }
-			if (placeholderE->getturn() == true)//enemies turn
+			if (player[i]->CheckCR())
 			{
-                player[0]->Uigen(*placeholderE);
-                placeholderE->Execute_skill(player[0], placeholderE->chooseaction());
-                placeholderE->setturn(false);
+				return true;
 
 			}
-            for (int i = 0; i < max_Psize; i++) {
-                if (player[i] != nullptr) {
-                    if (player[i]->getturn() == true) {
+		}
+	}
+	return false;
+}
 
-                        player[i]->Execute_skill(placeholderE, player[i]->Playerturn(placeholderE));
-                        player[i]->setturn(false);
-                        break;
+int main()
+{
+	int States = EXPLORATION;
 
-                    }
-                }
-            }
-            if (placeholderE->gethp() <= 0) {
-                std::cout<< "enemy killed!";
-                state = Explore;
+	//General
+	COORD Screen;
+	Utility::MaxScreen();
+	//Exploration
+	bool map_Loaded = false;
+	Map newMap(1);
 
-            }
-            for (int i = 0; i < max_Psize; i++) {
-                if (player[i] != nullptr) {
-                    if (player[i]->gethp() <= 0) {
-                        std::cout <<player[i]->getname()<<" killed!";
-                        state = Explore;
-                        break;
+	//Dialogue
+	std::string DialogueNPC, QuestionsFileStr, ResponsesFileStr;
 
-                    }
-                }
-            }
+	//Combat
+	const int max_Party_size = 4;
+	float PMods[6] = { 1,1,1,1,1,1 };
 
-            Sleep(2000);
-            system("cls");
+	Player* Plr[max_Party_size] = { nullptr };
+	Plr[0] = new Player(PMods, "Marcus", Lightning, Ice);
+	Plr[1] = new Player("Remus", 1.1, 10, 1.3, 20, Fire, Darkness);
+	NPC* Placeholder_Enemy = new NPC("placeholder", 2, 10, 1.1, 20, Fire, Darkness);
 
-        }
-        else if (state == Explore) {
-            if (sceneloaded == false) {
-                Map1.gridgen();
-                Map1.plrupdate();
-                sceneloaded = true;
-            }
-            if (GetAsyncKeyState('F')) {
-                Map1.gridgen();
-            }
-            if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D')) {
-                system("cls");
-                ShowConsoleCursor(false);
-                Map1.gridgen();
-                Map1.plrupdate();
-                if (GetAsyncKeyState('S')) {
-                    Map1.move(0, 1);
-                }
-                if (GetAsyncKeyState('W')) {
-                    Map1.move(0, -1);
-                }
-                if (GetAsyncKeyState('A')) {
-                    Map1.move(-1, 0);
-                }
-                if (GetAsyncKeyState('D')) {
-                    Map1.move(1, 0);
-                }
-                
-            }
-            if (GetAsyncKeyState('X'))
-            {
-                /*scene Map1(2);
-                system("cls");
-                Map1.gridgen();
-                Map1.plrgen();*/
+	while (true)
+	{
+		//system("cls");
 
-                Map1.checkNPC();
-            }
-        }
-    }
+		if (States == EXPLORATION)
+		{
+			if (map_Loaded == false) {
+				Utility::SetupFont(20);
+				newMap.GenerateGrid();
+				newMap.UpdatePlayer();
+				map_Loaded = true;
+			}
+			if (GetAsyncKeyState('F')) {
+				newMap.GenerateGrid();
+			}
+			if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D')) {
+				system("cls");
+				Utility::ShowConsoleCursor(false);
+				newMap.GenerateGrid();
+				newMap.UpdatePlayer();
+				if (GetAsyncKeyState('S')) {
+					newMap.Move(0, 1);
+				}
+				if (GetAsyncKeyState('W')) {
+					newMap.Move(0, -1);
+				}
+				if (GetAsyncKeyState('A')) {
+					newMap.Move(-1, 0);
+				}
+				if (GetAsyncKeyState('D')) {
+					newMap.Move(1, 0);
+				}
+			}
+			if (GetAsyncKeyState('X')) //Interaction Key
+			{
+				newMap.checkNPC();
+			}
+		}
+		else if (States == DIALOGUE)
+		{
+			Dialogue* newDialogue = new Dialogue("[Tevyat Townsfolk] The Debug NPC", "Test Questions.txt", "Test Responses.txt");
+			newDialogue->InitDialogue();
+			if (newDialogue->getDialogueStatus() == false)
+			{
+				delete newDialogue;
+				newDialogue = nullptr;
+
+				States = 0;
+			}
+		}
+		else if (States == COMBAT)
+		{
+			Plr[0]->CalculateStats();
+			system("cls");
+			Utility::SetupFont(50);
+			while (1) {
+				//for controlling turn order . value increments up to 100 first to 100 gets turn
+				//speed caries over from previous turns of opponent
+				if (Placeholder_Enemy->CheckCR()) {
+					break;
+				}
+
+				if (crParty(Plr)) {
+					break;
+				}
+			}
+			if (Placeholder_Enemy->getTurn() == true)//enemies turn
+			{
+				Plr[0]->GenerateUI(*Placeholder_Enemy);
+				Placeholder_Enemy->ExecuteSkill(Plr[0], Placeholder_Enemy->ChooseAction());
+				Placeholder_Enemy->setTurn(false);
+
+			}
+			for (int i = 0; i < max_Party_size; i++) {
+				if (Plr[i] != nullptr) {
+					if (Plr[i]->getTurn() == true) {
+
+						Plr[i]->ExecuteSkill(Placeholder_Enemy, Plr[i]->PlayerTurn(Placeholder_Enemy));
+						Plr[i]->setTurn(false);
+						break;
+
+					}
+				}
+			}
+			if (Placeholder_Enemy->getHP() <= 0) {
+				std::cout << "enemy killed!";
+				States = EXPLORATION;
+
+			}
+			for (int i = 0; i < max_Party_size; i++) {
+				if (Plr[i] != nullptr) {
+					if (Plr[i]->getHP() <= 0) {
+						std::cout << Plr[i]->getName() << " killed!";
+						States = EXPLORATION;
+						break;
+
+					}
+				}
+			}
+			Sleep(2000);
+			system("cls");
+		}
+		else if (States == ITEM)
+		{
+
+		}
+		else if (States == EXIT)
+		{
+			std::cout << "\033[1;31mProgram Terminated.\033[0m";
+			return 0;
+		}
+		else if (States == RESET)
+		{
+			break;
+		}
+	}
 }

@@ -1,9 +1,11 @@
 #pragma once
 #include "Entity.h"
-class Npc:public Entity
+#include "Utility.h"
+class NPC :public Entity
 {
 public:
-	Npc(std::string name, float dmgmod, float MaxHp, float speed, float MaxMana, int Weak, int res);
-	int chooseaction();
+	int ChooseAction();
+
+	NPC(std::string Name, float DMGModifier, float MaxHp, float Speed, float MaxMana, int Weak, int Res);
 };
 

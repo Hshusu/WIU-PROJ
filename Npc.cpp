@@ -1,30 +1,31 @@
-#include "Npc.h"
+#include "NPC.h"
 #include <random>
-Npc::Npc(std::string name, float dmgmod, float MaxHp, float speed, float MaxMana , int Weak, int res)
+
+int NPC::ChooseAction()
 {
-	Weakness = Weak;
-	Res = res;
-	this->name = name;
-	this->dmgmod = dmgmod;
-	Hp=this->MaxHp = MaxHp;
-	this->speed = speed;
-	mana = this->MaxMana = MaxMana;
-	skills.push_back({ "Heal"," ", 5, 4,true,true,false });
-	skills.push_back({ "Slash"," ", 0, 3,false,false,false });
-}
-int Npc::chooseaction()
-{		
-	std::random_device rdm;
-	std::uniform_int_distribution<int> dist(1, 100);
-	int enemychoice = (dist(rdm) - 100);//done to reduce chance of healing
-	//for healing
-	if ((100 * (Hp / MaxHp)) <= enemychoice) {//makes enemy heal more when at low hp
-		//heal used
+	int enemyChoice = (Utility::randomNumber(1, 100)); //Done to reduce chance of healing
+
+	//For Healing
+	if ((100 * (HP / MaxHp)) <= enemyChoice) {//makes enemy heal more when at low hp
+		//Heal used
 
 		return 0;
-		//place holder is used because enemy does not have manavalues
+		//Placeholder is used because enemy does not have Mana values
 	}
 	else {
 		return 1;
 	}
+}
+
+NPC::NPC(std::string Name, float DMGModifier, float MaxHp, float Speed, float MaxMana, int Weak, int Res)
+{
+	Weakness = Weak;
+	Resistance = Res;
+	this->Name = Name;
+	this->DMGModifier = DMGModifier;
+	HP = this->MaxHp = MaxHp;
+	this->speed = speed;
+	Mana = this->MaxMana = MaxMana;
+	Skills.push_back({ "Heal", " ", 5, 4, true, true, false });
+	Skills.push_back({ "Slash", " ", 0, 3, false, false, false });
 }

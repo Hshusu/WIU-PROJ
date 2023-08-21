@@ -1,12 +1,26 @@
 #pragma once
+#include "Utility.h"
+
+#include <iostream>
+#include <string>
 class Equipment
 {
 private:
-	int addpt;
+	//Data Members
+	std::string equipmentName;
+	int equipmentAddifier;
+	std::string weaponNamesList[5];
+	std::string armorNamesList[5];
 public:
-	Equipment(int const low);
+	//Function Members
+
+	//Accessors
+	std::string getEquipmentName(void) const;
+	int getEquipmentAddifier(void) const;
+
+	//Functions
+
+	//Constructors and Destructor
+	Equipment(int EquipmentType);
 	~Equipment();
-	int get_addpt();
-
 };
-

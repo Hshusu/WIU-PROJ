@@ -1,13 +1,14 @@
 #pragma once
-class location
+class Location
 {
 private:
-	int x;
-	int y;
+	int Location_X;
+	int Location_Y;
 public:
-	int getx() const;
-	int gety() const;
-	void setx(const int x) ;
-	void sety(const int y) ;
+	int getLocationX() const;
+	int getLocationY() const;
+
+	void setLocationX(const int LocX);
+	void setLocationY(const int LocY);
 };
 

@@ -1,7 +1,10 @@
 #pragma once
-#include<vector>
-#include<string>
 #include"Equipment.h"
+
+#include <iostream>
+#include <vector>
+#include <string>
+
 enum element {
 	Fire,
 	Ice,
@@ -12,56 +15,57 @@ enum element {
 	None,
 	Healing
 };
-struct skilldetail {
-	std::string name;
-	std::string description; 
-	int cost;
-	int base;
-	bool manacost;
-	bool healing;
-	bool blocking;
+
+struct SkillDetails {
+	std::string Name;
+	std::string Description;
+	int Cost;
+	int Base;
+	bool ManaCost;
+	bool Healing;
+	bool Blocking;
 	int Element = None;
-	int CrManip=0;
+	int CR_Manipulation = 0;
 };
+
 class Entity
 {
 protected:
-	int Weakness =None;
-	int Res = None;
-	Equipment* weapon;
-	Equipment* armor;
-	std::string name;
-	float dmgmod;
-	float magicmod;
-	float mana;
+	int Weakness = None;
+	int Resistance = None;
+	Equipment* Weapon;
+	Equipment* Armor;
+	std::string Name;
+	float DMGModifier;
+	float MagicModifier;
+	float Mana;
 	float speed;
-	float CR;
-	float Hp;
+	float CombatReady;
+	float HP;
 	float MaxMana;
 	float MaxHp;
-	bool blocking=false;
-	bool turn = false;
-	std::vector<skilldetail>skills;
+	bool Blocking = false;
+	bool Turn = false;
+	std::vector<SkillDetails>Skills;
 public:
-	void takedmg(int x);
-	std::string getname();
-	float gethp();
+	std::string getName();
+	float getSpeed();
+	float getHP();
 	float getMaxHP();
-	float GetCR();
-	float getmana();
-	int getweaponval();
+	float getCR();
+	float getMana();
 	int getWeakness();
-	int getRes();
-	void CrCHange(int x);
-	bool getturn();
-	void setturn(bool x);
-	int getarmorval();
-	bool getblocking();
-	float getspeed();
-	bool CrCheck();
-	void Execute_skill(Entity* Enemy, int choice);
-	void damage(int x);
+	int getResistance();
+	bool getBlocking();
+	int getWeaponVal();
+	int getArmorVal();
+	
+	bool CheckCR();
+	void UpdateCR(int newCR);
 
+	bool getTurn();
+	void setTurn(bool Go);
 
-
+	void TakeDMG(int Damage);
+	void ExecuteSkill(Entity* Enemy, int Choice);
 };

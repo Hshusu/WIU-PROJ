@@ -1,135 +1,156 @@
-#include<iostream>
 #include "Entity.h"
-void Entity::takedmg(int x)
+
+std::string Entity::getName()
 {
-	Hp = Hp - x;
-	if (Hp < 1) {
-		Hp = 0;
-	};
+	return Name;
 }
-std::string Entity::getname()
+
+float Entity::getSpeed()
 {
-	return name;
+	return speed;
 }
-float Entity::gethp()
+
+float Entity::getHP()
 {
-	return Hp;
+	return HP;
 }
+
 float Entity::getMaxHP()
 {
 	return MaxHp;
 }
-float Entity::GetCR()
+
+float Entity::getCR()
 {
-	return CR;
+	return CombatReady;
 }
-float Entity::getmana()
+
+float Entity::getMana()
 {
-	return mana;
+	return Mana;
 }
-int Entity::getweaponval()
-{
-	if (weapon != nullptr) {
-		return weapon->get_addpt();
-	}
-	else {
-		return 0;
-	}
-}
+
 int Entity::getWeakness()
 {
 	return Weakness;
 }
-int Entity::getRes()
+
+int Entity::getResistance()
 {
-	return Res;
+	return Resistance;
 }
-void Entity::CrCHange(int x)
+
+bool Entity::getBlocking()
 {
-	CR = CR - x;
-	if (CR < 0) {
-		CR = 0;
-	};
+	return Blocking;
 }
-bool Entity::getturn()
+
+int Entity::getWeaponVal()
 {
-	return turn;
-}
-void Entity::setturn(bool x)
-{
-	turn = x;
-}
-int Entity::getarmorval()
-{
-	if (armor != nullptr) {
-		return armor->get_addpt();
+	if (Weapon != nullptr) {
+		return Weapon->getEquipmentAddifier();
 	}
 	else {
 		return 0;
 	}
 }
-bool Entity::getblocking()
+
+int Entity::getArmorVal()
 {
-	return blocking;
+	if (Armor != nullptr) {
+		return Armor->getEquipmentAddifier();
+	}
+	else {
+		return 0;
+	}
 }
-float Entity::getspeed()
+
+//
+bool Entity::CheckCR()
 {
-	return speed;
-}
-bool Entity::CrCheck()
-{
-	CR = CR + (1 * speed);
-	if (CR >= 100) {
-		CR = 0;
-		turn = true;
+	CombatReady = CombatReady + (1 * speed);
+	if (CombatReady >= 100) {
+		CombatReady = 0;
+		Turn = true;
 		return true;
 	}
 	else {
 		return false;
 	}
 }
-void Entity::Execute_skill(Entity* Enemy, int choice)
+
+void Entity::UpdateCR(int newCR)
 {
-	
-		if (skills[choice].blocking) {
-			blocking = true;
+	CombatReady = CombatReady - newCR;
+	if (CombatReady < 0) {
+		CombatReady = 0;
+	};
+}
+
+//
+bool Entity::getTurn()
+{
+	return Turn;
+}
+
+void Entity::setTurn(bool Go)
+{
+	Turn = Go;
+}
+
+//
+void Entity::TakeDMG(int Damage)
+{
+	HP = HP - Damage;
+	if (HP < 1) {
+		HP = 0;
+	};
+}
+
+void Entity::ExecuteSkill(Entity* Enemy, int Choice)
+{
+
+	if (Skills[Choice].Blocking) {
+		Blocking = true;
+	}
+	if (((Skills[Choice].Healing == true) || (Skills[Choice].ManaCost == true)) && (Mana > (Skills[Choice].Cost))) {
+		Mana = Mana - Skills[Choice].Cost;
+	}
+	else {
+		HP = HP - Skills[Choice].Cost;
+	}
+	if (Skills[Choice].Healing == true)
+	{
+		HP = HP + (Skills[Choice].Base * DMGModifier);
+		//For checking if HP is over maximum
+		if (HP > MaxHp) {
+			HP = MaxHp;
 		}
-		if (((skills[choice].healing == true) || (skills[choice].manacost == true)) && (mana > (skills[choice].cost))) {
-			mana = mana - skills[choice].cost;
+		std::cout << Name << " used " << Skills[Choice].Name << " on themself!" << std::endl;
+	}
+	else {
+		if (Skills[Choice].Element == Enemy->getWeakness()) {
+			Enemy->UpdateCR(50);
+			Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getWeaponVal());
+			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
+			std::cout << "it did critical damage!! Pushing the enemies turn back" << std::endl;
+
+		}
+		else if ((Skills[Choice].Element == Enemy->getResistance())) {
+			Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * 0.5 * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getWeaponVal());
+			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
+			std::cout << "it did low damage..." << std::endl;
 		}
 		else {
-			Hp = Hp - skills[choice].cost;
+			Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getWeaponVal());
+			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
 		}
-		if (skills[choice].healing == true)
-		{
-			Hp = Hp + (skills[choice].base * dmgmod);
-			//for checking if hp is over maximum
-			if (Hp > MaxHp) {
-				Hp = MaxHp;
-			}
-			std::cout << name << " used " << skills[choice].name << " on themself"<<std::endl ;
-		}
-		else {
-			if (skills[choice].Element == Enemy->getWeakness()) {
-				Enemy->CrCHange(50);
-				Enemy->takedmg(((skills[choice].base * dmgmod *1.5* (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
-				std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod*1.5 * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
-				std::cout << "it did critical damage!!   Pushing the enemies turn back" << std::endl;
+	}
 
-			}
-			else if((skills[choice].Element == Enemy->getRes())) { 
-				Enemy->takedmg(((skills[choice].base * dmgmod * 0.5 * (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
-				std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod * 1.5 * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
-				std::cout << "it did low damage......" << std::endl;
-			}
-			else {
-				Enemy->takedmg(((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
-				std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
-			}
-			}
 
-	
 }
 
 
 
+
+ 
