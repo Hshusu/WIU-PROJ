@@ -1,4 +1,6 @@
-﻿  Dodge.cpp
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets(5652,5): warning MSB3061: Unable to delete file "C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe". Access to the path 'C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe' is denied.
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppClean.targets(77,5): warning : Access to the path 'c:\users\kai yang\documents\github\wiu-proj\x64\debug\wiu 4 the win!!.exe' is denied.
+  Dodge.cpp
 C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(495,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(535,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(562,50): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
@@ -6,12 +8,12 @@ C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(562,50): warning C4244: '=
           [
               _Rep=double
           ]
-C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(614,50): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(616,50): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
           with
           [
               _Rep=double
           ]
-C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(665,50): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(669,50): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
           with
           [
               _Rep=double
@@ -19,9 +21,21 @@ C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Dodge.cpp(665,50): warning C4244: '=
   Entity.cpp
 C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Entity.cpp(116,116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Entity.cpp(122,118): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Entity.cpp(129,112): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Entity.cpp(133,113): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Equipment.cpp
+  location.cpp
   Npc.cpp
+  Player.cpp
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Player.cpp(103,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Player.cpp(113,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Player.cpp(127,24): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Player.cpp(139,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Player.cpp(181,42): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\Player.cpp(242,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  scene.cpp
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\scene.cpp(121,16): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\scene.cpp(122,19): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   WIU 4 the Win!!.cpp
 C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(69,79): warning C4305: 'argument': truncation from 'double' to 'float'
   Generating Code...
-  WIU 4 the Win!!.vcxproj -> C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe
+LINK : fatal error LNK1104: cannot open file 'C:\Users\Kai Yang\Documents\GitHub\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe'

@@ -125,9 +125,24 @@ void Entity::Execute_skill(Entity* Enemy, int choice)
 			}
 			else 
 			{
+				Dodge obstaclecollided;
+
+				if (obstaclecollided.enemyCollided == true)
+				{
+					std::cout << obstaclecollided.enemyCollided << std::endl;	
+					Enemy->takedmg(((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
+					std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
+				}
+				else if (obstaclecollided.enemyCollided == false)
+				{
+					std::cout << obstaclecollided.enemyCollided << std::endl;
+					Enemy->takedmg(0);
+					std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing  0" << std::endl;
+
+				}
+				
 			
-				Enemy->takedmg(((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
-				std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
+				
 			}
 		}
 

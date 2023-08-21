@@ -76,6 +76,7 @@ public:
     static const int cols = 10;
 
     bool enemyDamage = false;
+    bool enemyCollided = true;
 
     // Forward declarations
 

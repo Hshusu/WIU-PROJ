@@ -580,6 +580,7 @@ void Dodge::startGame()
         setCursorPosition(0, 20);
 
         if (elapsedDuration.count() >= maxDurationInSeconds) {
+            enemyCollided = false;
             continuegame = true; // Exit the loop after 10 seconds
             break;
             
@@ -588,6 +589,7 @@ void Dodge::startGame()
 
         if (enemyDamage == true) 
         {
+            
             enemyDamage = false;
             continuegame = false;
             break;
@@ -633,6 +635,7 @@ void Dodge::startGame()
 
 
         if (elapsedDuration.count() >= maxDurationInSeconds) {
+            enemyCollided = false;
             continuegame = true; // Exit the loop after 10 seconds
             break;
 
@@ -641,6 +644,7 @@ void Dodge::startGame()
 
         if (enemyDamage == true)
         {
+           
             enemyDamage = false;
             continuegame = false;
             break;
@@ -683,12 +687,14 @@ void Dodge::startGame()
         setCursorPosition(0, 20);
 
         if (elapsedDuration.count() >= maxDurationInSeconds) {
+            enemyCollided = false;
             continuegame = false; // Exit the loop after 10 seconds
             break;
         }
 
         if (enemyDamage == true)
         {
+            
             enemyDamage = false;
             continuegame = false;
             break;
