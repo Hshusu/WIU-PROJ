@@ -11,10 +11,16 @@ private:
 	int gameOffsetX = 120;
 	int gameOffsetY = 10;
 
+	float dmgModifier;
+
 	bool Stop = false;
 
 	char mapData[row][col];
 public:
+	void SetdmgModifier(float mod);
+
+	float GetdmgModifier(void);
+
 	void SetConsoleTextColor(int colorCode);
 	
 	void SetCursorPosition(int x, int y);

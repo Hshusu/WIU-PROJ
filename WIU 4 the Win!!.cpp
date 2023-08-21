@@ -87,20 +87,19 @@ int main()
                 player->Uigen(*placeholderE);
                 placeholderE->Execute_skill(player, placeholderE->chooseaction());
                 placeholderE->setturn(false);
-
 			}
-            if(player->getturn()==true){
-               
+            if(player->getturn()==true)
+            {
                 player->Execute_skill(placeholderE, player->Playerturn(placeholderE));
                 player->setturn(false);
-
             }
-            if (placeholderE->gethp() <= 0) {
+            if (placeholderE->gethp() <= 0) 
+            {
                 std::cout<< "enemy killed!";
                 state = Explore;
-
             }
-            if (player->gethp() <= 0) {
+            if (player->gethp() <= 0)
+            {
                 std::cout << "player killed!";
                 state = Explore;
 

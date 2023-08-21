@@ -1,2 +1,12 @@
-﻿  AttackGame.cpp
+﻿  Player.cpp
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(100,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(110,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(124,24): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(136,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(179,42): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(242,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(277,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(283,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(291,98): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(293,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   WIU 4 the Win!!.vcxproj -> C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe

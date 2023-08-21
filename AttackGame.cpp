@@ -1,4 +1,5 @@
 #include "AttackGame.h"
+#include "Player.h"
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -32,7 +33,7 @@ void AttackGame::OverlayScreen()
 void AttackGame::DrawAttackStart()
 {
     SetCursorPosition(gameOffsetX, gameOffsetY - 1);
-    cout << "====================V===================";
+    cout << "================YYYGGYYY================";
 
     for (int i = 0; i < row; i++) 
     {
@@ -41,6 +42,20 @@ void AttackGame::DrawAttackStart()
         for (int j = 0; j < col; j++)
         {
             mapData[i][j] = '.';
+
+            if (j == 16 || j == 17 || j == 18 || j == 21 || j == 22 || j == 23)
+            {
+                SetConsoleTextColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY); //Yellow
+            }
+            else if (j == 19 || j == 20)
+            {
+                SetConsoleTextColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY); //Green
+            }
+            else
+            {
+                SetConsoleTextColor(0); //Black
+            }
+
             std::cout << mapData[i][j];
         }
     }
@@ -59,6 +74,7 @@ void AttackGame :: DrawBar()
             }
             else
             {
+                
                 mapData[i][j] = '.';
             }
         }
@@ -94,16 +110,26 @@ void AttackGame :: MoveBarLeft()
                             //Change color and Display bar
                             SetConsoleTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY); //Red
                             cout << '|';
-                            //Change color and change previous position
-                            SetConsoleTextColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); //White
+
+                            if (j == 16 || j == 17 || j == 18 || j == 21 || j == 22 || j == 23)
+                            {
+                                SetConsoleTextColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY); //Yellow
+                            }
+                            else if (j == 19 || j == 20)
+                            {
+                                SetConsoleTextColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY); //Green
+                            }
+                            else
+                            {
+                                SetConsoleTextColor(0); //Black
+                            }
+                            
                             SetCursorPosition(gameOffsetX + barXpos, gameOffsetY + barYpos);
                             cout << '.';
                         }
                         else
                         {
-                            SetCursorPosition(1, 15);
                             barMovingLeft = false;
-                            cout << barMovingLeft;
                         }
                     }
                 }
@@ -142,16 +168,26 @@ void AttackGame :: MoveBarRight()
                             //Change color and Display bar
                             SetConsoleTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY); //Red
                             cout << '|';
-                            //Change color and change previous position
-                            SetConsoleTextColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); //White
+
+                            if (j == 16 || j == 17 || j == 18 || j == 21 || j == 22 || j == 23)
+                            {
+                                SetConsoleTextColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY); //Yellow
+                            }
+                            else if (j == 19 || j == 20)
+                            {
+                                SetConsoleTextColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY); //Green
+                            }
+                            else
+                            {
+                                SetConsoleTextColor(0); //Black
+                            }
+
                             SetCursorPosition(gameOffsetX + barXpos, gameOffsetY + barYpos);
                             cout << '.';
                         }
                         else
                         {
-                            SetCursorPosition(1, 15);
                             barMovingLeft = true;
-                            cout << barMovingLeft;
                         }
                     }
                 }
@@ -168,7 +204,19 @@ void AttackGame :: CheckMapData()
 
         for (int j = 0; j < col; j++)
         {
-            std::cout << mapData[i][j];
+            if (mapData[0][17] == '|' || mapData[0][18] == '|' || mapData[0][19] == '|' ||
+                mapData[0][22] == '|' || mapData[0][23] == '|' || mapData[0][24] == '|')
+            {
+                SetdmgModifier(1.2f);
+            }
+            else if (mapData[0][20] == '|' || mapData[0][21] == '|')
+            {
+                SetdmgModifier(1.5f);
+            }
+            else
+            {
+                SetdmgModifier(1.0f);
+            }
         }
     }
 }
@@ -180,6 +228,16 @@ void AttackGame :: CheckInput()
         Stop = true;
         CheckMapData();
     }
+}
+
+void AttackGame::SetdmgModifier(float mod)
+{
+    dmgModifier = mod;
+}
+
+float AttackGame::GetdmgModifier(void)
+{
+    return dmgModifier;
 }
 
 AttackGame::AttackGame(void)
@@ -198,5 +256,6 @@ AttackGame::AttackGame(void)
         std::this_thread::sleep_for(std::chrono::milliseconds(15));
     }
 
-    SetCursorPosition(0, 0);
+    SetConsoleTextColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    SetCursorPosition(0, 19);
 }

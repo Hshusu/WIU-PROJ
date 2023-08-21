@@ -2,6 +2,7 @@
 #include<iostream>
 #include<conio.h>
 #include <windows.h>
+#include "AttackGame.h"
 
 Player::Player(float csmod[6], std::string Name, int Weak, int res)
 {
@@ -166,7 +167,8 @@ int Player::Playerturn(Entity* Enemy)
 
 	}
 	std::cout << "\033[1;36mUse the [W] and [S] Keys to toggle between skills. [X] to Select skill.\033[0m";
-	while (1) {
+	while (1) 
+	{
 		if ((GetAsyncKeyState('W')) || (GetAsyncKeyState('S')) || (GetAsyncKeyState('X'))) {
 
 			system("cls");
@@ -193,7 +195,8 @@ int Player::Playerturn(Entity* Enemy)
 
 				}
 			}
-			if (GetAsyncKeyState('X')) {
+			if (GetAsyncKeyState('X')) 
+			{
 				return scrollwheelpos;
 			}
 
@@ -233,14 +236,72 @@ void Player::statcalc()
 	//magic modifier
 	magicmod = log10(characterbase[2] + (characterbase[5] * 0.5f) );
 }
+
 int Player::getskillcount()
 {
 	return skills.size();
 }
+
 void Player::displayskills(int i)
 {
 	
  std::cout << skills[i].description << " cost:" << skills[i].cost << (skills[i].manacost ? "mana " : " hp ") << (skills[i].healing ? "heals: " : "deals: ") << skills[i].base << std::endl;
 
-	
+
+}
+
+void Player::Execute_skill(Entity* Enemy, int choice)
+{
+	if (skills[choice].blocking) {
+		blocking = true;
+	}
+	if (((skills[choice].healing == true) || (skills[choice].manacost == true)) && (mana > (skills[choice].cost))) {
+		mana = mana - skills[choice].cost;
+	}
+	else {
+		Hp = Hp - skills[choice].cost;
+	}
+	if (skills[choice].healing == true)
+	{
+		Hp = Hp + (skills[choice].base * dmgmod);
+		//for checking if hp is over maximum
+		if (Hp > MaxHp) {
+			Hp = MaxHp;
+		}
+		std::cout << name << " used " << skills[choice].name << " on itself" << std::endl;
+	}
+	else
+	{
+		if (skills[choice].Element == Enemy->getWeakness()) {
+			Enemy->CrCHange(50);
+			Enemy->takedmg(((skills[choice].base * dmgmod * 1.5 * (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
+			std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod * 1.5 * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
+			std::cout << "it did critical damage!!   Pushing the enemies turn back" << std::endl;
+
+		}
+		else if ((skills[choice].Element == Enemy->getRes())) {
+			Enemy->takedmg(((skills[choice].base * dmgmod * 0.5 * (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
+			std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod * 1.5 * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
+			std::cout << "it did low damage......" << std::endl;
+		}
+		else
+		{
+			AttackGame attackgame;
+
+			dmg = skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1) - Enemy->getarmorval() + getweaponval();
+			float finalDmg = dmg * attackgame.GetdmgModifier();
+			Enemy->takedmg(finalDmg);
+			std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs(finalDmg) << std::endl;
+		}
+	}
+}
+
+void Player::setDmg(int dmg)
+{
+	dmg = dmg;
+}
+
+int Player::getDmg(void)
+{
+	return dmg;
 }
