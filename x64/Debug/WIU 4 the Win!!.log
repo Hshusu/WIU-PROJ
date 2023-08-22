@@ -1,4 +1,5 @@
-﻿  Player.cpp
+﻿  AttackGame.cpp
+  Player.cpp
 C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(100,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(110,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(124,24): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
@@ -11,4 +12,5 @@ C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.c
 C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(294,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(301,98): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(303,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
   WIU 4 the Win!!.vcxproj -> C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe
