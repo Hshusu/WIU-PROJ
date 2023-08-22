@@ -1,14 +1,49 @@
-﻿  Entity.cpp
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Entity.cpp(136,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Entity.cpp(142,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Entity.cpp(147,116): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+﻿  AttackGame.cpp
+  Clue.cpp
+  CluePuzzle.cpp
+  ConclusiveClue.cpp
+  Dialogue.cpp
+  Entity.cpp
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Entity.cpp(136,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Entity.cpp(142,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Entity.cpp(147,116): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Equipment.cpp
+  inventory.cpp
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\inventory.cpp(30,69): warning C4267: '=': conversion from 'size_t' to 'SHORT', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\inventory.cpp(37,71): warning C4267: '=': conversion from 'size_t' to 'SHORT', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\inventory.cpp(58,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\inventory.cpp(58,44): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\inventory.cpp(62,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\inventory.cpp(62,48): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\inventory.cpp(86,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\inventory.cpp(86,48): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+  Item.cpp
+  Journal.cpp
+  Main_character.cpp
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Main_character.cpp(67,110): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Main_character.cpp(70,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Main_character.cpp(78,110): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Main_character.cpp(80,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Main_character.cpp(87,104): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Main_character.cpp(89,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Matrix.cpp
   NPC.cpp
   Player.cpp
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(5,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(31,37): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(132,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(142,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(156,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(170,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(5,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(31,37): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(132,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(142,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(156,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Player.cpp(170,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Map.cpp
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Map.cpp(180,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Map.cpp(181,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  SpecialNPC.cpp
+  Utility.cpp
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Utility.cpp(44,51): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Utility.cpp(45,47): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  WIU 4 the Win!!.cpp
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\WIU 4 the Win!!.cpp(79,62): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\WIU 4 the Win!!.cpp(64,8): warning C4101: 'Screen': unreferenced local variable
   Generating Code...
-  WIU 4 the Win!!.vcxproj -> C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe
+  WIU 4 the Win!!.vcxproj -> C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe

@@ -34,52 +34,64 @@ void Main_character::CalculateStats()
 	//Magic Modifier
 	MagicModifier = log10(character_Base_Stats[2] + (character_Base_Stats[5] * 0.5f));
 }
+
 void Main_character::ExecuteSkill(Entity* Enemy, int Choice)
 {
-		if (Skills[Choice].Blocking) {
-			Blocking = true;
-		}
-		if (((Skills[Choice].Healing == true) || (Skills[Choice].ManaCost == true)) && (Mana > (Skills[Choice].Cost))) {
-			Mana = Mana - Skills[Choice].Cost;
-		}
-		else {
-			HP = HP - Skills[Choice].Cost;
-		}
-		if (Skills[Choice].Healing == true)
+	if (Skills[Choice].Blocking) {
+		Blocking = true;
+	}
+	if (((Skills[Choice].Healing == true) || (Skills[Choice].ManaCost == true)) && (Mana > (Skills[Choice].Cost))) {
+		Mana = Mana - Skills[Choice].Cost;
+	}
+	else {
+		HP = HP - Skills[Choice].Cost;
+	}
+	if (Skills[Choice].Healing == true)
+	{
+		AttackGame attackgame;
+		float finalHeal = HP + (Skills[Choice].Base * DMGModifier) * attackgame.GetdmgModifier();
+		HP = finalHeal;
+		//for checking if hp is over maximum
+		if (HP > MaxHp) 
 		{
-			HP = HP + (Skills[Choice].Base * DMGModifier);
-			//for checking if hp is over maximum
-			if (HP > MaxHp) {
-				HP = MaxHp;
-			}
-			std::cout << Name << " used " << Skills[Choice].Name << " on itself" << std::endl;
+			HP = MaxHp;
+		}
+		std::cout << Name << " used " << Skills[Choice].Name << " on itself" << std::endl;
+
+		std::cout << Name << " healed for "	<< "\033[32m\033[1m" << finalHeal << "\033[0m";
+	}
+	else
+	{
+		if (Skills[Choice].Element == Enemy->getWeakness()) 
+		{
+			AttackGame attackgame;
+			dmg = Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1) - Enemy->getArmorVal() + getWeaponVal();
+			float finalDmg = dmg * attackgame.GetdmgModifier();
+			Enemy->UpdateCR(50);
+			Enemy->TakeDMG(finalDmg);
+			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs(finalDmg) << std::endl;
+			std::cout << "it did critical damage!!   Pushing the enemies turn back" << std::endl;
+
+		}
+		else if ((Skills[Choice].Element == Enemy->getResistance())) 
+		{
+			AttackGame attackgame;
+			dmg = Skills[Choice].Base * DMGModifier * 0.5 * (Enemy->getBlocking() ? 0.5f : 1) - Enemy->getArmorVal() + getWeaponVal();
+			float finalDmg = dmg * attackgame.GetdmgModifier();
+			Enemy->TakeDMG(finalDmg);
+			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs(finalDmg) << std::endl;
+			std::cout << "it did low damage......" << std::endl;
 		}
 		else
 		{
-			if (Skills[Choice].Element == Enemy->getWeakness()) {
-				Enemy->UpdateCR(50);
-				Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getWeaponVal());
-				std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
-				std::cout << "it did critical damage!!   Pushing the enemies turn back" << std::endl;
-
-			}
-			else if ((Skills[Choice].Element == Enemy->getResistance())) {
-				Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * 0.5 * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getWeaponVal());
-				std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
-				std::cout << "it did low damage......" << std::endl;
-			}
-			else
-			{
-				AttackGame attackgame;
-				dmg = Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1) - Enemy->getArmorVal() + getWeaponVal();
-				float finalDmg = dmg * attackgame.GetdmgModifier();
-				Enemy->TakeDMG(finalDmg);
-				std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs(finalDmg) << std::endl;
-			}
+			AttackGame attackgame;
+			dmg = Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1) - Enemy->getArmorVal() + getWeaponVal();
+			float finalDmg = dmg * attackgame.GetdmgModifier();
+			Enemy->TakeDMG(finalDmg);
+			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs(finalDmg) << std::endl;
 		}
-	
+	}
 }
-;
 
 void Main_character::inv(int x, int y, std::string name, int ID) {
 	int current = NULL;

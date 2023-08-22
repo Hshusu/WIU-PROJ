@@ -11,9 +11,7 @@
 #include "Player.h"
 #include "Main_character.h"
 //Exploration
-#include "Map.h"
-#include "Location.h"
-
+#include "Map.h"	
 //Combat
 #include "Entity.h"
 #include "Npc.h"

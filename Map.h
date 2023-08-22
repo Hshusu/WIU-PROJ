@@ -1,5 +1,4 @@
 #pragma once
-#include "Location.h"
 #include <iostream>
 #include <vector>
 #include <stdio.h>
