@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+#include "Dodge.h"
 enum element {
 	Fire,
 	Ice,

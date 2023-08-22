@@ -12,7 +12,6 @@
 #include "Main_character.h"
 //Exploration
 #include "Map.h"
-#include "Location.h"
 
 //Combat
 #include "Entity.h"
@@ -159,6 +158,7 @@ int main()
 			{
 				Plr[0]->GenerateUI(*Placeholder_Enemy);
 				Placeholder_Enemy->ExecuteSkill(Plr[0], Placeholder_Enemy->ChooseAction());
+				Dodge::enemyCollided = true;
 				Placeholder_Enemy->setTurn(false);
 
 			}

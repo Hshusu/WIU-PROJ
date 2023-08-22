@@ -190,7 +190,7 @@ void Player::DisplaySkills(int i)
 
 void Player::displaystats()
 {
-	std::cout<<"Name :" << Name << "HP/MaxHP : "<<HP<<"/"<<MaxHp<<std::endl
+	std::cout << "Name :" << Name << "HP/MaxHP : " << HP << "/" << MaxHp << std::endl;
 }
 
 
