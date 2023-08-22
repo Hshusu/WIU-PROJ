@@ -261,33 +261,43 @@ void Player::Execute_skill(Entity* Enemy, int choice)
 	else {
 		Hp = Hp - skills[choice].cost;
 	}
+
 	if (skills[choice].healing == true)
 	{
-		Hp = Hp + (skills[choice].base * dmgmod);
+		AttackGame attackgame;
+		float healingamt = Hp + (skills[choice].base * dmgmod) * attackgame.GetdmgModifier();
+		Hp = healingamt;
 		//for checking if hp is over maximum
 		if (Hp > MaxHp) {
 			Hp = MaxHp;
 		}
-		std::cout << name << " used " << skills[choice].name << " on itself" << std::endl;
+		std::cout << name << " used " << skills[choice].name << " on itself " << std::endl;
+		std::cout << "healed for " << healingamt << std::endl;
 	}
 	else
 	{
 		if (skills[choice].Element == Enemy->getWeakness()) {
 			Enemy->CrCHange(50);
-			Enemy->takedmg(((skills[choice].base * dmgmod * 1.5 * (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
-			std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod * 1.5 * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
+			AttackGame attackgame;
+			dmg = skills[choice].base * dmgmod * 1.5 * (Enemy->getblocking() ? 0.5f : 1) - Enemy->getarmorval() + getweaponval();
+			float finalDmg = dmg * attackgame.GetdmgModifier();
+			Enemy->takedmg(finalDmg);
+			std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs(finalDmg) << std::endl;
 			std::cout << "it did critical damage!!   Pushing the enemies turn back" << std::endl;
 
 		}
-		else if ((skills[choice].Element == Enemy->getRes())) {
-			Enemy->takedmg(((skills[choice].base * dmgmod * 0.5 * (Enemy->getblocking() ? 0.5f : 1))) - Enemy->getarmorval() + getweaponval());
-			std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs((skills[choice].base * dmgmod * 1.5 * (Enemy->getblocking() ? 0.5f : 1)) - Enemy->getarmorval() + getweaponval()) << std::endl;
+		else if ((skills[choice].Element == Enemy->getRes())) 
+		{
+			AttackGame attackgame;
+			dmg = skills[choice].base * dmgmod * 0.5 * (Enemy->getblocking() ? 0.5f : 1) - Enemy->getarmorval() + getweaponval();
+			float finalDmg = dmg * attackgame.GetdmgModifier();
+			Enemy->takedmg(finalDmg);
+			std::cout << name << " used " << skills[choice].name << " on " << Enemy->getname() << " dealing " << abs(finalDmg) << std::endl;
 			std::cout << "it did low damage......" << std::endl;
 		}
 		else
 		{
 			AttackGame attackgame;
-
 			dmg = skills[choice].base * dmgmod * (Enemy->getblocking() ? 0.5f : 1) - Enemy->getarmorval() + getweaponval();
 			float finalDmg = dmg * attackgame.GetdmgModifier();
 			Enemy->takedmg(finalDmg);

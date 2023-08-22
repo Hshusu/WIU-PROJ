@@ -8,8 +8,6 @@
 #include "Entity.h"
 #include "Player.h"
 #include "Equipment.h"
-#include "AttackGame.h"
-
 #include "Npc.h"
 
 #include <cwchar>

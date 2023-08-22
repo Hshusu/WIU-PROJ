@@ -31,9 +31,10 @@ void AttackGame::OverlayScreen()
 }
 
 void AttackGame::DrawAttackStart()
-{
+{ 
     SetCursorPosition(gameOffsetX, gameOffsetY - 1);
-    cout << "================YYYGGYYY================";
+    SetConsoleTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+    cout << "========================================";
 
     for (int i = 0; i < row; i++) 
     {
@@ -56,9 +57,14 @@ void AttackGame::DrawAttackStart()
                 SetConsoleTextColor(0); //Black
             }
 
-            std::cout << mapData[i][j];
+            cout << mapData[i][j];
         }
     }
+
+    SetConsoleTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+    SetCursorPosition(gameOffsetX, gameOffsetY + 9);
+    cout << "========================================";
+    SetConsoleTextColor(0); //Black
 }
 
 void AttackGame :: DrawBar()
@@ -198,24 +204,54 @@ void AttackGame :: MoveBarRight()
 
 void AttackGame :: CheckMapData()
 {
-    for (int i = 0; i < row; i++)
+    if (barMovingLeft == true)
     {
-        SetCursorPosition(gameOffsetX, gameOffsetY + i);
-
-        for (int j = 0; j < col; j++)
+        for (int i = 0; i < row; i++)
         {
-            if (mapData[0][17] == '|' || mapData[0][18] == '|' || mapData[0][19] == '|' ||
-                mapData[0][22] == '|' || mapData[0][23] == '|' || mapData[0][24] == '|')
+            SetCursorPosition(gameOffsetX, gameOffsetY + i);
+
+            for (int j = 0; j < col; j++)
             {
-                SetdmgModifier(1.2f);
+                if (mapData[0][16] == '|' || mapData[0][17] == '|' || mapData[0][18] == '|' ||
+                    mapData[0][21] == '|' || mapData[0][22] == '|' || mapData[0][23] == '|')
+                {
+                    SetdmgModifier(1.2f);
+                }
+                else if (mapData[0][19] == '|' || mapData[0][20] == '|')
+                {
+                    SetdmgModifier(1.5f);
+                }
+                else
+                {
+                    SetdmgModifier(1.0f);
+                }
             }
-            else if (mapData[0][20] == '|' || mapData[0][21] == '|')
+        }
+    }
+    else
+    {
+        for (int i = row; i >= 0; i--)
+        {
+            for (int j = col; j >= 0; j--)
             {
-                SetdmgModifier(1.5f);
-            }
-            else
-            {
-                SetdmgModifier(1.0f);
+                SetCursorPosition(gameOffsetX, gameOffsetY + i);
+
+                for (int j = 0; j < col; j++)
+                {
+                    if (mapData[0][16] == '|' || mapData[0][17] == '|' || mapData[0][18] == '|' ||
+                        mapData[0][21] == '|' || mapData[0][22] == '|' || mapData[0][23] == '|')
+                    {
+                        SetdmgModifier(1.2f);
+                    }
+                    else if (mapData[0][19] == '|' || mapData[0][20] == '|')
+                    {
+                        SetdmgModifier(1.5f);
+                    }
+                    else
+                    {
+                        SetdmgModifier(1.0f);
+                    }
+                }
             }
         }
     }
@@ -247,11 +283,12 @@ AttackGame::AttackGame(void)
 
     while (!Stop)
     {
-        CheckInput();
 
         MoveBarLeft();
 
         MoveBarRight();
+
+        CheckInput();
 
         std::this_thread::sleep_for(std::chrono::milliseconds(15));
     }
