@@ -74,11 +74,16 @@ int main()
 	//Combat
 	const int max_Party_size = 4;
 	float PMods[6] = { 1,1,1,1,1,1 };
-
+	int enemyID=3;
 	Player* Plr[max_Party_size] = { nullptr };
 	Plr[0] = new Main_character(PMods, "Marcus", Lightning, Ice);
 	Plr[1] = new Player("Remus", 1.1, 10, 2, 20, Fire, Darkness);
-	NPC* Placeholder_Enemy = new NPC("placeholder", 2, 10, 1.5, 20, Fire, Darkness);
+	NPC* Placeholder_Enemy[10] = { nullptr };
+	Placeholder_Enemy[0] = new NPC("placeholder", 2, 10, 1.5, 20, Fire, Darkness);
+	Placeholder_Enemy[1] = new NPC("kk", 2, 10, 1.5, 20, Fire, Darkness);
+	Placeholder_Enemy[2] = new NPC("hshusu", 2, 10, 1.5, 20, Fire, Darkness);
+	Placeholder_Enemy[3] = new NPC("blade", 2, 10, 1.5, 20, Fire, Darkness);
+
 	//inventory
 		
 
@@ -98,7 +103,7 @@ int main()
 				newMap.GenerateGrid();
 			}
 			if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D')
-				|| GetAsyncKeyState('K')) {
+				|| GetAsyncKeyState('K') || GetAsyncKeyState('P')) {
 				system("cls");
 				Utility::ShowConsoleCursor(false);
 				newMap.GenerateGrid();
@@ -109,6 +114,16 @@ int main()
 				if (GetAsyncKeyState('K')) {
 					
 					((Main_character*)Plr[0])->inv(2, 2, "hello", Utility::randomNumber(1,9));
+					system("cls");
+					Utility::ShowConsoleCursor(false);
+					newMap.GenerateGrid();
+				}
+				if (GetAsyncKeyState('P')) {
+
+					((Main_character*)Plr[0])->inv();
+					system("cls");
+					Utility::ShowConsoleCursor(false);
+					newMap.GenerateGrid();
 				}
 				if (GetAsyncKeyState('W')) {
 					newMap.Move(0, -1);
@@ -146,7 +161,7 @@ int main()
 			while (1) {
 				//for controlling turn order . value increments up to 100 first to 100 gets turn
 				//speed caries over from previous turns of opponent
-				if (Placeholder_Enemy->CheckCR()) {
+				if (Placeholder_Enemy[enemyID]->CheckCR()) {
 					break;
 				}
 
@@ -154,21 +169,21 @@ int main()
 					break;
 				}
 			}
-			if (Placeholder_Enemy->getTurn() == true)//enemies turn
+			if (Placeholder_Enemy[enemyID]->getTurn() == true)//enemies turn
 			{
-				Plr[0]->GenerateUI(*Placeholder_Enemy);
-				Placeholder_Enemy->ExecuteSkill(Plr[0], Placeholder_Enemy->ChooseAction());
+				Plr[0]->GenerateUI(*Placeholder_Enemy[enemyID]);
+				Placeholder_Enemy[enemyID]->ExecuteSkill(Plr[0], Placeholder_Enemy[enemyID]->ChooseAction());
 				Dodge::enemyCollided = true;
-				Placeholder_Enemy->setTurn(false);
+				Placeholder_Enemy[enemyID]->setTurn(false);
 
 			}
 			for (int i = 0; i < max_Party_size; i++) {
 				if (Plr[i] != nullptr) {
 					if (Plr[i]->getTurn() == true) {
 						if (i == 0) {
-							(Plr[i])->ExecuteSkill(Placeholder_Enemy, Plr[i]->PlayerTurn(Placeholder_Enemy));
+							(Plr[i])->ExecuteSkill(Placeholder_Enemy[enemyID], Plr[i]->PlayerTurn(Placeholder_Enemy[enemyID]));
 						}
-						else {Plr[i]->ExecuteSkill(Placeholder_Enemy, Plr[i]->PlayerTurn(Placeholder_Enemy));
+						else {Plr[i]->ExecuteSkill(Placeholder_Enemy[enemyID], Plr[i]->PlayerTurn(Placeholder_Enemy[enemyID]));
 					
 						}
 						Plr[i]->setTurn(false);
@@ -177,7 +192,7 @@ int main()
 					}
 				}
 			}
-			if (Placeholder_Enemy->getHP() <= 0) {
+			if (Placeholder_Enemy[enemyID]->getHP() <= 0) {
 				std::cout << "enemy killed!";
 				States = EXPLORATION;
 

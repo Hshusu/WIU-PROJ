@@ -1,4 +1,4 @@
-﻿  Map.cpp
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Map.cpp(180,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Map.cpp(181,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  WIU 4 the Win!!.vcxproj -> C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe
+﻿  WIU 4 the Win!!.cpp
+D:\game dev projects\pgrm assignment\WIU-PROJ\WIU 4 the Win!!.cpp(80,62): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\game dev projects\pgrm assignment\WIU-PROJ\WIU 4 the Win!!.cpp(65,8): warning C4101: 'Screen': unreferenced local variable
+  WIU 4 the Win!!.vcxproj -> D:\game dev projects\pgrm assignment\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe
