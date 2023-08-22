@@ -1,6 +1,14 @@
-﻿  WIU 4 the Win!!.cpp
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(79,40): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(79,31): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(80,57): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(64,8): warning C4101: 'Screen': unreferenced local variable
-  WIU 4 the Win!!.vcxproj -> C:\Users\Remus\Documents\GitHub\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe
+﻿  Entity.cpp
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Entity.cpp(136,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Entity.cpp(142,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Entity.cpp(147,116): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  NPC.cpp
+  Player.cpp
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(5,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(31,37): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(132,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(142,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(156,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(170,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  WIU 4 the Win!!.vcxproj -> C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe

@@ -40,7 +40,7 @@ protected:
 	float MagicModifier;
 	float Mana;
 	float speed;
-	float CombatReady;
+	float CombatReady =0;
 	float HP;
 	float MaxMana;
 	float MaxHp;
@@ -67,5 +67,5 @@ public:
 	void setTurn(bool Go);
 
 	void TakeDMG(int Damage);
-	void ExecuteSkill(Entity* Enemy, int Choice);
+	virtual void ExecuteSkill(Entity* Enemy, int Choice);
 };

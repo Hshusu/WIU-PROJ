@@ -182,29 +182,18 @@ void Player::GenerateUI(Entity Enemy)
 	std::cout << "It's " << Name << " 's turn. " << std::endl;
 }
 
-void Player::CalculateStats()
-{
-	// | 0 is STR | 1 is DEX | 2 is INT | 3 is VIT | 4 is LUK | 5 is WIS | 
-	for (int i = 0; i < 6; i++) {
-		character_Base_Stats[i] = (10 + character_Level[i]) * character_Modifiers[i];
-	}
-	//HP Calculations
-	MaxHp = (character_Base_Stats[3] * 0.8f) + (character_Base_Stats[4] * 0.6f) + (character_Base_Stats[5] * 0.4f);
-	//Mana Calculations
-	MaxMana = (character_Base_Stats[2] * 5) + (character_Base_Stats[5] * 10);
-	//Damage Caluclations
-	DMGModifier = log10(character_Base_Stats[0] + (character_Base_Stats[1] * 0.5f));
-	//Speed Calculations
-	speed = log10((character_Base_Stats[1] * 1.5f) + (character_Base_Stats[0] * 0.8f) + 5);//log is used inorder to prevent modifiers from becoming too high
-	//Magic Modifier
-	MagicModifier = log10(character_Base_Stats[2] + (character_Base_Stats[5] * 0.5f));
-}
-
 void Player::DisplaySkills(int i)
 {
 
 	std::cout << Skills[i].Description << " cost:" << Skills[i].Cost << (Skills[i].ManaCost ? "mana " : " hp ") << (Skills[i].Healing ? "heals: " : "deals: ") << Skills[i].Base << std::endl;
 }
+
+void Player::displaystats()
+{
+	std::cout<<"Name :" << Name << "HP/MaxHP : "<<HP<<"/"<<MaxHp<<std::endl
+}
+
+
 
 Player::Player(std::string Name, float DMGModifier, float MaxHp, float Speed, float MaxMana, int Weak, int Res)
 {
@@ -213,24 +202,13 @@ Player::Player(std::string Name, float DMGModifier, float MaxHp, float Speed, fl
 	this->Name = Name;
 	this->DMGModifier = DMGModifier;
 	HP = this->MaxHp = MaxHp;
-	this->speed = speed;
+	this->speed = Speed;
 	Mana = this->MaxMana = MaxMana;
 	Skills.push_back({ "Heal"," ", 5, 4,true,true,false });
 	Skills.push_back({ "Slash"," ", 0, 3,false,false,false });
-};
-
-Player::Player(float character_Modifiers[6], std::string Name, int Weak, int Res)
+}
+Player::Player()
 {
-	Weakness = Weak;
-	Resistance = Res;
-	this->Name = Name;
-	for (int i = 0; i < 6; i++) {
-		this->character_Modifiers[i] = character_Modifiers[i];
-	}
-	CalculateStats();
-	HP = MaxHp;
-	Mana = MaxMana;
-	Skills.push_back({ "\033[1;33mShield bash\033[0m","A well rounded maneuver that blocks and deals damage.", 5, 4, false, false, true, None, 0 });
-	Skills.push_back({ "\033[1;32mMeditate\033[0m","Heals hp and blocks. Also advances turn by 50%", 50, 15, true, true, false, Healing, -50 });
-	Skills.push_back({ "\033[1;31mBerzerk blade\033[0m","High damage and high cost slash.", 10, 15, false, false, false, Fire, 0 });
-};
+}
+;
+

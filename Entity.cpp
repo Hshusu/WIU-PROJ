@@ -68,10 +68,12 @@ int Entity::getArmorVal()
 //
 bool Entity::CheckCR()
 {
+
 	CombatReady = CombatReady + (1 * speed);
 	if (CombatReady >= 100) {
 		CombatReady = 0;
 		Turn = true;
+		
 		return true;
 	}
 	else {

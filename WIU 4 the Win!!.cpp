@@ -9,7 +9,7 @@
 #include "Utility.h"
 
 #include "Player.h"
-
+#include "Main_character.h"
 //Exploration
 #include "Map.h"
 #include "Location.h"
@@ -17,7 +17,8 @@
 //Combat
 #include "Entity.h"
 #include "Npc.h"
-
+#include"Item.h"
+#include"inventory.h"
 //Dialogue
 #include "Dialogue.h"
 
@@ -31,6 +32,7 @@ enum StateNames
 	//Main
 	EXPLORATION,
 	WEAPON,
+	INVENTORY,
 	//Events
 	LEVELUP,
 	DIALOGUE,
@@ -58,7 +60,7 @@ bool crParty(Player* player[4]) {
 
 int main()
 {
-	int States = DIALOGUE;
+	int States = COMBAT;
 
 	//General
 	COORD Screen;
@@ -75,33 +77,39 @@ int main()
 	float PMods[6] = { 1,1,1,1,1,1 };
 
 	Player* Plr[max_Party_size] = { nullptr };
-	Plr[0] = new Player(PMods, "Marcus", Lightning, Ice);
-	Plr[1] = new Player("Remus", 1.1, 10, 1.3, 20, Fire, Darkness);
-	NPC* Placeholder_Enemy = new NPC("placeholder", 2, 10, 1.1, 20, Fire, Darkness);
+	Plr[0] = new Main_character(PMods, "Marcus", Lightning, Ice);
+	Plr[1] = new Player("Remus", 1.1, 10, 2, 20, Fire, Darkness);
+	NPC* Placeholder_Enemy = new NPC("placeholder", 2, 10, 1.5, 20, Fire, Darkness);
+	//inventory
+		
 
 	while (true)
 	{
 		ShowScrollBar(GetConsoleWindow(), SB_BOTH, false);
-		system("cls");
+		
 
 		if (States == EXPLORATION)
 		{
 			if (map_Loaded == false) {
 				Utility::SetupFont(20);
 				newMap.GenerateGrid();
-				newMap.UpdatePlayer();
 				map_Loaded = true;
 			}
 			if (GetAsyncKeyState('F')) {
 				newMap.GenerateGrid();
 			}
-			if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D')) {
+			if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D')
+				|| GetAsyncKeyState('K')) {
 				system("cls");
 				Utility::ShowConsoleCursor(false);
 				newMap.GenerateGrid();
-				newMap.UpdatePlayer();
+				
 				if (GetAsyncKeyState('S')) {
 					newMap.Move(0, 1);
+				}
+				if (GetAsyncKeyState('K')) {
+					
+					((Main_character*)Plr[0])->inv(2, 2, "hello", Utility::randomNumber(1,9));
 				}
 				if (GetAsyncKeyState('W')) {
 					newMap.Move(0, -1);
@@ -132,9 +140,10 @@ int main()
 		}
 		else if (States == COMBAT)
 		{
-			Plr[0]->CalculateStats();
+
+			((Main_character*)Plr[0])->CalculateStats();
 			system("cls");
-			Utility::SetupFont(50);
+			Utility::SetupFont(20);
 			while (1) {
 				//for controlling turn order . value increments up to 100 first to 100 gets turn
 				//speed caries over from previous turns of opponent
@@ -156,8 +165,12 @@ int main()
 			for (int i = 0; i < max_Party_size; i++) {
 				if (Plr[i] != nullptr) {
 					if (Plr[i]->getTurn() == true) {
-
-						Plr[i]->ExecuteSkill(Placeholder_Enemy, Plr[i]->PlayerTurn(Placeholder_Enemy));
+						if (i == 0) {
+							(Plr[i])->ExecuteSkill(Placeholder_Enemy, Plr[i]->PlayerTurn(Placeholder_Enemy));
+						}
+						else {Plr[i]->ExecuteSkill(Placeholder_Enemy, Plr[i]->PlayerTurn(Placeholder_Enemy));
+					
+						}
 						Plr[i]->setTurn(false);
 						break;
 

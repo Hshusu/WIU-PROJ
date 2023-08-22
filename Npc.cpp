@@ -24,7 +24,7 @@ NPC::NPC(std::string Name, float DMGModifier, float MaxHp, float Speed, float Ma
 	this->Name = Name;
 	this->DMGModifier = DMGModifier;
 	HP = this->MaxHp = MaxHp;
-	this->speed = speed;
+	this->speed = Speed;
 	Mana = this->MaxMana = MaxMana;
 	Skills.push_back({ "Heal", " ", 5, 4, true, true, false });
 	Skills.push_back({ "Slash", " ", 0, 3, false, false, false });
