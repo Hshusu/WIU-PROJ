@@ -1,5 +1,26 @@
-﻿  Map.cpp
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(347,20): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(348,23): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(177): warning C4715: 'Map::checkObject': not all control paths return a value
+﻿  Item.cpp
+  Main_character.cpp
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Main_character.cpp(61,123): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Main_character.cpp(67,123): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Main_character.cpp(74,104): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Main_character.cpp(76,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  WIU 4 the Win!!.cpp
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(93,43): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(77,8): warning C4101: 'Screen': unreferenced local variable
+  inventory.cpp
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\inventory.cpp(30,48): warning C4267: '=': conversion from 'size_t' to 'SHORT', possible loss of data
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\inventory.cpp(37,51): warning C4267: '=': conversion from 'size_t' to 'SHORT', possible loss of data
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\inventory.cpp(58,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\inventory.cpp(58,44): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\inventory.cpp(62,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\inventory.cpp(62,48): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\inventory.cpp(86,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\inventory.cpp(86,48): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\inventory.cpp(104,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\inventory.cpp(104,44): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\inventory.cpp(108,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\inventory.cpp(108,48): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\inventory.cpp(124,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\inventory.cpp(124,48): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+  Generating Code...
   WIU 4 the Win!!.vcxproj -> C:\Users\Remus\Documents\GitHub\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe

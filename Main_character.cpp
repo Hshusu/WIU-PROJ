@@ -140,7 +140,7 @@ void Main_character::inv(int x, int y, std::string name, int ID) {
 			if (GetAsyncKeyState('K')) {
 				Itemptr[current]->rotate();
 			}
-			if (GetAsyncKeyState('O')) {
+			if ((GetAsyncKeyState('O'))&&(Itemptr[-player_inv.getscroll()] != nullptr) && (( - player_inv.getscroll()) != 20)) {
 				int x = player_inv.discard(Itemptr[-player_inv.getscroll()]->getID());
 				if ((x != -999) && (Itemptr[x] != nullptr)) {
 					delete Itemptr[x];
@@ -157,11 +157,23 @@ void Main_character::inv(int x, int y, std::string name, int ID) {
 				}
 			}
 			if (GetAsyncKeyState(VK_UP)) {
-				player_inv.movescroll(-1);
+				for (int i = 20; i > 0; i--) {
+					if ((Itemptr[i] != nullptr) && (i< -player_inv.getscroll()) && (Itemptr[i]->getplaced() == true)) {
+						player_inv.setscroll( -i);
+						break;
+					}
+
+				}
 				Sleep(100);
 			}
 			if (GetAsyncKeyState(VK_DOWN)) {
-				player_inv.movescroll(1);
+				for (int i = 0; i < 20; i++) {
+					if ((Itemptr[i] != nullptr) && (i >-player_inv.getscroll()) && (Itemptr[i]->getplaced() == true)) {
+						player_inv.setscroll(-i);
+						break;
+					}
+
+				}
 				Sleep(100);
 			}
 			if (GetAsyncKeyState('L')) {

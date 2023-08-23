@@ -146,12 +146,48 @@ int main()
 			std::cout << "+----------------------------------------------------------------------------------------------------------------------+" << std::endl;
 
 			Utility::PositionText(7, 6);
-			std::cout << "+----+< KEYBINDS >+----+ " << std::endl;
+			std::cout << "+----+< KEYBINDS >+----+ ";
 
-			std::cout << "=> MOVEMENT:";
+			Utility::PositionText(7, 8);
+			std::cout << "+ MOVEMENT +";
+
+			Utility::PositionText(6, 9);
+			std::cout << "[W] - Move Up";
+			Utility::PositionText(6, 10);
+			std::cout << "[A] - Move Left";
+			Utility::PositionText(6, 11);
+			std::cout << "[S] - Move Down";
+			Utility::PositionText(6, 12);
+			std::cout << "[D] - Move Right";
+
+			Utility::PositionText(7, 14);
+			std::cout << "+ INVENTORY +";
+
+			Utility::PositionText(6, 15);
+			std::cout << "[I] - Open/Close Inventory";
+			Utility::PositionText(6, 16);
+			std::cout << "[<] - Navigate Items";
+			Utility::PositionText(6, 17);
+			std::cout << "[>] - Navigate Items";
+			Utility::PositionText(6, 18);
+			std::cout << "[E] - Place Item";
+			Utility::PositionText(6, 19);
+			std::cout << "[O] - Delete Item";
+
+			Utility::PositionText(7, 21);
+			std::cout << "+ OTHERS +";
+
+			Utility::PositionText(6, 22);
+			std::cout << "[F] - Interaction";
 
 			Utility::PositionText(91, 6);
 			std::cout << "+-----+< LEGEND >+-----+ ";
+
+			Utility::PositionText(91, 8);
+			std::cout << "+ WORLD +";
+
+			Utility::PositionText(91, 9);
+			std::cout << "[X] - Grass";
 
 			Utility::PositionText(0, 25);
 			std::cout << "+----------------------------------------------------------------------------------------------------------------------+" << std::endl;
