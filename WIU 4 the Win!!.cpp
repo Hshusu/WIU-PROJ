@@ -32,6 +32,7 @@ enum StateNames
 	EXPLORATION,
 	WEAPON,
 	INVENTORY,
+	CUTSCENE,
 	//Events
 	LEVELUP,
 	DIALOGUE,
@@ -74,7 +75,7 @@ int main()
 	//Combat
 	const int max_Party_size = 4;
 	float PMods[6] = { 1,1,1,1,1,1 };
-	int enemyID=3;
+	int enemyID=2;
 	Player* Plr[max_Party_size] = { nullptr };
 	Plr[0] = new Main_character(PMods, "Marcus", Lightning, Ice);
 	Plr[1] = new Player("Remus", 1.1, 10, 2, 20, Fire, Darkness);
