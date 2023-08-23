@@ -143,9 +143,27 @@ void Entity::ExecuteSkill(Entity* Enemy, int Choice)
 			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
 			std::cout << "it did low damage..." << std::endl;
 		}
-		else {
-			Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getWeaponVal());
-			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
+		else
+		{
+
+
+			if (Dodge::enemyCollided == true)
+			{
+
+				Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getArmorVal());
+				std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
+
+			}
+			else if (Dodge::enemyCollided == false)
+			{
+				Enemy->TakeDMG(0);
+				std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing  0" << std::endl;
+
+
+			}
+
+
+
 		}
 	}
 

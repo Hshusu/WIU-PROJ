@@ -13,6 +13,11 @@ int NPC::ChooseAction()
 		//Placeholder is used because enemy does not have Mana values
 	}
 	else {
+		//start dodge minigame
+
+		Dodge obstaclecollided;
+		obstaclecollided.startGame();
+
 		return 1;
 	}
 }

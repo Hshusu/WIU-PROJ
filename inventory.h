@@ -13,6 +13,7 @@ public:
 	inventory(int x, int y);
 	void Move(const int posX, const int posY, Item current);
 	void RenderInventory(Item current);
+	void RenderInventory();
 	bool placeitem(Item current);
 	void movescroll(int x);
 	void setscroll(int x);

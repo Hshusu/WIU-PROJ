@@ -91,6 +91,44 @@ void inventory::RenderInventory(Item current)
 
     }
 }
+void inventory::RenderInventory()
+{
+    for (int i = 0; i < InventoryVector.size(); i++)
+    {
+
+        for (int j = 0; j < InventoryVector[0].size(); j++) {
+
+            SetConsoleTextAttribute(h, 15);
+
+
+            COORD zone1_Coords = { j * 5,i * 3 };
+            SetConsoleCursorPosition(h, zone1_Coords);
+            std::cout << "-----";
+
+            COORD zone2_Coords = { j * 5,i * 3 + 1 };
+            SetConsoleCursorPosition(h, zone2_Coords);
+            std::cout << "|";
+            if (InventoryVector[i][j] == -1)
+            {
+                std::cout << "   ";
+
+            }
+            else if (InventoryVector[i][j] != -1)
+            {
+                SetConsoleTextAttribute(h, InventoryVector[i][j] + 1);
+                std::cout << " X ";
+                SetConsoleTextAttribute(h, 15);
+            }
+            SetConsoleTextAttribute(h, 15);
+            std::cout << "|";
+            COORD zone3_Coords = { j * 5,i * 3 + 2 };
+            SetConsoleCursorPosition(h, zone3_Coords);
+            std::cout << "-----";
+
+        }
+
+    }
+}
 bool inventory::placeitem(Item current)
 {
     for (int i = 0; i < InventoryVector.size(); i++)

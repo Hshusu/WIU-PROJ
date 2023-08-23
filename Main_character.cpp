@@ -189,3 +189,70 @@ void Main_character::inv(int x, int y, std::string name, int ID) {
 	}
 
 }
+
+int Main_character::inv()
+{
+	while (1) {
+		player_inv.RenderInventory();
+		for (int i = 0; i < 20; i++) {
+			if ((Itemptr[i] != nullptr) && (Itemptr[i]->getplaced() == true)) {
+				player_inv.setscroll(min(player_inv.getscroll(), i));
+				player_inv.setmaxscroll(max(player_inv.getmaxscroll(), i));
+				SetConsoleTextAttribute(outputHandle, Itemptr[i]->getID() + 1);
+				std::cout << std::endl << Itemptr[i]->getName() << std::endl;
+			}
+
+		}
+		if (GetAsyncKeyState('X') || GetAsyncKeyState('O') || GetAsyncKeyState(VK_UP) || GetAsyncKeyState(VK_DOWN)) {
+			system("cls");
+			player_inv.RenderInventory();
+			for (int i = 0; i < 20; i++) {
+
+				if ((Itemptr[i] != nullptr) && (Itemptr[i]->getplaced() == true)) {
+
+					player_inv.setmaxscroll(max(player_inv.getmaxscroll(), i));
+					SetConsoleTextAttribute(outputHandle, Itemptr[i]->getID() + 1);
+					if (player_inv.getscroll() == -i) {
+						std::cout << std::endl << Itemptr[i]->getName() << " <-" << std::endl;
+					}
+					else {
+						std::cout << std::endl << Itemptr[i]->getName() << std::endl;
+					}
+				}
+
+			}
+			std::cout << player_inv.getmaxscroll() << player_inv.getscroll();
+			if (GetAsyncKeyState('O')) {
+				int x = player_inv.discard(Itemptr[-player_inv.getscroll()]->getID());
+				if ((x != -999) && (Itemptr[x] != nullptr)) {
+					delete Itemptr[x];
+					Itemptr[x] = nullptr;
+					player_inv.setscroll(-999);
+					player_inv.setmaxscroll(0);
+					for (int i = 0; i < 20; i++) {
+						if ((Itemptr[i] != nullptr) && (Itemptr[i]->getplaced() == true)) {
+							player_inv.setscroll(max(player_inv.getscroll(), -i));
+							player_inv.setmaxscroll(min(player_inv.getmaxscroll(), -i));
+						}
+
+					}
+				}
+				return -player_inv.getscroll();
+			}
+			if (GetAsyncKeyState('X')) {
+				return -1;
+			}
+			if (GetAsyncKeyState(VK_UP)) {
+				player_inv.movescroll(-1);
+				Sleep(100);
+			}
+			if (GetAsyncKeyState(VK_DOWN)) {
+				player_inv.movescroll(1);
+				Sleep(100);
+			}
+
+		}
+
+	}
+
+}
