@@ -60,14 +60,15 @@ bool crParty(Player* player[4]) {
 
 int main()
 {
-	int States = COMBAT;
+	int States = EXPLORATION;
 
 	//General
 	COORD Screen;
 	Utility::MaxScreen();
+
 	//Exploration
 	bool map_Loaded = false;
-	Map newMap(1);
+	Map newMap;
 
 	//Dialogue
 	std::string DialogueNPC, QuestionsFileStr, ResponsesFileStr;
@@ -85,80 +86,90 @@ int main()
 	Placeholder_Enemy[2] = new NPC("hshusu", 2, 10, 1.5, 20, Fire, Darkness);
 	Placeholder_Enemy[3] = new NPC("blade", 2, 10, 1.5, 20, Fire, Darkness);
 
-	//inventory
-		
-
 	while (true)
 	{
 		ShowScrollBar(GetConsoleWindow(), SB_BOTH, false);
-		
-
 		if (States == EXPLORATION)
 		{
+			Utility::SetupFont(30);
+			Utility::ShowConsoleCursor(false);
+			newMap.GenerateGrid();
+
 			if (map_Loaded == false) {
-				Utility::SetupFont(20);
+				system("cls");
+				newMap.setMap(newMap.getCurrentDoor());
 				newMap.GenerateGrid();
 				map_Loaded = true;
 			}
-			if (GetAsyncKeyState('F')) {
-				newMap.GenerateGrid();
-			}
-			if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D')
-				|| GetAsyncKeyState('K') || GetAsyncKeyState('P')) {
-				system("cls");
-				Utility::ShowConsoleCursor(false);
-				newMap.GenerateGrid();
-				
-				if (GetAsyncKeyState('S')) {
-					newMap.Move(0, 1);
-				}
-				if (GetAsyncKeyState('K')) {
-					
-					((Main_character*)Plr[0])->inv(2, 2, "hello", Utility::randomNumber(1,9));
-					system("cls");
-					Utility::ShowConsoleCursor(false);
-					newMap.GenerateGrid();
-				}
-				if (GetAsyncKeyState('P')) {
+			if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D')) {
 
-					((Main_character*)Plr[0])->inv();
+				if (GetAsyncKeyState('W') || 
+					GetAsyncKeyState('S') || 
+					GetAsyncKeyState('A') || 
+					GetAsyncKeyState('D')) 
+				{
 					system("cls");
 					Utility::ShowConsoleCursor(false);
 					newMap.GenerateGrid();
-				}
-				if (GetAsyncKeyState('W')) {
-					newMap.Move(0, -1);
-				}
-				if (GetAsyncKeyState('A')) {
-					newMap.Move(-1, 0);
-				}
-				if (GetAsyncKeyState('D')) {
-					newMap.Move(1, 0);
+
+					if (GetAsyncKeyState('S')) {
+						newMap.Move(0, 1);
+					}
+					if (GetAsyncKeyState('W')) {
+						newMap.Move(0, -1);
+					}
+					if (GetAsyncKeyState('A')) {
+						newMap.Move(-1, 0);
+					}
+					if (GetAsyncKeyState('D')) {
+						newMap.Move(1, 0);
+					}
 				}
 			}
-			if (GetAsyncKeyState('X')) //Interaction Key
+			if (GetAsyncKeyState('I')) {
+
+				system("cls");
+				((Main_character*)Plr[0])->inv(2, 2, "hello", Utility::randomNumber(1, 9));
+			}
+
+			if (GetAsyncKeyState('F')) //Interaction Key
 			{
-				newMap.checkNPC();
+				//Order of Importance NPC -> OBJECT
+				if (newMap.checkNPC() == true)
+				{
+					States = DIALOGUE;
+					system("cls");
+				}
+				else if (newMap.checkObject("CLUE") == true)
+				{
+					newMap.checkObject("CLUE");
+				}
+				else if (newMap.checkObject("DOOR") == true)
+				{
+					newMap.checkObject("DOOR");
+					map_Loaded = false;
+				}
 			}
 		}
 		else if (States == DIALOGUE)
 		{
 			Dialogue* newDialogue = new Dialogue("[Arcadia's Tomekeeper] Isabella Nightshade", "Isabella Questions.txt", "Isabella Responses.txt");
 			newDialogue->InitDialogue();
-			if (newDialogue->getDialogueStatus() == false)
+			if (newDialogue->getBreakDialogue() == true)
 			{
 				delete newDialogue;
 				newDialogue = nullptr;
 
-				States = 0;
+				map_Loaded == false; //Offload Map
+				system("cls");
+				States = EXPLORATION;
 			}
 		}
 		else if (States == COMBAT)
 		{
-
 			((Main_character*)Plr[0])->CalculateStats();
 			system("cls");
-			Utility::SetupFont(20);
+			Utility::SetupFont(30);
 			while (1) {
 				//for controlling turn order . value increments up to 100 first to 100 gets turn
 				//speed caries over from previous turns of opponent
@@ -184,8 +195,9 @@ int main()
 						if (i == 0) {
 							(Plr[i])->ExecuteSkill(Placeholder_Enemy[enemyID], Plr[i]->PlayerTurn(Placeholder_Enemy[enemyID]));
 						}
-						else {Plr[i]->ExecuteSkill(Placeholder_Enemy[enemyID], Plr[i]->PlayerTurn(Placeholder_Enemy[enemyID]));
-					
+						else {
+							Plr[i]->ExecuteSkill(Placeholder_Enemy[enemyID], Plr[i]->PlayerTurn(Placeholder_Enemy[enemyID]));
+
 						}
 						Plr[i]->setTurn(false);
 						break;
