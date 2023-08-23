@@ -190,9 +190,12 @@ void Player::DisplaySkills(int i)
 
 void Player::displaystats()
 {
+<<<<<<< Updated upstream
 	std::cout << "Name :" << Name << "HP/MaxHP : " << HP << "/" << MaxHp << "Mana/MaxMana : " << HP << "/" << MaxHp << std::endl;
+=======
+	std::cout << "Name :" << Name << "HP/MaxHP : " << HP << "/" << MaxHp << std::endl;
+>>>>>>> Stashed changes
 }
-
 
 
 Player::Player(std::string Name, float DMGModifier, float MaxHp, float Speed, float MaxMana, int Weak, int Res)

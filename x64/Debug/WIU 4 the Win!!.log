@@ -1,71 +1,124 @@
-﻿  AttackGame.cpp
-  Clue.cpp
-  CluePuzzle.cpp
-  ConclusiveClue.cpp
-  Dialogue.cpp
-  Dodge.cpp
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Dodge.cpp(496,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Dodge.cpp(536,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Dodge.cpp(563,50): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
-          with
-          [
-              _Rep=double
-          ]
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Dodge.cpp(617,50): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
-          with
-          [
-              _Rep=double
-          ]
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Dodge.cpp(670,50): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
-          with
-          [
-              _Rep=double
-          ]
-  Entity.cpp
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Entity.cpp(136,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Entity.cpp(142,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Entity.cpp(153,117): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Equipment.cpp
-  inventory.cpp
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(30,69): warning C4267: '=': conversion from 'size_t' to 'SHORT', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(37,71): warning C4267: '=': conversion from 'size_t' to 'SHORT', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(58,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(58,44): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(62,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(62,48): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(86,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(86,48): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(104,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(104,44): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(108,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(108,48): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(124,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(124,48): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-  Item.cpp
-  Journal.cpp
-  Main_character.cpp
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Main_character.cpp(61,123): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Main_character.cpp(67,123): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Main_character.cpp(74,104): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Main_character.cpp(76,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Matrix.cpp
-  NPC.cpp
-  Player.cpp
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(5,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(31,37): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(132,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(142,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(156,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(170,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+﻿  Player.cpp
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(5,20): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(31,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(132,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(142,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(156,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(170,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(193,1): error C2059: syntax error: '<<'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(195,1): error C2059: syntax error: '=='
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Player.cpp(197,1): error C2059: syntax error: '>>'
   Map.cpp
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Map.cpp(180,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Map.cpp(181,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  SpecialNPC.cpp
-  Utility.cpp
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Utility.cpp(44,51): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Utility.cpp(45,47): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(206,1): error C2059: syntax error: '<<'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(225,15): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(226,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(226,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(227,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(227,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(227,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(228,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(228,93): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(228,94): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(229,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(229,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(229,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(230,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(230,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(230,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(231,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(231,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(231,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(232,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(232,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(232,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(233,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(233,94): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(233,95): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(234,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(234,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(234,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(235,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(235,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(235,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(236,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(236,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(236,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(237,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(237,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(237,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(238,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(238,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(238,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(239,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(239,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(239,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(240,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(240,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(240,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(241,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(241,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(241,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(242,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(242,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(242,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(243,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(243,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(243,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(244,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(244,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(244,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(245,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(245,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(245,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(246,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(246,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(246,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(247,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(247,94): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(247,95): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(248,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(248,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(248,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(249,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(249,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(249,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(250,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(250,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(250,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(251,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(251,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(251,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(252,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(252,94): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(252,95): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(253,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(253,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(253,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(254,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(254,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(254,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(255,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(255,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(255,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(256,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(256,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(256,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(257,3): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(257,92): error C2059: syntax error: '}'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(257,93): error C2059: syntax error: ','
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(365,20): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(366,23): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   WIU 4 the Win!!.cpp
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\WIU 4 the Win!!.cpp(80,62): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\WIU 4 the Win!!.cpp(65,8): warning C4101: 'Screen': unreferenced local variable
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(81,31): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(107,4): error C2059: syntax error: '<<'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(108,32): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(113,5): error C2059: syntax error: '=='
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(115,108): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(116,7): error C2059: syntax error: '>>'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(124,7): error C2059: syntax error: '<<'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(125,35): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(139,7): error C2059: syntax error: '=='
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(141,35): error C2143: syntax error: missing ';' before '{'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(187,17): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(62): fatal  error C1075: '{': no matching token found
   Generating Code...
-  WIU 4 the Win!!.vcxproj -> C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe

@@ -69,10 +69,17 @@
     <ClCompile Include="AttackGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
     <ClCompile Include="Dodge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Cutscene.cpp">
+=======
+    <ClCompile Include="NodeTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+>>>>>>> Stashed changes
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,10 +135,17 @@
     <ClInclude Include="AttackGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
     <ClInclude Include="Dodge.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Cutscene.h">
+=======
+    <ClInclude Include="NodeTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+>>>>>>> Stashed changes
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
