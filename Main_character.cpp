@@ -212,7 +212,8 @@ int Main_character::inv()
 
 					player_inv.setmaxscroll(max(player_inv.getmaxscroll(), i));
 					SetConsoleTextAttribute(outputHandle, Itemptr[i]->getID() + 1);
-					if (player_inv.getscroll() == -i) {
+					if (player_inv.getscroll() == -i) 
+					{
 						std::cout << std::endl << Itemptr[i]->getName() << " <-" << std::endl;
 					}
 					else {
@@ -221,12 +222,19 @@ int Main_character::inv()
 				}
 
 			}
+
 			std::cout << player_inv.getmaxscroll() << player_inv.getscroll();
-			if (GetAsyncKeyState('O')) {
+
+			if (GetAsyncKeyState('O')) 
+			{
+				int y = Itemptr[-player_inv.getscroll()]->getID();
 				int x = player_inv.discard(Itemptr[-player_inv.getscroll()]->getID());
-				if ((x != -999) && (Itemptr[x] != nullptr)) {
+
+				if ((x != -999) && (Itemptr[x] != nullptr)) 
+				{
 					delete Itemptr[x];
 					Itemptr[x] = nullptr;
+					
 					player_inv.setscroll(-999);
 					player_inv.setmaxscroll(0);
 					for (int i = 0; i < 20; i++) {
@@ -234,10 +242,9 @@ int Main_character::inv()
 							player_inv.setscroll(max(player_inv.getscroll(), -i));
 							player_inv.setmaxscroll(min(player_inv.getmaxscroll(), -i));
 						}
-
 					}
 				}
-				return -player_inv.getscroll();
+				return y;
 			}
 			if (GetAsyncKeyState('X')) {
 				return -1;
@@ -255,4 +262,57 @@ int Main_character::inv()
 
 	}
 
+}
+
+void Main_character::Consumable(int itemid)
+{
+	if (itemid == 1 || itemid == 2 || itemid == 3 || itemid == 4 || itemid == 5 || itemid == 6 || itemid == 7 || itemid == 8 || itemid == 9 || itemid == 10)
+	{
+		HP += 20;
+
+		if (HP > MaxHp)
+		{
+			HP = MaxHp;
+		}
+		std::cout << std::endl << itemid << std::endl;
+
+		std::cout << "\033[0m" << "Current HP: " << "\033[32m\033[1m" << HP << "\033[0m" << std::endl;
+
+		std::cout << Name << " used Healing Potion on itself" << std::endl;
+
+		std::cout << Name << " healed for " << "\033[32m\033[1m" << "20 HP" << "\033[0m" << std::endl;
+
+		Sleep(1000);
+	}
+}
+
+//ItemID for HealthPots 1 - 10
+void Main_character::HealthPotCounter()
+{
+	HealthPotCount++;
+
+	if (HealthPotCount > 10)
+	{
+		HealthPotCount = NULL;
+	}
+}
+
+int Main_character::GetHealthPotCount(void)
+{
+	return HealthPotCount;
+}
+
+void Main_character::ManaPotCounter()
+{
+	ManaPotCount++;
+
+	if (ManaPotCount > 20)
+	{
+		ManaPotCount = NULL;
+	}
+}
+
+int Main_character::GetManaPotCount(void)
+{
+	return ManaPotCount;
 }

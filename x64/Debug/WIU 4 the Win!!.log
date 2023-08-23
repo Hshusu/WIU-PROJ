@@ -1,5 +1,8 @@
-﻿  WIU 4 the Win!!.cpp
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(82,31): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(163,16): warning C4553: '==': result of expression not used; did you intend '='?
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(66,8): warning C4101: 'Screen': unreferenced local variable
-  WIU 4 the Win!!.vcxproj -> C:\Users\Remus\Documents\GitHub\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe
+﻿  Main_character.cpp
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Main_character.cpp(68,109): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Main_character.cpp(71,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Main_character.cpp(79,109): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Main_character.cpp(81,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Main_character.cpp(88,103): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\Main_character.cpp(90,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  WIU 4 the Win!!.vcxproj -> C:\Users\Wynn\OneDrive\Desktop\School Stuff\WIU_STUDIO_PROJECT\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe

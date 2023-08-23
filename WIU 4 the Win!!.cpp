@@ -61,7 +61,6 @@ bool crParty(Player* player[4]) {
 int main()
 {
 	int States = EXPLORATION;
-
 	//General
 	COORD Screen;
 	Utility::MaxScreen();
@@ -76,7 +75,7 @@ int main()
 	//Combat
 	const int max_Party_size = 4;
 	float PMods[6] = { 1,1,1,1,1,1 };
-	int enemyID=2;
+	int enemyID = 2;
 	Player* Plr[max_Party_size] = { nullptr };
 	Plr[0] = new Main_character(PMods, "Marcus", Lightning, Ice);
 	Plr[1] = new Player("Remus", 1.1, 10, 2, 20, Fire, Darkness);
@@ -103,10 +102,10 @@ int main()
 			}
 			if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D')) {
 
-				if (GetAsyncKeyState('W') || 
-					GetAsyncKeyState('S') || 
-					GetAsyncKeyState('A') || 
-					GetAsyncKeyState('D')) 
+				if (GetAsyncKeyState('W') ||
+					GetAsyncKeyState('S') ||
+					GetAsyncKeyState('A') ||
+					GetAsyncKeyState('D'))
 				{
 					system("cls");
 					Utility::ShowConsoleCursor(false);
@@ -126,11 +125,38 @@ int main()
 					}
 				}
 			}
-			if (GetAsyncKeyState('I')) {
+			int HealthPotionCount = 0;
 
+			//Spawn Health Potion
+			if (GetAsyncKeyState('1')) {
+				((Main_character*)Plr[0])->HealthPotCounter();
 				system("cls");
-				((Main_character*)Plr[0])->inv(2, 2, "hello", Utility::randomNumber(1, 9));
+				((Main_character*)Plr[0])->inv(2, 2, "Health Potion", ((Main_character*)Plr[0])->GetHealthPotCount());
 			}
+			if (GetAsyncKeyState('2')) {
+				((Main_character*)Plr[0])->ManaPotCounter();
+				system("cls");
+				((Main_character*)Plr[0])->inv(3, 1, "Mana Potion", ((Main_character*)Plr[0])->GetManaPotCount());
+			}
+
+			if (GetAsyncKeyState('E'))
+			{
+				system("cls");
+				
+				((Main_character*)Plr[0])->inv();
+			}
+
+			if (GetAsyncKeyState('R'))
+			{
+				system("cls");
+
+				int i = ((Main_character*)Plr[0])->inv();
+
+				std::cout << i;
+
+				Sleep(100000);
+			}
+
 
 			if (GetAsyncKeyState('F')) //Interaction Key
 			{
@@ -349,5 +375,6 @@ int main()
 		{
 			break;
 		}
+		
 	}
 }

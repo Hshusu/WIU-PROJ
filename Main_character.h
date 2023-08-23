@@ -13,9 +13,19 @@ private:
 	inventory player_inv = inventory(10,5);
 	Item* Itemptr[20] = { NULL };
 	int dmg;
+
+	int HealthPotCount = 0;
+	int ManaPotCount = 10;
 public:
+
+	void HealthPotCounter();
+	int GetHealthPotCount(void);
+	void ManaPotCounter();
+	int GetManaPotCount(void);
+
 	Main_character(float character_Modifiers[6], std::string Name, int Weak, int Res);
 	void inv(int x, int y, std::string name, int ID);
+	void Consumable(int itemid);
 	int inv();
 	void CalculateStats();
 	void ExecuteSkill(Entity* Enemy, int Choice);

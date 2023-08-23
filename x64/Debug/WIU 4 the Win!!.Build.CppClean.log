@@ -1,8 +1,11 @@
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\vc143.pdb
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\vc143.idb
-c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\utility.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\specialnpc.obj
+c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\map.obj
+c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\player.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\npc.obj
+c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\nodetree.obj
+c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\node.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\matrix.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\main_character.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\journal.obj
@@ -10,20 +13,19 @@ c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debu
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\inventory.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\equipment.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\entity.obj
+c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\dodge.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\dialogue.obj
+c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\cutscene.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\conclusiveclue.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\cluepuzzle.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\clue.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\attackgame.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\wiu 4 the win!!.obj
-c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\map.obj
-c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\player.obj
+c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\utility.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\wiu 4 the win!!.exe
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\wiu 4 the win!!.ilk
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\wiu 4 the win!!.pdb
-c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\location.obj
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\wiu 4 the win!!.tlog\cl.command.1.tlog
-c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\wiu 4 the win!!.tlog\cl.items.tlog
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\wiu 4 the win!!.tlog\cl.read.1.tlog
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\wiu 4 the win!!.tlog\cl.write.1.tlog
 c:\users\wynn\onedrive\desktop\school stuff\wiu_studio_project\wiu-proj\x64\debug\wiu 4 the win!!.tlog\link.command.1.tlog
