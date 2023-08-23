@@ -101,7 +101,7 @@ Map::Map(int mapNo)
 		//Important Person House Room 1
 		//Important Person House Room 2
 		//Important Person House Room 3
-		//Shop
+		//Shop 
 	case 1:
 		// world map
 		mapVector = {

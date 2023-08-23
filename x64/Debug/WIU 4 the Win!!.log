@@ -1,4 +1,71 @@
-﻿  WIU 4 the Win!!.cpp
-D:\game dev projects\pgrm assignment\WIU-PROJ\WIU 4 the Win!!.cpp(80,62): warning C4305: 'argument': truncation from 'double' to 'float'
-D:\game dev projects\pgrm assignment\WIU-PROJ\WIU 4 the Win!!.cpp(65,8): warning C4101: 'Screen': unreferenced local variable
-  WIU 4 the Win!!.vcxproj -> D:\game dev projects\pgrm assignment\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe
+﻿  AttackGame.cpp
+  Clue.cpp
+  CluePuzzle.cpp
+  ConclusiveClue.cpp
+  Dialogue.cpp
+  Dodge.cpp
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Dodge.cpp(496,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Dodge.cpp(536,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Dodge.cpp(563,50): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=double
+          ]
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Dodge.cpp(617,50): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=double
+          ]
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Dodge.cpp(670,50): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=double
+          ]
+  Entity.cpp
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Entity.cpp(136,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Entity.cpp(142,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Entity.cpp(153,117): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Equipment.cpp
+  inventory.cpp
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(30,69): warning C4267: '=': conversion from 'size_t' to 'SHORT', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(37,71): warning C4267: '=': conversion from 'size_t' to 'SHORT', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(58,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(58,44): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(62,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(62,48): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(86,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(86,48): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(104,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(104,44): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(108,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(108,48): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(124,38): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\inventory.cpp(124,48): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+  Item.cpp
+  Journal.cpp
+  Main_character.cpp
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Main_character.cpp(61,123): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Main_character.cpp(67,123): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Main_character.cpp(74,104): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Main_character.cpp(76,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Matrix.cpp
+  NPC.cpp
+  Player.cpp
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(5,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(31,37): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(132,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(142,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(156,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Player.cpp(170,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Map.cpp
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Map.cpp(180,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Map.cpp(181,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  SpecialNPC.cpp
+  Utility.cpp
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Utility.cpp(44,51): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\Utility.cpp(45,47): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  WIU 4 the Win!!.cpp
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\WIU 4 the Win!!.cpp(80,62): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\WIU 4 the Win!!.cpp(65,8): warning C4101: 'Screen': unreferenced local variable
+  Generating Code...
+  WIU 4 the Win!!.vcxproj -> C:\Users\lizba.DESKTOP-GJUHATK\source\repos\WIU 4 the Win!!\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe
