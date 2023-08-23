@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <random>
 #include <chrono>
 #include <conio.h>
@@ -25,6 +25,8 @@
 #include "Equipment.h"
 
 //Puzzles
+
+#pragma comment(lib, "Winmm.lib")
 
 enum StateNames
 {
@@ -60,6 +62,15 @@ bool crParty(Player* player[4]) {
 
 int main()
 {
+	std::cout << "Playing Music" << std::endl;
+
+	PlaySound(TEXT("Test.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+
+	//std::string input;
+	//std::getline(std::cin, input);
+	//PlaySound(0, 0, 0);
+	//std::cout << "Stopped Music" << std::endl;
+
 	int States = EXPLORATION;
 
 	//General
@@ -78,8 +89,8 @@ int main()
 	float PMods[6] = { 1,1,1,1,1,1 };
 	int enemyID=2;
 	Player* Plr[max_Party_size] = { nullptr };
-	Plr[0] = new Main_character(PMods, "Marcus", Lightning, Ice);
-	Plr[1] = new Player("Remus", 1.1, 10, 2, 20, Fire, Darkness);
+	Plr[0] = new Main_character(PMods, "Aurelius Mindweaver", Lightning, Ice);
+	Plr[1] = new Player("Seraphina Fortuna", 1.1, 10, 2, 20, Fire, Darkness);
 	NPC* Placeholder_Enemy[10] = { nullptr };
 	Placeholder_Enemy[0] = new NPC("placeholder", 2, 10, 1.5, 20, Fire, Darkness);
 	Placeholder_Enemy[1] = new NPC("kk", 2, 10, 1.5, 20, Fire, Darkness);
@@ -91,13 +102,68 @@ int main()
 		ShowScrollBar(GetConsoleWindow(), SB_BOTH, false);
 		if (States == EXPLORATION)
 		{
-			Utility::SetupFont(30);
-			Utility::ShowConsoleCursor(false);
-			newMap.GenerateGrid();
+			Utility::PositionText(0, 0);
+			SetConsoleTextAttribute(outputHandle, 15);
+			std::cout << "+----------------------------------------------------------------------------------------------------------------------+" << std::endl;
+
+			switch (newMap.getCurrentDoor())
+			{
+			 case WORLD:
+				 std::cout << Magenta << " ARCADIA" << ResetColour << " | " << Cyan << "OPEN WORLD" << ResetColour << std::endl;
+				break;
+			 case DETECTIVE_ROOM:
+				 std::cout << Magenta << " ARCADIA" << ResetColour << " | " << Cyan << "CHIEF GENERAL'S OFFICE" << ResetColour << std::endl;
+				 break;
+			 case LIBRARY:
+				 std::cout << Magenta << " ARCADIA" << ResetColour << " | " << Cyan << "THE ARCHIVES" << ResetColour << std::endl;
+				 break;
+			 case LIBRARY_FORBIDDEN:
+				 std::cout << Magenta << " ARCADIA" << ResetColour << " | " << Cyan << "THE ARCHIVES, FORBIDDEN SECTION" << ResetColour << std::endl;
+				 break;
+			 case SHOP:
+				 std::cout << Magenta << " ARCADIA" << ResetColour << " | " << Cyan << "WIZARDLY OFFERINGS" << ResetColour << std::endl;
+				 break;
+			 case STRENGTH_HOUSE:
+				 std::cout << Magenta << " ARCADIA" << ResetColour << " | " << Cyan << "VALERIA STORMBRINGER'S ABODE" << ResetColour << std::endl;
+				 break;
+			 case LUCK_HOUSE:
+				 std::cout << Magenta << " ARCADIA" << ResetColour << " | " << Cyan << "SERAPHINE FORTUNA'S ABODE" << ResetColour << std::endl;
+				 break;
+			}
+
+			std::cout << "+----------------------------------------------------------------------------------------------------------------------+" << std::endl;
+
+			COORD statCoordinates = { 0, 3 };
+			SetConsoleCursorPosition(outputHandle, statCoordinates);
+			for (int i = 0; i < 2; i++) {
+				if (Plr[i] != nullptr) {
+					Plr[i]->displaystats();
+				}
+				statCoordinates.Y++;
+				SetConsoleCursorPosition(outputHandle, statCoordinates);
+			}
+			
+			std::cout << "+----------------------------------------------------------------------------------------------------------------------+" << std::endl;
+
+			Utility::PositionText(7, 6);
+			std::cout << "+----+< KEYBINDS >+----+ " << std::endl;
+
+			std::cout << "=> MOVEMENT:";
+
+			Utility::PositionText(91, 6);
+			std::cout << "+-----+< LEGEND >+-----+ ";
+
+			Utility::PositionText(0, 25);
+			std::cout << "+----------------------------------------------------------------------------------------------------------------------+" << std::endl;
+
+			Utility::PositionText(0, 33);
+			std::cout << "+----------------------------------------------------------------------------------------------------------------------+" << std::endl;
 
 			if (map_Loaded == false) {
 				system("cls");
 				newMap.setMap(newMap.getCurrentDoor());
+				Utility::SetupFont(30);
+				Utility::ShowConsoleCursor(false);
 				newMap.GenerateGrid();
 				map_Loaded = true;
 			}
@@ -150,6 +216,7 @@ int main()
 					map_Loaded = false;
 				}
 			}
+			Sleep(10);
 		}
 		else if (States == DIALOGUE)
 		{
@@ -160,7 +227,7 @@ int main()
 				delete newDialogue;
 				newDialogue = nullptr;
 
-				map_Loaded == false; //Offload Map
+				map_Loaded = false; //Offload Map
 				system("cls");
 				States = EXPLORATION;
 			}
