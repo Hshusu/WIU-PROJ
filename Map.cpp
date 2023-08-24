@@ -50,9 +50,9 @@ void Map::Move(const int x, const int y, int &State, int &enemyID) {
 
 		if ((mapVector[Player_Pos.Y + y][Player_Pos.X + x]) == 'X')
 		{
-			if (Utility::randomNumber(1, 100) == 17)
+			if (Utility::randomNumber(1, 20) > 17)
 			{
-				State = 6;
+				State = COMBAT;
 				enemyID = Utility::randomNumber(0, 3);
 			}
 		}
@@ -61,8 +61,8 @@ void Map::Move(const int x, const int y, int &State, int &enemyID) {
 
 void Map::GenerateGrid()const
 {
-	Utility::PositionText(15, 20);
-	std::cout << "X: " << Player_Pos.X << "Y: " << Player_Pos.Y << std::endl;
+	//Utility::PositionText(15, 20);
+	//std::cout << "X: " << Player_Pos.X << "Y: " << Player_Pos.Y << std::endl;
 	COORD GridCoords = { max_Size.X / 4 - (Player_Pos.X * 3), max_Size.Y / 4 - Player_Pos.Y };
 	SetConsoleCursorPosition(outputHandle, GridCoords);
 	for (int col = 0; col < H; col++)
@@ -159,7 +159,7 @@ int Map::getCurrentSpecialNPC(void) const
 	return currentSpecialNPC;
 }
 
-bool Map::checkObject(std::string Type)
+bool Map::checkObject(std::string Type, int& States)
 {
 	if (Type == "DOOR")
 	{
@@ -220,23 +220,36 @@ bool Map::checkObject(std::string Type)
 			}
 
 			//LIBRARY
-			if (Player_Pos.X == 1 && Player_Pos.Y == 12)
+			if (Player_Pos.X == 1 && Player_Pos.Y == 14)
 			{
 				currentDoor = WORLD_LIBRARY;
-				currentRoomText1 = " > You are enveloped by an air of knowledge and serenity. Rows upon rows of towering bookshelves appear in your view.";
-				currentRoomText2 = "   Something, however, seems odd... The books are all... arranged wrongly..?";
+				currentRoomText1 = " > As you leave the Forbidden Section of the Archives, you are greeted by a familiar face by the door. It's General";
+				currentRoomText2 = "   Blackthorn. 'It's been quite awhile, have you gathered enough evidence for your case..?'";
 				currentRoomText3 = "";
+
+				SetConsoleTextAttribute(outputHandle, 15);
+				Utility::PositionText(0, 28);
+				Utility::typewriterText(getCurrentRoomText1(), 10);
+				Utility::PositionText(0, 29);
+				Utility::typewriterText(getCurrentRoomText2(), 10);
+				Utility::PositionText(0, 30);
+				Utility::typewriterText(getCurrentRoomText3(), 10);
+
+				Sleep(1000);
+
+				States = DEDUCTION;
+				system("cls");
 			}
 
 			//LIBRARYFORBIDDEN
-			if (Player_Pos.X == 9 && Player_Pos.Y == 1 && currentStamps == 3)
+			if (Player_Pos.X == 9 && Player_Pos.Y == 1 && currentStamps >= 3)
 			{
 				currentDoor = LIBRARYFORBIDDEN;
 				currentRoomText1 = " > A palpable sense of foreboding washes over you, the air is thick with an aura of enigma and trepidation. The";
 				currentRoomText2 = "   whispers of forbidden spells and malevolent incantations seem to linger, a haunting reminder of the mysteries";
 				currentRoomText3 = "   concealed within.";
 			}
-			else if (Player_Pos.X == 9 && Player_Pos.Y == 1 && currentStamps != 3)
+			else if (Player_Pos.X == 9 && Player_Pos.Y == 1 && currentStamps >= 3)
 			{
 				currentRoomText1 = " > This area of the Archive is currently enclouded with some kind of Magical Barrier.";
 				currentRoomText2 = "";
@@ -348,7 +361,7 @@ bool Map::checkSpecialNPC(std::string& DialogueNPC, std::string& QuestionsFileSt
 			currentSpecialNPC = AURELIUS_MINDWEAVER;
 			DialogueNPC = "Arcadia's Shopkeeper | Kranny Schrodinger [ELF]";
 
-			if (defeatedAurelius == false)
+			if (defeatedSeraphina == false)
 			{
 				if (talkedAurelius == false)
 				{
@@ -370,6 +383,7 @@ bool Map::checkSpecialNPC(std::string& DialogueNPC, std::string& QuestionsFileSt
 				QuestionsFileStr = "Aurelius Mindweaver 2 Questions.txt";
 				ResponsesFileStr = "Aurelius Mindweaver 2 Responses.txt";
 				currentStamps++;
+				State = DIALOGUE;
 			}
 		}
 		else if (Player_Pos.X == 1 && Player_Pos.Y == 4 && mapVector[Player_Pos.Y][Player_Pos.X] == 'V')
@@ -417,6 +431,7 @@ bool Map::checkSpecialNPC(std::string& DialogueNPC, std::string& QuestionsFileSt
 					defeatedAurelius = true;
 					currentStamps++;
 				}
+				State = DIALOGUE;
 			}
 			else
 			{
@@ -432,16 +447,18 @@ bool Map::checkSpecialNPC(std::string& DialogueNPC, std::string& QuestionsFileSt
 					Utility::PositionText(0, 32);
 					Utility::typewriterText(" > The Coin favours you, you won!", 10);
 					defeatedSeraphina = true;
+					seraphinaCoinPuzzle = false;
+					Sleep(2000);
+					State = DIALOGUE;
 				}
 				else
 				{
 					Utility::PositionText(0, 32);
 					Utility::typewriterText(" > The Coin favours Seraphina, you lost!", 10);
 					defeatedSeraphina = false;
+					Sleep(2000);
 				}
-
 			}
-			State = DIALOGUE;
 		}
 
 		return true;
@@ -468,7 +485,7 @@ void Map::setMap(int mapID)
 			mapVector = {
 			{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',},
 			{'#',' ',' ',' ',' ',' ',' ',' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ',' ',' ',' ','#',},
-			{'#','/','-','-','-','-','-','-','-','\\','|',' ','|','.','|',' ',' ','_','_','_','_','#',},
+			{'#','/','-','-','-','-','-','-','-','\\','|',' ','|',' ','|',' ',' ','_','_','_','_','#',},
 			{'#','|',' ','R','A','L','L','Y',' ','|','|',' ','^',' ','|','X','X','|',' ',' ',' ','#',},
 			{'#','|',' ','S','T','A','G','E',' ','|','|',' ','|',' ','|','X','X','|','[','=',']','#',},
 			{'#','|',' ',' ',' ',' ',' ',' ',' ','|','|',' ',' ',' ','|','X','X','|','[','=',']','#',},
@@ -505,10 +522,10 @@ void Map::setMap(int mapID)
 		{'#','#','#','#','#','#','#',},
 		{'#',' ',' ',' ',' ',' ','#',},
 		{'#','-',' ',' ',' ',' ','#',},
-		{'#','[','0',' ',' ','{','#',},
+		{'#','[','0',' ','C','{','#',},
 		{'#','[','0',' ',' ',' ','#',},
 		{'#','_',' ',' ',' ',' ','#',},
-		{'#',' ',' ',' ',' ',' ','#',},
+		{'#',' ',' ',' ',' ','{','#',},
 		{'#','X',' ',' ',' ',' ','#',},
 		{'#','X',' ',' ',' ',' ','#',},
 		{'#',' ',' ',' ',' ','{','#',},
@@ -524,7 +541,7 @@ void Map::setMap(int mapID)
 		mapVector = {
 		{'#','#','#','#','#','#','#','#','#','#','#',},
 		{'#',' ',' ','+','-','-','-','+',' ','D','#',},
-		{'#','-','-','|','.','I','.','|',' ',' ','#',},
+		{'#','-','-','|',' ','I',' ','|',' ',' ','#',},
 		{'#','[',']','+','-','-','-','+',' ',' ','#',},
 		{'#','[',']',' ',' ',' ',' ',' ',' ',' ','#',},
 		{'#','_','_','C',' ',' ',' ',' ',' ',' ','#',},

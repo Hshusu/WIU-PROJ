@@ -12,26 +12,24 @@
 
 class CluePuzzle
 {
-private:
+public:
     std::vector<Clue*> gatheredClues;
     std::unordered_map<std::string, ConclusiveClue*> conclusiveClues;
 
     //Journal
     Journal* currentJournal;
     int currentPage;
-public:
+
     //Puzzle Functions
     void AddClue(Clue* clue);
     void AddConclusiveClue(ConclusiveClue* clue);
 
-    bool CombineResult(Clue* clue1, Clue* clue2);
     bool ConclusionResult(const std::string& conclusiveClueName);
 
     // Journal Functions
     void PickupJournal();
     void UpdateJournal(const std::string& entry);
     void ViewJournal();
-    void SearchJournal();
 
     //Functions
     void setupUI(const std::vector<SpecialNPC>& SpecialNPCs);

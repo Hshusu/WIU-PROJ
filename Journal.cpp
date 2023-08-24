@@ -18,7 +18,7 @@ void Journal::DisplayJournal(int pageNumber) const
         std::cout << "- " << entries[i] << "\n" << "\n";
     }
     std::cout << "========================================================================================================================" << std::endl;
-    std::cout << "Press 'M' to continue...";
+    std::cout << "Press 'M' to close...";
     char input;
     do {
         input = _getch(); // Get a single character input

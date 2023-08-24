@@ -95,7 +95,7 @@ public:
 	int getCurrentDoor(void) const;
 	int getCurrentSpecialNPC(void) const;
 
-	bool checkObject(std::string Type);
+	bool checkObject(std::string Type, int& States);
 	bool checkNPC() const;
 	bool checkSpecialNPC(std::string& DialogueNPC, std::string& QuestionsFileStr, std::string& ResponsesFileStr, bool& combatEnabled, int& enemyID, int& State, bool& hostilityEnabled);
 

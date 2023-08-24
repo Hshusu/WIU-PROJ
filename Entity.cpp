@@ -116,7 +116,7 @@ void Entity::TakeDMG(int Damage)
 
 void Entity::ExecuteSkill(Entity* Enemy, int Choice)
 {
-
+	UpdateCR(Skills[Choice].CR_Manipulation);
 	if (Skills[Choice].Blocking) {
 		Blocking = true;
 	}
@@ -133,18 +133,21 @@ void Entity::ExecuteSkill(Entity* Enemy, int Choice)
 		if (HP > MaxHp) {
 			HP = MaxHp;
 		}
+		Utility::PositionText(0, 30);
 		std::cout << Name << " used " << Skills[Choice].Name << " on themself!" << std::endl;
 	}
 	else {
 		if (Skills[Choice].Element == Enemy->getWeakness()) {
 			Enemy->UpdateCR(50);
 			Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getWeaponVal());
+			Utility::PositionText(0, 30);
 			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
 			std::cout << "it did critical damage!! Pushing the enemies turn back" << std::endl;
 
 		}
 		else if ((Skills[Choice].Element == Enemy->getResistance())) {
 			Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * 0.5 * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getWeaponVal());
+			Utility::PositionText(0, 30);
 			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
 			std::cout << "it did low damage..." << std::endl;
 		}
@@ -154,14 +157,16 @@ void Entity::ExecuteSkill(Entity* Enemy, int Choice)
 
 			if (Dodge::enemyCollided == true)
 			{
-			
+
 				Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getArmorVal());
+				Utility::PositionText(0, 30);
 				std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
 
 			}
 			else if (Dodge::enemyCollided == false)
 			{
 				Enemy->TakeDMG(0);
+				Utility::PositionText(0, 30);
 				std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing  0" << std::endl;
 
 

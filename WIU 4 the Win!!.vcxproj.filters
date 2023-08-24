@@ -72,9 +72,6 @@
     <ClCompile Include="Dodge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Cutscene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -138,9 +135,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dodge.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cutscene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">

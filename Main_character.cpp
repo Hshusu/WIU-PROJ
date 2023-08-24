@@ -1,5 +1,10 @@
 #include "Main_character.h"
 #include "Utility.h"
+
+int Main_character::playerCoins = 10;
+int Main_character::playerLevel = 1;
+int Main_character::playerExp = 0;
+
 Main_character::Main_character(float character_Modifiers[6], std::string Name, int Weak, int Res)
 {
 	Weakness = Weak;
@@ -102,6 +107,7 @@ void Main_character::ExecuteSkill(Entity* Enemy, int Choice)
 		if (HP > MaxHp) {
 			HP = MaxHp;
 		}
+		Utility::PositionText(0, 30);
 		std::cout << Name << " used " << Skills[Choice].Name << " on itself" << std::endl;
 	}
 	else
@@ -110,12 +116,14 @@ void Main_character::ExecuteSkill(Entity* Enemy, int Choice)
 			Enemy->UpdateCR(50);
 			Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getWeaponVal());
 			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
+			Utility::PositionText(0, 30);
 			std::cout << "it did critical damage!!   Pushing the enemies turn back" << std::endl;
 
 		}
 		 if ((Skills[Choice].Element == Enemy->getResistance())) {
 			Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * 0.5 * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getWeaponVal());
 			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
+			Utility::PositionText(0, 30);
 			std::cout << "it did low damage......" << std::endl;
 		}
 		if (Skills[Choice].Inventory == false)
@@ -124,6 +132,7 @@ void Main_character::ExecuteSkill(Entity* Enemy, int Choice)
 				dmg = Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1) - Enemy->getArmorVal() + getWeaponVal();
 				float finalDmg = dmg * attackgame.GetdmgModifier();
 				Enemy->TakeDMG(finalDmg);
+				Utility::PositionText(0, 30);
 				std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs(finalDmg) << std::endl;
 		}
 	}
@@ -153,7 +162,7 @@ void Main_character::inv(int x, int y, std::string name, int ID) {
 			}
 
 		}
-		if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D') || GetAsyncKeyState('K') || GetAsyncKeyState('E')
+		if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D') || GetAsyncKeyState('R') || GetAsyncKeyState('E')
 			|| GetAsyncKeyState('O') || GetAsyncKeyState(VK_UP) || GetAsyncKeyState(VK_DOWN)) {
 			system("cls");
 			player_inv.RenderInventory(*Itemptr[current]);
@@ -188,7 +197,7 @@ void Main_character::inv(int x, int y, std::string name, int ID) {
 			if (GetAsyncKeyState('D')) {
 				player_inv.Move(1, 0, *Itemptr[current]);
 			}
-			if (GetAsyncKeyState('K')) {
+			if (GetAsyncKeyState('R')) {
 				Itemptr[current]->rotate();
 			}
 			if ((GetAsyncKeyState('O')) && (Itemptr[-player_inv.getscroll()] != nullptr) && ((-player_inv.getscroll()) != maxitm) && (-player_inv.getscroll()!=999)) {
@@ -371,6 +380,22 @@ void Main_character::Consumable(int itemid)
 
 }
 
+void Main_character::setPlayerExp(int pE, int& States)
+{
+	playerExp += pE;
+	if (playerExp >= 100)
+	{
+		playerExp = 0;
+		playerLevel++;
+		playerCoins += 5;
+		States = LEVELUP;
+	}
+	else
+	{
+		States = EXPLORATION;
+	}
+}
+
 //ItemID for HealthPots 1 - 10
 void Main_character::HealthPotCounter()
 {
@@ -387,6 +412,11 @@ int Main_character::GetHealthPotCount(void)
 	return HealthPotCount;
 }
 
+void Main_character::setPlayerLevel(int pL)
+{
+	playerLevel += pL;
+}
+
 void Main_character::ManaPotCounter()
 {
 	ManaPotCount++;
@@ -395,6 +425,11 @@ void Main_character::ManaPotCounter()
 	{
 		ManaPotCount = NULL;
 	}
+}
+
+void Main_character::setPlayerCoins(int pC)
+{
+	playerCoins += pC;
 }
 
 int Main_character::GetManaPotCount(void)
@@ -415,4 +450,19 @@ void Main_character::StatPotCounter()
 int Main_character::GetStatPotCount(void)
 {
 	return StatPotCount;
+}
+
+int Main_character::getPlayerLevel(void)
+{
+	return playerLevel;
+}
+
+int Main_character::getPlayerExp(void)
+{
+	return playerExp;
+}
+
+int Main_character::getPlayerCoins(void)
+{
+	return playerCoins;
 }

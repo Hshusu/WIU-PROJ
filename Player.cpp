@@ -21,11 +21,11 @@ int Player::PlayerTurn(Entity* Enemy)
 	}
 	std::cout << "\033[1;36mUse the [W] and [S] Keys to toggle between skills. [X] to Select skill.\033[0m";
 	while (1) {
-		if ((GetAsyncKeyState('W')) || (GetAsyncKeyState('S')) || (GetAsyncKeyState('X'))) {
+		if ((GetAsyncKeyState(VK_UP)) || (GetAsyncKeyState(VK_DOWN)) || (GetAsyncKeyState('\r'))) {
 
 			system("cls");
 			GenerateUI(*Enemy);
-			if (GetAsyncKeyState('W')) // For Controlling the Pointer
+			if (GetAsyncKeyState(VK_UP)) // For Controlling the Pointer
 			{
 				if (scrollPos <= 0) {
 					scrollPos = (Skills.size() - 1);
@@ -35,7 +35,7 @@ int Player::PlayerTurn(Entity* Enemy)
 					scrollPos--;
 				}
 			}
-			if (GetAsyncKeyState('S'))
+			if (GetAsyncKeyState(VK_DOWN))
 			{
 
 				if (scrollPos > (Skills.size() - 2)) {
@@ -47,7 +47,7 @@ int Player::PlayerTurn(Entity* Enemy)
 
 				}
 			}
-			if (GetAsyncKeyState('X')) {
+			if (GetAsyncKeyState('\r')) {
 				return scrollPos;
 			}
 

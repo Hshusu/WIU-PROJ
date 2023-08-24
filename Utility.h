@@ -55,6 +55,8 @@ enum StateNames
     DIALOGUE,
     COMBAT,
     STORE,
+    DEDUCTION,
+    LEVELUP,
 
     EXIT,
 };
