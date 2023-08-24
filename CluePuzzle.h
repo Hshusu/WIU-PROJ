@@ -29,6 +29,7 @@ public:
 
     // Journal Functions
     void PickupJournal();
+    void UpdateJournal(const std::string& entry);
     void ViewJournal();
     void SearchJournal();
 

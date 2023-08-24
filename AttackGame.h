@@ -8,7 +8,7 @@ private:
 	int barXpos = 0;
 	int barYpos = 0;
 
-	int gameOffsetX = 120;
+	int gameOffsetX = 25;
 	int gameOffsetY = 14;
 
 	float dmgModifier;

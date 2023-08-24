@@ -11,7 +11,8 @@ private:
 	float character_Modifiers[6] = { 0, 0, 0, 0, 0, 0 };
 	int character_Level[6] = { 0, 0, 0, 0, 0, 0 };
 	inventory player_inv = inventory(10,5);
-	Item* Itemptr[20] = { NULL };
+	static const int maxitm = 100;
+	Item* Itemptr[maxitm] = { NULL };
 	int dmg;
 public:
 	Main_character(float character_Modifiers[6], std::string Name, int Weak, int Res);

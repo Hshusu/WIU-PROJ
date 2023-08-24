@@ -1,6 +1,6 @@
 #include "Map.h"
 
-void Map::Move(const int x, const int y) {
+void Map::Move(const int x, const int y, int &State, int &enemyID) {
 	if ((mapVector[Player_Pos.Y + y][Player_Pos.X + x]) == '.' ||
 		(mapVector[Player_Pos.Y + y][Player_Pos.X + x]) == '|' ||
 		(mapVector[Player_Pos.Y + y][Player_Pos.X + x]) == '-' ||
@@ -21,6 +21,11 @@ void Map::Move(const int x, const int y) {
 		(mapVector[Player_Pos.Y + y][Player_Pos.X + x]) == '\\' ||
 		(mapVector[Player_Pos.Y + y][Player_Pos.X + x]) == 'S' ||
 		(mapVector[Player_Pos.Y + y][Player_Pos.X + x]) == '^' ||
+		(mapVector[Player_Pos.Y + y][Player_Pos.X + x]) == '<' ||
+		(mapVector[Player_Pos.Y + y][Player_Pos.X + x]) == 'S' ||
+		(mapVector[Player_Pos.Y + y][Player_Pos.X + x]) == 'T' ||
+		(mapVector[Player_Pos.Y + y][Player_Pos.X + x]) == 'G' ||
+		(mapVector[Player_Pos.Y + y][Player_Pos.X + x]) == 'E' ||
 		(mapVector[Player_Pos.Y + y][Player_Pos.X + x]) == 'C'
 		)
 	{
@@ -38,12 +43,22 @@ void Map::Move(const int x, const int y) {
 		if (Player_Pos.X > W - 1) {
 			Player_Pos.X = W - 1;
 		}
+
+		if ((mapVector[Player_Pos.Y + y][Player_Pos.X + x]) == 'X')
+		{
+			if (Utility::randomNumber(1, 2) == 1)
+			{
+				State = 6;
+				enemyID = Utility::randomNumber(0, 3);
+			}
+		}
 	}
 }
 
 void Map::GenerateGrid()const
 {
-	//std::cout << "X: " << Player_Pos.X << "Y: " << Player_Pos.Y << std::end
+	Utility::PositionText(15, 20);
+	std::cout << "X: " << Player_Pos.X << "Y: " << Player_Pos.Y << std::endl;
 	COORD GridCoords = { max_Size.X / 4 - (Player_Pos.X * 3), max_Size.Y / 4 - Player_Pos.Y };
 	SetConsoleCursorPosition(outputHandle, GridCoords);
 	for (int col = 0; col < H; col++)
@@ -100,9 +115,34 @@ void Map::UpdatePlayer() const
 	Utility::PositionText(0, 0);
 }
 
+std::string Map::getCurrentRoomText1(void) const
+{
+	return currentRoomText1;
+}
+
+std::string Map::getCurrentRoomText2(void) const
+{
+	return currentRoomText2;
+}
+
+std::string Map::getCurrentRoomText3(void) const
+{
+	return currentRoomText3;
+}
+
+int Map::getCurrentClue(void) const
+{
+	return currentClue;
+}
+
 int Map::getCurrentDoor(void) const
 {
 	return currentDoor;
+}
+
+int Map::getCurrentSpecialNPC(void) const
+{
+	return currentSpecialNPC;
 }
 
 bool Map::checkObject(std::string Type)
@@ -115,25 +155,40 @@ bool Map::checkObject(std::string Type)
 			|| (mapVector[Player_Pos.Y][Player_Pos.X - 1]) == 'D')
 		{
 			//WORLD
-			if (Player_Pos.X == 16 && Player_Pos.Y == 25)
+			if (Player_Pos.X == 17 && Player_Pos.Y == 25)
 			{
 				currentDoor = WORLD_DETECTIVE_ROOM;
+				currentRoomText1 = " > You feel a sense of invigorating power as you step into the room.";
+				currentRoomText2 = "   Pictures of Military High Rankers decorated the walls.";
+				currentRoomText3 = "   On the couch sits General Blackthorn, awaiting your arrival.";
 			}
-			else if (Player_Pos.X == 18 && Player_Pos.Y == 13)
+			else if (Player_Pos.X == 19 && Player_Pos.Y == 13)
 			{
 				currentDoor = WORLD_LIBRARY;
+				currentRoomText1 = " > You are enveloped by an air of knowledge and serenity.";
+				currentRoomText2 = "   Rows upon rows of towering bookshelves appear in your view.";
+				currentRoomText3 = "   Something, however, seems odd... The books are all... arranged wrongly..?";
 			}
-			else if (Player_Pos.X == 7 && Player_Pos.Y == 25)
+			else if (Player_Pos.X == 8 && Player_Pos.Y == 25)
 			{
 				currentDoor = WORLD_SHOP;
+				currentRoomText1 = " > Gleaming crystals, shimmering amulets, and spellbound trinkets adorn the shelves,";
+				currentRoomText2 = "   each item resonating with arcane energy. The air is scented with an intoxicating blend of herbs and enchantments,";
+				currentRoomText3 = "   inviting you to explore the secrets within.";
 			}
-			else if (Player_Pos.X == 3 && Player_Pos.Y == 30)
+			else if (Player_Pos.X == 4 && Player_Pos.Y == 30)
 			{
 				currentDoor = WORLD_STR;
+				currentRoomText1 = " > As you step into this imposing domain, the air itself seems to hum with power.";
+				currentRoomText2 = "   The walls are adorned with trophies of battles long won,";
+				currentRoomText3 = "   and the floors bear the marks of training and conquest.";
 			}
-			else if (Player_Pos.X == 19 && Player_Pos.Y == 30)
+			else if (Player_Pos.X == 20 && Player_Pos.Y == 30)
 			{
 				currentDoor = WORLD_LUK;
+				currentRoomText1 = " > The walls are adorned with symbols of good fortune and prosperity,";
+				currentRoomText2 = "   and the atmosphere is alive with an almost tangible sense of luck.";
+				currentRoomText3 = "   The stars themselves seem to align in your favor, making every moment feel like a stroke of serendipity.";
 			}
 
 			//BACKDOORS
@@ -142,18 +197,27 @@ bool Map::checkObject(std::string Type)
 				Player_Pos.X == 2 && Player_Pos.Y == 5)
 			{
 				currentDoor = WORLD;
+				currentRoomText1 = "";
+				currentRoomText2 = "";
+				currentRoomText3 = "";
 			}
 
 			//LIBRARY
 			if (Player_Pos.X == 1 && Player_Pos.Y == 13)
 			{
 				currentDoor = WORLD_LIBRARY;
+				currentRoomText1 = " > You are enveloped by an air of knowledge and serenity.";
+				currentRoomText2 = "   Rows upon rows of towering bookshelves appear in your view.";
+				currentRoomText3 = "   Something, however, seems odd... The books are all... arranged wrongly..?";
 			}
 
 			//LIBRARYFORBIDDEN
 			if (Player_Pos.X == 9 && Player_Pos.Y == 2)
 			{
 				currentDoor = LIBRARYFORBIDDEN;
+				currentRoomText1 = " > A palpable sense of foreboding washes over you, the air is thick with an aura of enigma and trepidation.";
+				currentRoomText2 = "   The whispers of forbidden spells and malevolent incantations seem to linger,";
+				currentRoomText3 = "   a haunting reminder of the mysteries concealed within.";
 			}
 			return true;
 		}
@@ -166,7 +230,37 @@ bool Map::checkObject(std::string Type)
 	{
 		if ((mapVector[Player_Pos.Y][Player_Pos.X]) == 'C')
 		{
-			mapVector[Player_Pos.Y][Player_Pos.X] = '/';
+			mapVector[Player_Pos.Y][Player_Pos.X] = '@';
+
+			if (Player_Pos.X == 3 && Player_Pos.Y == 5)
+			{
+				currentClue = DEAD_BODY;
+			}
+			else if (Player_Pos.X == 4 && Player_Pos.Y == 3)
+			{
+				currentClue = WAR_HERO_PHOTO;
+			}
+			else if (Player_Pos.X == 8 && Player_Pos.Y == 10)
+			{
+				currentClue = MESSY_BOOKS;
+			}
+			else if (Player_Pos.X == 3 && Player_Pos.Y == 5)
+			{
+				currentClue = NEWSPAPERS;
+			}
+			else if (Player_Pos.X == 2 && Player_Pos.Y == 3)
+			{
+				currentClue = COIN;
+			}
+			else if (Player_Pos.X == 5 && Player_Pos.Y == 2)
+			{
+				currentClue = MISSING_PAGES;
+			}
+			else if (Player_Pos.X == 9 && Player_Pos.Y == 14)
+			{
+				currentClue = SNAKE_SKIN;
+			}
+
 			return true;
 		}
 		else
@@ -191,6 +285,45 @@ bool Map::checkNPC() const
 	}
 }
 
+bool Map::checkSpecialNPC(std::string& DialogueNPC, std::string& QuestionsFileStr, std::string& ResponsesFileStr)
+{
+	if ((mapVector[Player_Pos.Y][Player_Pos.X]) == 'G' ||
+		(mapVector[Player_Pos.Y][Player_Pos.X]) == 'I' ||
+		(mapVector[Player_Pos.Y][Player_Pos.X]) == 'S' ||
+		(mapVector[Player_Pos.Y][Player_Pos.X]) == 'V')
+	{
+		if (Player_Pos.X == 1 && Player_Pos.Y == 11)
+		{
+			currentSpecialNPC = GENERAL_BLACKTHORN;
+			DialogueNPC = "[Arcadia's Chief General] General Blackthorn";
+			QuestionsFileStr = "";
+			ResponsesFileStr = "";
+		}
+		else if (Player_Pos.X == 5 && Player_Pos.Y == 2 && mapVector[Player_Pos.Y][Player_Pos.X] == 'I')
+		{
+			currentClue = ISABELLA_NIGHTSHADE;
+		}
+		else if (Player_Pos.X == 5 && Player_Pos.Y == 2 && mapVector[Player_Pos.Y][Player_Pos.X] == 'S')
+		{
+			currentClue = AURELIUS_MINDWEAVER;
+		}
+		else if (Player_Pos.X == 1 && Player_Pos.Y == 4 && mapVector[Player_Pos.Y][Player_Pos.X] == 'V')
+		{
+			currentClue = VALERIA_STORMBRINGER;
+		}
+		else if (Player_Pos.X == 1 && Player_Pos.Y == 4 && mapVector[Player_Pos.Y][Player_Pos.X] == 'S')
+		{
+			currentClue = SERAPHINA_FORTUNA;
+		}
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 Map::Map()
 {
 }
@@ -207,34 +340,34 @@ void Map::setMap(int mapID)
 			mapVector = {
 			{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',},
 			{'#','.','.','.','.','.','.','.','.','.','.','|','.','.','.','|','.','.','.','.','.','.','#',},
-			{'#','.','.','-','-','-','-','-','-','-','\\','|','.','|','.','|','.','.','_','_','_','_','#',},
-			{'#','.','/','.','.','.','.','.','.','.','|','|','.','^','.','|','X','X','|','.','.','.','#',},
-			{'#','.','|','R','A','L','L','Y','.','C','|','|','.','|','.','|','X','X','|','[','=',']','#',},
-			{'#','.','|','.','.','.','.','.','.','.','|','|','.','.','.','|','X','X','|','[','=',']','#',},
-			{'#','.','|','.','.','.','2','0','2','3','|','|','.','.','.','|','.','.','|','^','_','_','#',},
-			{'#','.','\\','-','-','-','-','-','-','-','/','|','.','.','.','|','.','.','/','L','\\','.','#',},
+			{'#','/','-','-','-','-','-','-','-','-','\\','|','.','|','.','|','.','.','_','_','_','_','#',},
+			{'#','|','R','A','L','L','Y','.','.','.','|','|','.','^','.','|','X','X','|','.','.','.','#',},
+			{'#','|','.','.','S','T','A','G','E','.','|','|','.','|','.','|','X','X','|','[','=',']','#',},
+			{'#','|','.','C','.','.','2','0','2','3','|','|','.','.','.','|','X','X','|','[','=',']','#',},
+			{'#','|','.','.','.','.','.','.','.','.','|','|','.','.','.','|','.','.','|','_','_','_','#',},
+			{'#','\\','-','-','-','-','-','-','-','-','/','|','.','.','.','|','.','.','/','L','\\','.','#',},
 			{'#','.','.','.','.','.','.','.','.','.','.','|','.','|','.','|','.','.','-','-','-','.','#',},
-			{'#','.','.','+','.','+','.','+','.','+','.','|','.','^','.','|','X','X','|','_','|','.','#',},
+			{'#','+','.','+','.','+','.','+','.','+','.','|','.','^','.','|','X','X','|','_','|','.','#',},
 			{'#','.','.','.','.','.','.','.','.','.','.','|','.','|','.','|','X','X','|','0','|','.','#',},
-			{'#','.','.','+','C','+','.','+','.','+','.','|','.','.','.','|','X','X','|','_','|','.','#',},
+			{'#','+','.','+','.','+','.','+','.','+','.','|','.','.','.','|','X','X','|','_','|','.','#',},
 			{'#','.','.','.','.','.','.','.','.','.','.','|','.','.','.','|','X','X','_','D','_','.','#',},
-			{'#','.','.','+','.','+','.','+','.','+','.','|','.','.','.','|','.','.','.','.','.','.','#',},
+			{'#','+','.','+','.','+','.','+','.','+','.','|','.','.','.','|','.','.','.','.','.','.','#',},
 			{'#','-','-','-','-','-','-','-','-','-','-','-','.','|','.','-','-','-','-','-','-','-','#',},
 			{'#','.','.','.','.','.','.','.','.','.','.','.','.','^','.','.','.','.','.','.','.','.','#',},
 			{'#','-','<','-','.','-','<','-','.','<','-','-','.','|','.','-','<','-','.','-','<','-','#',},
 			{'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#',},
 			{'#','-','-','-','-','-','-','-','-','-','-','-','O','.','.','-','-','-','-','-','-','-','#',},
 			{'#','.','.','.','.','.','.','.','.','.','.','|','.','.','.','|','.','.','.','.','.','.','#',},
-			{'#','.','.','.','.','.','.','.','^','.','.','|','.','|','.','|','.','^','.','.','X','X','#',},
-			{'#','.','.','X','X','X','.','/','S','\\','.','|','.','^','.','|','/','R','\\','.','X','X','#',},
-			{'#','.','.','X','X','X','.','_','_','_','.','|','.','|','.','|','_','_','_','.','X','X','#',},
-			{'#','.','.','X','X','X','.','|','_','|','.','|','.','.','.','|','|','_','|','.','X','X','#',},
+			{'#','X','X','.','X','X','.','.','^','.','.','|','.','|','.','|','.','^','.','.','X','X','#',},
+			{'#','X','X','.','X','X','.','/','S','\\','.','|','.','^','.','|','/','R','\\','.','X','X','#',},
+			{'#','X','X','.','X','X','.','_','_','_','.','|','.','|','.','|','_','_','_','.','X','X','#',},
+			{'#','X','X','.','X','X','.','|','_','|','.','|','.','.','.','|','|','_','|','.','X','X','#',},
 			{'#','.','.','.','.','.','.','_','D','_','.','|','.','.','.','|','_','D','_','.','.','.','#',},
 			{'#','.','.','.','^','.','.','.','.','.','.','|','.','|','.','|','.','.','.','.','^','.','#',},
-			{'#','.','.','/','0','\\','.','.','.','.','.','|','.','^','.','|','.','.','.','/','0','\\','#',},
-			{'#','.','.','_','_','_','.','X','X','X','.','|','.','|','.','|','X','X','.','_','_','_','#',},
-			{'#','.','.','|','_','|','.','X','X','X','.','|','.','.','.','|','X','X','.','|','_','|','#',},
-			{'#','.','.','_','D','_','.','X','X','X','.','|','.','|','.','|','X','X','.','_','D','_','#',},
+			{'#','X','X','/','0','\\','.','.','.','.','.','|','.','^','.','|','.','.','.','/','0','\\','#',},
+			{'#','X','X','_','_','_','.','X','X','X','.','|','.','|','.','|','X','X','.','_','_','_','#',},
+			{'#','X','X','|','_','|','.','X','X','X','.','|','.','.','.','|','X','X','.','|','_','|','#',},
+			{'#','X','X','_','D','_','.','X','X','X','.','|','.','|','.','|','X','X','.','_','D','_','#',},
 			{'#','.','.','.','.','.','.','.','.','.','.','|','.','^','.','|','.','.','.','.','.','.','#',},
 			{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',},
 		};
@@ -263,7 +396,7 @@ void Map::setMap(int mapID)
 		mapVector = {
 		{'#','#','#','#','#','#','#','#','#','#','#',},
 		{'#','.','.','+','-','-','-','+','.','D','#',},
-		{'#','-','-','|','.','L','.','|','.','.','#',},
+		{'#','-','-','|','.','I','.','|','.','.','#',},
 		{'#','[',']','+','-','-','-','+','.','.','#',},
 		{'#','[',']','.','.','.','.','.','.','.','#',},
 		{'#','_','_','C','.','.','.','.','.','.','#',},
@@ -271,7 +404,7 @@ void Map::setMap(int mapID)
 		{'#','[','=','=',']','.','[','=','=',']','#',},
 		{'#','[','=','=',']','.','[','=','=',']','#',},
 		{'#','.','.','.','.','.','.','.','.','.','#',},
-		{'#','.','.','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','.','.','.','C','.','#',},
 		{'#','[','=','=',']','.','[','=','=',']','#',},
 		{'#','[','=','=',']','.','[','=','=',']','#',},
 		{'#','.','.','.','.','.','.','.','.','.','#',},
@@ -283,7 +416,7 @@ void Map::setMap(int mapID)
 		mapVector = {
 		{'#','#','#','#','#','#','#','#','#','#','#',},
 		{'#','[','=','=','=','?','=','=','=',']','#',},
-		{'#','.','C','.','.','.','.','.','.','.','#',},
+		{'#','.','.','.','.','C','.','.','.','.','#',},
 		{'#','[','=','=',']','.','[','=','=',']','#',},
 		{'#','[','=','=',']','.','[','=','=',']','#',},
 		{'#','.','.','.','.','.','.','.','.','.','#',},
@@ -322,10 +455,10 @@ void Map::setMap(int mapID)
 	case STRENGTH_HOUSE:
 		mapVector = {
 		{'#','#','#','#','#',},
-		{'#','-','.','C','#',},
+		{'#','-','.','.','#',},
 		{'#','[','0','>','#',},
 		{'#','-','.','.','#',},
-		{'#','S','.','D','#',},
+		{'#','V','.','.','#',},
 		{'#','.','.','.','#',},
 		{'#','.','D','.','#',},
 		{'#','#','#','#','#',},
@@ -334,10 +467,10 @@ void Map::setMap(int mapID)
 	case LUCK_HOUSE:
 		mapVector = {
 		{'#','#','#','#','#',},
-		{'#','-','.','C','#',},
+		{'#','-','.','.','#',},
 		{'#','[','0','>','#',},
 		{'#','-','.','.','#',},
-		{'#','L','.','D','#',},
+		{'#','S','.','.','#',},
 		{'#','.','.','.','#',},
 		{'#','.','D','.','#',},
 		{'#','#','#','#','#',},

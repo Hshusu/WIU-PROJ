@@ -70,12 +70,12 @@ void Dodge::moveSpikes(std::vector<Spike>& spikes)
 
 void Dodge::printGrid(char grid[rows][cols], int playerX, int playerY, std::vector<Projectile>& projectiles, std::vector<Obstacle>& obstacles, std::vector<Spike>& spikes)
 {
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < 13; i++)
     {
         cout << endl;
     }
     for (int i = 0; i < rows; i++) {
-        cout << "                                                                                                                             ";
+        cout << "                                   ";
 
         for (int j = 0; j < cols; j++) {
             bool isPlayer = (i == playerX && j == playerY);

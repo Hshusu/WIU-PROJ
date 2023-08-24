@@ -74,3 +74,27 @@ void Utility::WrapText(std::string const& input, size_t width, std::ostream& os,
         current += word.size() + 1;
     }
 }
+
+void Utility::typewriterText(std::string Text, int dialogueSpeed)
+{
+    for (const auto c : Text) {
+        std::cout << c << std::flush;
+        std::this_thread::sleep_for(std::chrono::milliseconds(dialogueSpeed));
+    }
+}
+
+void Utility::typewriterTextWrap(std::string Text, size_t width, int dialogueSpeed, size_t indent) {
+    std::istringstream in(Text);
+    size_t current = 0;
+    std::string word;
+
+    while (in >> word) {
+        if (current + word.size() > width) {
+            std::cout << "\n" << std::string(indent, ' ');
+            current = indent;
+        }
+        WrapText(word + ' ', width, std::cout, current);
+        current += word.size() + 1;
+        std::this_thread::sleep_for(std::chrono::milliseconds(dialogueSpeed));
+    }
+}

@@ -7,26 +7,24 @@ void Journal::AddEntry(const std::string& entry)
 
 void Journal::DisplayJournal(int pageNumber) const
 {
-    system("cls");
-    int startIndex = (pageNumber - 1) * entriesPerPage;
-    int endIndex = std::min(startIndex + entriesPerPage, static_cast<int>(entries.size()));
-
-    std::cout << "===== Journal - Page " << pageNumber << " =====\n";
-    for (int i = startIndex; i < endIndex; ++i) {
-        std::cout << "- " << entries[i] << "\n";
+    system("cls"); // Clear the screen
+    Utility::SetupFont(30);
+    Utility::PositionText(0, 1);
+    Utility::Print(CENTRE, "+==================================================>< Clue Journal ><==================================================+", 120);
+    Utility::PositionText(0, 3);
+    std::cout << "========================================================================================================================";
+    Utility::PositionText(0, 5);
+    for (size_t i = 0; i < entries.size(); ++i) {
+        std::cout << "- " << entries[i] << "\n" << "\n";
     }
-    std::cout << "========================\n";
-}
+    std::cout << "========================================================================================================================" << std::endl;
+    std::cout << "Press 'M' to continue...";
+    char input;
+    do {
+        input = _getch(); // Get a single character input
+    } while (input != 'M' && input != 'm');
 
-void Journal::SearchJournal(const std::string& keyword) const
-{
-    std::cout << "===== Search Results =====\n";
-    for (const std::string& entry : entries) {
-        if (entry.find(keyword) != std::string::npos) {
-            std::cout << "- " << entry << "\n";
-        }
-    }
-    std::cout << "==========================\n";
+    system("cls"); // Clear the screen again
 }
 
 Journal::Journal(int entriesPerPage)

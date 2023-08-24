@@ -50,16 +50,21 @@ void CluePuzzle::PickupJournal()
     currentPage = 1;
 }
 
-void CluePuzzle::ViewJournal()
+void CluePuzzle::UpdateJournal(const std::string& entry)
 {
-    currentJournal->DisplayJournal(currentPage);
+    currentJournal->AddEntry(entry);
 }
 
-void CluePuzzle::SearchJournal()
+void CluePuzzle::ViewJournal()
 {
-    std::string Keyword;
-    std::cout << "Enter keyword to search: ";
-    std::cin.ignore();
-    std::getline(std::cin, Keyword);
-    currentJournal->SearchJournal(Keyword);
+    currentJournal->DisplayJournal(1);
+}
+
+void CluePuzzle::setupUI(const std::vector<SpecialNPC>& SpecialNPCs)
+{
+}
+
+CluePuzzle::CluePuzzle()
+{
+    PickupJournal();
 }

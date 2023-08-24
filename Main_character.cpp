@@ -36,66 +36,66 @@ void Main_character::CalculateStats()
 }
 void Main_character::ExecuteSkill(Entity* Enemy, int Choice)
 {
-		if (Skills[Choice].Blocking) {
-			Blocking = true;
+	if (Skills[Choice].Blocking) {
+		Blocking = true;
+	}
+	if (((Skills[Choice].Healing == true) || (Skills[Choice].ManaCost == true)) && (Mana > (Skills[Choice].Cost))) {
+		Mana = Mana - Skills[Choice].Cost;
+	}
+	else {
+		HP = HP - Skills[Choice].Cost;
+	}
+	if (Skills[Choice].Healing == true)
+	{
+		HP = HP + (Skills[Choice].Base * DMGModifier);
+		//for checking if hp is over maximum
+		if (HP > MaxHp) {
+			HP = MaxHp;
 		}
-		if (((Skills[Choice].Healing == true) || (Skills[Choice].ManaCost == true)) && (Mana > (Skills[Choice].Cost))) {
-			Mana = Mana - Skills[Choice].Cost;
+		std::cout << Name << " used " << Skills[Choice].Name << " on itself" << std::endl;
+	}
+	else
+	{
+		if (Skills[Choice].Element == Enemy->getWeakness()) {
+			Enemy->UpdateCR(50);
+			Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getWeaponVal());
+			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
+			std::cout << "it did critical damage!!   Pushing the enemies turn back" << std::endl;
+
 		}
-		else {
-			HP = HP - Skills[Choice].Cost;
-		}
-		if (Skills[Choice].Healing == true)
-		{
-			HP = HP + (Skills[Choice].Base * DMGModifier);
-			//for checking if hp is over maximum
-			if (HP > MaxHp) {
-				HP = MaxHp;
-			}
-			std::cout << Name << " used " << Skills[Choice].Name << " on itself" << std::endl;
+		else if ((Skills[Choice].Element == Enemy->getResistance())) {
+			Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * 0.5 * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getWeaponVal());
+			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
+			std::cout << "it did low damage......" << std::endl;
 		}
 		else
 		{
-			if (Skills[Choice].Element == Enemy->getWeakness()) {
-				Enemy->UpdateCR(50);
-				Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getWeaponVal());
-				std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
-				std::cout << "it did critical damage!!   Pushing the enemies turn back" << std::endl;
-
-			}
-			else if ((Skills[Choice].Element == Enemy->getResistance())) {
-				Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * 0.5 * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getWeaponVal());
-				std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * 1.5 * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
-				std::cout << "it did low damage......" << std::endl;
-			}
-			else
-			{
-				AttackGame attackgame;
-				dmg = Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1) - Enemy->getArmorVal() + getWeaponVal();
-				float finalDmg = dmg * attackgame.GetdmgModifier();
-				Enemy->TakeDMG(finalDmg);
-				std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs(finalDmg) << std::endl;
-			}
+			AttackGame attackgame;
+			dmg = Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1) - Enemy->getArmorVal() + getWeaponVal();
+			float finalDmg = dmg * attackgame.GetdmgModifier();
+			Enemy->TakeDMG(finalDmg);
+			std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs(finalDmg) << std::endl;
 		}
-	
+	}
+
 }
 ;
 
 void Main_character::inv(int x, int y, std::string name, int ID) {
 	int current = NULL;
 	while (1) {
-		if(current == NULL) {
-			for (int i = 0; i < 20; i++) {
+		if (current == NULL) {
+			for (int i = 0; i < maxitm; i++) {
 				if (Itemptr[i] == nullptr) {
 					Itemptr[i] = new Item(x, y, name, ID);
-						current = i;
-						break;
+					current = i;
+					break;
 				}
 
 			}
-	}
+		}
 		player_inv.RenderInventory(*Itemptr[current]);
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < maxitm; i++) {
 			if ((Itemptr[i] != nullptr) && (Itemptr[i]->getplaced() == true)) {
 				player_inv.setscroll(min(player_inv.getscroll(), i));
 				player_inv.setmaxscroll(max(player_inv.getmaxscroll(), i));
@@ -108,7 +108,7 @@ void Main_character::inv(int x, int y, std::string name, int ID) {
 			|| GetAsyncKeyState('O') || GetAsyncKeyState(VK_UP) || GetAsyncKeyState(VK_DOWN)) {
 			system("cls");
 			player_inv.RenderInventory(*Itemptr[current]);
-			for (int i = 0; i < 20; i++) {
+			for (int i = 0; i < maxitm; i++) {
 
 				if ((Itemptr[i] != nullptr) && (Itemptr[i]->getplaced() == true)) {
 
@@ -140,14 +140,14 @@ void Main_character::inv(int x, int y, std::string name, int ID) {
 			if (GetAsyncKeyState('K')) {
 				Itemptr[current]->rotate();
 			}
-			if ((GetAsyncKeyState('O'))&&(Itemptr[-player_inv.getscroll()] != nullptr) && (( - player_inv.getscroll()) != 20)) {
+			if ((GetAsyncKeyState('O')) && (Itemptr[-player_inv.getscroll()] != nullptr) && ((-player_inv.getscroll()) != maxitm) && (-player_inv.getscroll()!=999)) {
 				int x = player_inv.discard(Itemptr[-player_inv.getscroll()]->getID());
 				if ((x != -999) && (Itemptr[x] != nullptr)) {
 					delete Itemptr[x];
 					Itemptr[x] = nullptr;
 					player_inv.setscroll(-999);
 					player_inv.setmaxscroll(0);
-					for (int i = 0; i < 20; i++) {
+					for (int i = 0; i < maxitm; i++) {
 						if ((Itemptr[i] != nullptr) && (Itemptr[i]->getplaced() == true)) {
 							player_inv.setscroll(max(player_inv.getscroll(), -i));
 							player_inv.setmaxscroll(min(player_inv.getmaxscroll(), -i));
@@ -157,9 +157,9 @@ void Main_character::inv(int x, int y, std::string name, int ID) {
 				}
 			}
 			if (GetAsyncKeyState(VK_UP)) {
-				for (int i = 20; i > 0; i--) {
-					if ((Itemptr[i] != nullptr) && (i< -player_inv.getscroll()) && (Itemptr[i]->getplaced() == true)) {
-						player_inv.setscroll( -i);
+				for (int i = maxitm; i > 0; i--) {
+					if ((Itemptr[i] != nullptr) && (i < -player_inv.getscroll()) && (Itemptr[i]->getplaced() == true)) {
+						player_inv.setscroll(-i);
 						break;
 					}
 
@@ -167,8 +167,8 @@ void Main_character::inv(int x, int y, std::string name, int ID) {
 				Sleep(100);
 			}
 			if (GetAsyncKeyState(VK_DOWN)) {
-				for (int i = 0; i < 20; i++) {
-					if ((Itemptr[i] != nullptr) && (i >-player_inv.getscroll()) && (Itemptr[i]->getplaced() == true)) {
+				for (int i = 0; i < maxitm; i++) {
+					if ((Itemptr[i] != nullptr) && (i > -player_inv.getscroll()) && (Itemptr[i]->getplaced() == true)) {
 						player_inv.setscroll(-i);
 						break;
 					}
@@ -181,7 +181,7 @@ void Main_character::inv(int x, int y, std::string name, int ID) {
 					Itemptr[current]->place();
 					player_inv.RenderInventory(*Itemptr[current]);
 					Sleep(100);
-					return ;
+					return;
 				}
 			}
 		}
@@ -194,7 +194,7 @@ int Main_character::inv()
 {
 	while (1) {
 		player_inv.RenderInventory();
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < maxitm; i++) {
 			if ((Itemptr[i] != nullptr) && (Itemptr[i]->getplaced() == true)) {
 				player_inv.setscroll(min(player_inv.getscroll(), i));
 				player_inv.setmaxscroll(max(player_inv.getmaxscroll(), i));
@@ -206,7 +206,7 @@ int Main_character::inv()
 		if (GetAsyncKeyState('X') || GetAsyncKeyState('O') || GetAsyncKeyState(VK_UP) || GetAsyncKeyState(VK_DOWN)) {
 			system("cls");
 			player_inv.RenderInventory();
-			for (int i = 0; i < 20; i++) {
+			for (int i = 0; i < maxitm; i++) {
 
 				if ((Itemptr[i] != nullptr) && (Itemptr[i]->getplaced() == true)) {
 
@@ -229,7 +229,7 @@ int Main_character::inv()
 					Itemptr[x] = nullptr;
 					player_inv.setscroll(-999);
 					player_inv.setmaxscroll(0);
-					for (int i = 0; i < 20; i++) {
+					for (int i = 0; i < maxitm; i++) {
 						if ((Itemptr[i] != nullptr) && (Itemptr[i]->getplaced() == true)) {
 							player_inv.setscroll(max(player_inv.getscroll(), -i));
 							player_inv.setmaxscroll(min(player_inv.getmaxscroll(), -i));

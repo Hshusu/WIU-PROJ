@@ -6,6 +6,8 @@
 #include <cwchar>
 #include <random>
 #include <sstream>
+#include <chrono>
+#include <thread>
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -70,5 +72,7 @@ namespace Utility
 
     /* Wraps the Text */
     void WrapText(std::string const& input, size_t width, std::ostream& os, size_t indent);
-    void ResetWrapCounter();
+    
+    void typewriterText(std::string Text, int dialogueSpeed);
+    void typewriterTextWrap(std::string Text, size_t width, int dialogueSpeed, size_t indent);
 };

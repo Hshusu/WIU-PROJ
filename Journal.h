@@ -2,6 +2,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <conio.h>
+
+#include "Utility.h"
 
 class Journal
 {
@@ -12,7 +15,6 @@ private:
 public:
     void AddEntry(const std::string& entry);
     void DisplayJournal(int pageNumber) const;
-    void SearchJournal(const std::string& keyword) const;
 
     Journal(int entriesPerPage);
 };
