@@ -22,5 +22,6 @@ public:
 
 	//Constructors and Destructor
 	Equipment(int EquipmentType);
+	Equipment(int stats,int placeholder);
 	~Equipment();
 };

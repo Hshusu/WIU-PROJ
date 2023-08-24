@@ -1,6 +1,6 @@
 #include "Dialogue.h"
 
-void Dialogue::InitDialogue()
+void Dialogue::InitDialogue(bool& combatEnabled, bool& hostilityEnabled)
 {
     dialogueState = 1;
     rowCounter = 0;
@@ -317,6 +317,7 @@ void Dialogue::InitDialogue()
                 Sleep(500);
                 newNodeTree->setDialogueStatus(false);
                 breakDialogue = true;
+                combatEnabled = true;
                 return;
             }
 
@@ -335,7 +336,15 @@ void Dialogue::InitDialogue()
             Utility::WrapText(Options[1] + " " + newNodeTree->tempChoice2, 80, std::cout, 0);
             Utility::PositionText(0, 17);
 
-            std::cout << Options[2] << " * " << Red << "Slaps " << dialogueID << ResetColour << " *";
+            if (hostilityEnabled == false)
+            {
+                std::cout << Options[2] << " - ";
+            }
+            else
+            {
+                std::cout << Options[2] << " * " << Red << "Slaps " << dialogueID << ResetColour << " *";
+            }
+
             Utility::PositionText(0, 18);
 
             std::cout << Options[3] << " " << "Goodbye" << std::endl;
@@ -412,19 +421,23 @@ void Dialogue::InitDialogue()
                     Sleep(1500);
                     newNodeTree->setDialogueStatus(false);
                     breakDialogue = true;
+                    combatEnabled = false;
                     return;
                 }
                 else if (UserChoice == 3) //Slap
                 {
-                    AggressionMeter -= Utility::randomNumber(15, 20);
-                    Utility::PositionText(0, 9);
-                    std::cout << "                                                                      " << std::endl;
-                    std::cout << "                                                                      " << std::endl;
-                    std::cout << "                                                                      ";
+                    if (hostilityEnabled == true)
+                    {
+                        AggressionMeter -= Utility::randomNumber(15, 20);
+                        Utility::PositionText(0, 9);
+                        std::cout << "                                                                      " << std::endl;
+                        std::cout << "                                                                      " << std::endl;
+                        std::cout << "                                                                      ";
 
-                    Utility::PositionText(0, 9);
-                    std::cout << Red << " Ouch! What do you think you're doing?!" << ResetColour << std::endl;
-                    Sleep(1500);
+                        Utility::PositionText(0, 9);
+                        std::cout << Red << " Ouch! What do you think you're doing?!" << ResetColour << std::endl;
+                        Sleep(1500);
+                    }
                 }
                 else //Foward
                 {

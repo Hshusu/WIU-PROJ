@@ -48,6 +48,17 @@
 enum Position { LEFT, CENTRE, RIGHT };
 static HANDLE outputHandle = GetStdHandle(STD_OUTPUT_HANDLE); 
 
+enum StateNames
+{
+    EXPLORATION,
+    INVENTORY,
+    DIALOGUE,
+    COMBAT,
+    STORE,
+
+    EXIT,
+};
+
 namespace Utility
 {   
     /* Function that generates a Random Number */

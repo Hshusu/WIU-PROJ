@@ -73,10 +73,19 @@ private:
 	int currentDoor;
 
 	int currentSpecialNPC;
+
+	int currentStamps = 0;
+	bool CoinBought = false;
+	bool seraphinaCoinPuzzle = false;
+	bool talkedGeneral = false, talkedTomekeeper = false, talkedAurelius = false, talkedValeria = false;
+	bool defeatedValeria = false, defeatedSeraphina = false, defeatedAurelius = false;
 public:
 	void GenerateGrid() const;
 	void Move(const int posX, const int posY, int& State, int& enemyID);
 	void UpdatePlayer() const;
+
+	void setDefeatedValeria(bool dV);
+	void setCoinBought(bool cB);
 
 	std::string getCurrentRoomText1(void) const;
 	std::string getCurrentRoomText2(void) const;
@@ -88,7 +97,7 @@ public:
 
 	bool checkObject(std::string Type);
 	bool checkNPC() const;
-	bool checkSpecialNPC(std::string& DialogueNPC, std::string& QuestionsFileStr, std::string& ResponsesFileStr);
+	bool checkSpecialNPC(std::string& DialogueNPC, std::string& QuestionsFileStr, std::string& ResponsesFileStr, bool& combatEnabled, int& enemyID, int& State, bool& hostilityEnabled);
 
 	void setMap(int mapID);
 

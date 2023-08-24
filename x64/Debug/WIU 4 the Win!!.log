@@ -1,9 +1,7 @@
-﻿  Map.cpp
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(480,20): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(481,23): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  WIU 4 the Win!!.cpp
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(99,43): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(82,8): warning C4101: 'Screen': unreferenced local variable
-  Generating Code...
-C:\Users\Remus\Documents\GitHub\WIU-PROJ\Map.cpp(271): warning C4715: 'Map::checkObject': not all control paths return a value
+﻿  WIU 4 the Win!!.cpp
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(85,52): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(85,43): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(90,49): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(91,75): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Remus\Documents\GitHub\WIU-PROJ\WIU 4 the Win!!.cpp(65,8): warning C4101: 'Screen': unreferenced local variable
   WIU 4 the Win!!.vcxproj -> C:\Users\Remus\Documents\GitHub\WIU-PROJ\x64\Debug\WIU 4 the Win!!.exe

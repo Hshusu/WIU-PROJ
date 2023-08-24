@@ -30,26 +30,9 @@
 #include "ConclusiveClue.h"
 #include "SpecialNPC.h"
 
+#include "Shop.h"
 
 #pragma comment(lib, "Winmm.lib")
-
-enum StateNames
-{
-	//Main
-	EXPLORATION,
-	WEAPON,
-	INVENTORY,
-	CUTSCENE,
-	//Events
-	LEVELUP,
-	DIALOGUE,
-	//Actions
-	COMBAT,
-	ITEM,
-	//Exit
-	EXIT,
-	RESET,
-};
 
 bool crParty(Player* player[4]) {
 	for (int i = 0; i < 4; i++) {
@@ -91,17 +74,21 @@ int main()
 	std::string DialogueNPC, QuestionsFileStr, ResponsesFileStr;
 
 	//Combat
+	bool hostilityEnabled = true;
+	bool combatEnabled = false;
 	const int max_Party_size = 4;
 	float PMods[6] = { 1,1,1,1,1,1 };
 	int enemyID = 2;
+	const int enemycount = 10;
 	Player* Plr[max_Party_size] = { nullptr };
 	Plr[0] = new Main_character(PMods, "Aurelius Mindweaver", Lightning, Ice);
-	Plr[1] = new Player("Seraphina Fortuna", 1.1, 10, 2, 20, Fire, Darkness);
-	NPC* Placeholder_Enemy[10] = { nullptr };
-	Placeholder_Enemy[0] = new NPC("placeholder", 2, 10, 1.5, 20, Fire, Darkness);
+	Plr[1] = new Player("Seraphina Fortuna", 1.1, 20, 1.3, 20, Fire, Darkness);
+	NPC* Placeholder_Enemy[enemycount] = { nullptr };
+	Placeholder_Enemy[0] = new NPC("placeholder", 2, 10, 1.5, 20, Fire, Ice);
 	Placeholder_Enemy[1] = new NPC("kk", 2, 10, 1.5, 20, Fire, Darkness);
 	Placeholder_Enemy[2] = new NPC("hshusu", 2, 10, 1.5, 20, Fire, Darkness);
-	Placeholder_Enemy[3] = new NPC("blade", 2, 10, 1.5, 20, Fire, Darkness);
+	Placeholder_Enemy[3] = new NPC("blade", 2, 10, 1.6, 20, None, Darkness);
+	Placeholder_Enemy[4] = new NPC("Isabella Nightshade [Reptilian]", 2, 50, 1.6, 150, Fire, Darkness);
 
 	//Clue
 	//The Rally
@@ -151,25 +138,25 @@ int main()
 			switch (newMap.getCurrentDoor())
 			{
 			 case WORLD:
-				 std::cout << Magenta << " ARCADIA" << ResetColour << " | " << Cyan << "OPEN WORLD" << ResetColour << std::endl;
+				 std::cout << White << " ARCADIA" << ResetColour << " | " << Cyan << "OPEN WORLD" << ResetColour << std::endl;
 				break;
 			 case DETECTIVE_ROOM:
-				 std::cout << Magenta << " ARCADIA" << ResetColour << " | " << Cyan << "CHIEF GENERAL'S OFFICE" << ResetColour << std::endl;
+				 std::cout << White << " ARCADIA" << ResetColour << " | " << Cyan << "CHIEF GENERAL'S OFFICE" << ResetColour << std::endl;
 				 break;
 			 case LIBRARY:
-				 std::cout << Magenta << " ARCADIA" << ResetColour << " | " << Cyan << "THE ARCHIVES" << ResetColour << std::endl;
+				 std::cout << White << " ARCADIA" << ResetColour << " | " << Cyan << "THE ARCHIVES" << ResetColour << std::endl;
 				 break;
 			 case LIBRARY_FORBIDDEN:
-				 std::cout << Magenta << " ARCADIA" << ResetColour << " | " << Cyan << "THE ARCHIVES, FORBIDDEN SECTION" << ResetColour << std::endl;
+				 std::cout << White << " ARCADIA" << ResetColour << " | " << Cyan << "THE ARCHIVES, FORBIDDEN SECTION" << ResetColour << std::endl;
 				 break;
 			 case SHOP:
-				 std::cout << Magenta << " ARCADIA" << ResetColour << " | " << Cyan << "WIZARDLY OFFERINGS" << ResetColour << std::endl;
+				 std::cout << White << " ARCADIA" << ResetColour << " | " << Cyan << "WIZARDLY OFFERINGS" << ResetColour << std::endl;
 				 break;
 			 case STRENGTH_HOUSE:
-				 std::cout << Magenta << " ARCADIA" << ResetColour << " | " << Cyan << "VALERIA STORMBRINGER'S ABODE" << ResetColour << std::endl;
+				 std::cout << White << " ARCADIA" << ResetColour << " | " << Cyan << "VALERIA STORMBRINGER'S ABODE" << ResetColour << std::endl;
 				 break;
 			 case LUCK_HOUSE:
-				 std::cout << Magenta << " ARCADIA" << ResetColour << " | " << Cyan << "SERAPHINE FORTUNA'S ABODE" << ResetColour << std::endl;
+				 std::cout << White << " ARCADIA" << ResetColour << " | " << Cyan << "SERAPHINE FORTUNA'S ABODE" << ResetColour << std::endl;
 				 break;
 			}
 
@@ -256,7 +243,6 @@ int main()
 				Utility::ShowConsoleCursor(false);
 				newMap.GenerateGrid();
 				map_Loaded = true;
-				text_Loaded = false;
 			}
 			if (GetAsyncKeyState('W') || GetAsyncKeyState('S') || GetAsyncKeyState('A') || GetAsyncKeyState('D')) {
 
@@ -300,9 +286,8 @@ int main()
 			if (GetAsyncKeyState('F')) //Interaction Key
 			{
 				//Order of Importance NPC -> OBJECT
-				if (newMap.checkSpecialNPC(DialogueNPC, QuestionsFileStr, ResponsesFileStr) == true)
+				if (newMap.checkSpecialNPC(DialogueNPC, QuestionsFileStr, ResponsesFileStr, combatEnabled, enemyID, States, hostilityEnabled) == true)
 				{
-					States = DIALOGUE;
 					system("cls");
 				}
 				if (newMap.checkNPC() == true)
@@ -354,14 +339,15 @@ int main()
 				{
 					newMap.checkObject("DOOR");
 					map_Loaded = false;
+					text_Loaded = false;
 				}
 			}
 			//Sleep(10);
 		}
 		else if (States == DIALOGUE)
 		{
-			Dialogue* newDialogue = new Dialogue("[Arcadia's Tomekeeper] Isabella Nightshade", "Isabella Questions.txt", "Isabella Responses.txt");
-			newDialogue->InitDialogue();
+			Dialogue* newDialogue = new Dialogue(DialogueNPC, QuestionsFileStr, ResponsesFileStr);
+			newDialogue->InitDialogue(combatEnabled, hostilityEnabled);
 			if (newDialogue->getBreakDialogue() == true)
 			{
 				delete newDialogue;
@@ -369,14 +355,28 @@ int main()
 
 				map_Loaded = false; //Offload Map
 				system("cls");
-				States = EXPLORATION;
+				if (combatEnabled == true)
+				{
+					States = COMBAT;
+				}
+				else
+				{
+					States = EXPLORATION;
+				}
+
+				//Story purposes
+				if (DialogueNPC == "Arcadia's Mighty Warden | Valeria Stormbringer [ORC]")
+				{
+					newMap.setDefeatedValeria(true);
+				}
 			}
 		}
 		else if (States == COMBAT)
 		{
 			((Main_character*)Plr[0])->CalculateStats();
+			//enemyID = 4;
 			system("cls");
-			Utility::SetupFont(40);
+			Utility::SetupFont(30);
 			while (1) {
 				//for controlling turn order . value increments up to 100 first to 100 gets turn
 				//speed caries over from previous turns of opponent
@@ -391,7 +391,7 @@ int main()
 			if (Placeholder_Enemy[enemyID]->getTurn() == true)//enemies turn
 			{
 				Plr[0]->GenerateUI(*Placeholder_Enemy[enemyID]);
-				Placeholder_Enemy[enemyID]->ExecuteSkill(Plr[0], Placeholder_Enemy[enemyID]->ChooseAction());
+				Placeholder_Enemy[enemyID]->ExecuteSkill(Plr[Utility::randomNumber(0, 1)], Placeholder_Enemy[enemyID]->ChooseAction());
 				Dodge::enemyCollided = true;
 				Placeholder_Enemy[enemyID]->setTurn(false);
 
@@ -414,6 +414,7 @@ int main()
 			}
 			if (Placeholder_Enemy[enemyID]->getHP() <= 0) {
 				std::cout << "enemy killed!";
+				Placeholder_Enemy[enemyID]->resethp();
 				States = EXPLORATION;
 
 			}
@@ -421,7 +422,7 @@ int main()
 				if (Plr[i] != nullptr) {
 					if (Plr[i]->getHP() <= 0) {
 						std::cout << Plr[i]->getName() << " killed!";
-
+						Sleep(20000);
 						//lose game
 						system("cls");
 						return 0;
@@ -435,9 +436,44 @@ int main()
 			Sleep(2000);
 			system("cls");
 		}
-		else if (States == ITEM)
+		else if (States == STORE)
 		{
-			
+			Shop newShop;
+			newShop.addItem("Health Potion", 5, 10);
+			newShop.addItem("Mana Potion", 5, 15);
+			newShop.addItem("Stats Potion", 5, 15);
+			newShop.addItem("One Sided Coin", 1, 15);
+
+			int choice;
+			do {
+				choice = newShop.displayItemsAndGetChoice();
+
+				if (choice < newShop.getNumItems()) {
+					/*int quantity;
+					std::cout << "Enter the quantity to buy: ";
+					std::cin >> quantity;*/
+
+					if (newShop.buyItem(choice, 1)) {
+						std::cout << "Purchase successful!\n";
+						
+						//
+
+						std::cout << "You bought " << 1 << " " << newShop.getItemName(choice) << "(s) for $" << (newShop.getItemPrice(choice)) << ".\n";
+
+						//
+
+						if (newShop.getItemName(choice) == "One Sided Coin")
+						{
+							newMap.setCoinBought(true);
+						}
+
+					}
+					else {
+						std::cout << "Purchase failed.\n";
+					}
+				}
+				Sleep(2000);
+			} while (choice < newShop.getNumItems());
 
 			//int playerChoice;
 			//while (true) {
@@ -537,10 +573,6 @@ int main()
 		{
 			std::cout << "\033[1;31mProgram Terminated.\033[0m";
 			return 0;
-		}
-		else if (States == RESET)
-		{
-			break;
 		}
 	}
 }

@@ -30,7 +30,7 @@ private:
 
 	bool breakDialogue = false;
 public:
-	void InitDialogue();
+	void InitDialogue(bool& combatEnabled, bool& hostilityEnabled);
 
 	bool getBreakDialogue(void) const;
 

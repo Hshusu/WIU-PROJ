@@ -561,8 +561,7 @@ void Dodge::startGame()
         int barwidth = 30;
 
         pos = barwidth * elapsedDuration.count() / maxDurationInSeconds;
-
-        setCursorPosition(105, 5);
+        setCursorPosition(40, 25);
         for (int i = 0; i < barwidth; ++i) 
         {
 
@@ -616,7 +615,7 @@ void Dodge::startGame()
 
         pos = barwidth * elapsedDuration.count() / maxDurationInSeconds;
 
-        setCursorPosition(105, 5);
+        setCursorPosition(40, 25);
         for (int i = 0; i < barwidth; ++i)
         {
 
@@ -669,7 +668,7 @@ void Dodge::startGame()
 
         pos = barwidth * elapsedDuration.count() / maxDurationInSeconds;
 
-        setCursorPosition(105, 5);
+        setCursorPosition(40, 15);
         for (int i = 0; i < barwidth; ++i)
         {
 

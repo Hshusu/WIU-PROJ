@@ -55,11 +55,11 @@ void inventory::RenderInventory(Item current)
             }
 
 
-            COORD zone1_Coords = { j * 5,i * 3 };
+            COORD zone1_Coords = { j * 5+10,i * 3 };
             SetConsoleCursorPosition(h, zone1_Coords);
             std::cout << "-----";
 
-            COORD zone2_Coords = { j * 5,i * 3 + 1 };
+            COORD zone2_Coords = { j * 5+10,i * 3 + 1 };
             SetConsoleCursorPosition(h, zone2_Coords);
             std::cout << "|";
             if (InventoryVector[i][j] == -1)
@@ -83,7 +83,7 @@ void inventory::RenderInventory(Item current)
                 SetConsoleTextAttribute(h, 15);
             }
             std::cout << "|";
-            COORD zone3_Coords = { j * 5,i * 3 + 2 };
+            COORD zone3_Coords = { j * 5+10,i * 3 + 2 };
             SetConsoleCursorPosition(h, zone3_Coords);
             std::cout << "-----";
 
@@ -101,11 +101,11 @@ void inventory::RenderInventory()
             SetConsoleTextAttribute(h, 15);
 
 
-            COORD zone1_Coords = { j * 5,i * 3 };
+            COORD zone1_Coords = { j * 5+10,i * 3 };
             SetConsoleCursorPosition(h, zone1_Coords);
             std::cout << "-----";
 
-            COORD zone2_Coords = { j * 5,i * 3 + 1 };
+            COORD zone2_Coords = { j * 5+10,i * 3 + 1 };
             SetConsoleCursorPosition(h, zone2_Coords);
             std::cout << "|";
             if (InventoryVector[i][j] == -1)
@@ -121,7 +121,7 @@ void inventory::RenderInventory()
             }
             SetConsoleTextAttribute(h, 15);
             std::cout << "|";
-            COORD zone3_Coords = { j * 5,i * 3 + 2 };
+            COORD zone3_Coords = { j * 5+10,i * 3 + 2 };
             SetConsoleCursorPosition(h, zone3_Coords);
             std::cout << "-----";
 

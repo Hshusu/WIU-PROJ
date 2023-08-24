@@ -20,6 +20,11 @@ float Entity::getMaxHP()
 	return MaxHp;
 }
 
+void Entity::resethp()
+{
+	HP = MaxHp;
+}
+
 float Entity::getCR()
 {
 	return CombatReady;
@@ -149,7 +154,7 @@ void Entity::ExecuteSkill(Entity* Enemy, int Choice)
 
 			if (Dodge::enemyCollided == true)
 			{
-
+			
 				Enemy->TakeDMG(((Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1))) - Enemy->getArmorVal() + getArmorVal());
 				std::cout << Name << " used " << Skills[Choice].Name << " on " << Enemy->getName() << " dealing " << abs((Skills[Choice].Base * DMGModifier * (Enemy->getBlocking() ? 0.5f : 1)) - Enemy->getArmorVal() + getWeaponVal()) << std::endl;
 

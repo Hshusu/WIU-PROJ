@@ -24,6 +24,7 @@ struct SkillDetails {
 	bool ManaCost;
 	bool Healing;
 	bool Blocking;
+	bool Inventory = false;
 	int Element = None;
 	int CR_Manipulation = 0;
 };
@@ -52,6 +53,7 @@ public:
 	float getSpeed();
 	float getHP();
 	float getMaxHP();
+	void resethp();
 	float getCR();
 	float getMana();
 	int getWeakness();

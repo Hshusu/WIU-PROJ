@@ -23,15 +23,20 @@ Equipment::Equipment(int EquipmentType) //Armor 1 | Weapon 2
 	case 1:
 		equipmentName = armorNamesList[Utility::randomNumber(0, 4)];
 		equipmentAddifier = Utility::randomNumber(6, 10);
-		std::cout << "  \033[1;36mHero\033[0m \033[1;32mpicked up\033[0m: " << equipmentName << " with \033[1;31m" << equipmentAddifier << " points\033[0m!" << std::endl << std::endl;
+		
 		break;
 	case 2:
 		equipmentName = weaponNamesList[Utility::randomNumber(0, 4)];
 		equipmentAddifier = Utility::randomNumber(1, 10);
-		std::cout << "  \033[1;36mHero\033[0m \033[1;32mpicked up\033[0m: " << equipmentName << " with \033[1;31m" << equipmentAddifier << " points\033[0m!" << std::endl << std::endl;
 		break;
 	}
 }
+
+Equipment::Equipment(int stats, int placeholder)
+{
+	equipmentAddifier = stats;
+}
+
 
 Equipment::~Equipment()
 {
